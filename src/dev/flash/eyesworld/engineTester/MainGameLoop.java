@@ -1,5 +1,6 @@
 package dev.flash.eyesworld.engineTester;
 
+import dev.flash.eyesworld.Utils.Utils;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.RawModel;
@@ -34,7 +35,6 @@ public class MainGameLoop {
 
         while(!Display.isCloseRequested()){
             renderer.prepare();
-
             //gamelogic
             //render
             renderer.render(model);
