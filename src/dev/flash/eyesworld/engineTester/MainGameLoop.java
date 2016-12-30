@@ -22,8 +22,8 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
-		Renderer renderer = new Renderer();
 		StaticShader shader = new StaticShader();
+		Renderer renderer = new Renderer(shader);
 		
 		float[] vertices = {
 				-0.5f, 0.5f, 0f,    //V0
@@ -47,12 +47,12 @@ public class MainGameLoop {
 		RawModel model = loader.loadToVao(vertices, textureCoords, indices);
 		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("Flash_Silver_Squared")));
 		
-		Entity entity = new Entity(staticModel, new Vector3f(0, 0, 0), 0, 0, 0, 1);
+		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -1), 0, 0, 0, 1);
 		
 		while (!Display.isCloseRequested()) {
 			renderer.prepare();
 			shader.start();
-			entity.increasePosition(0, 0, 0);
+			entity.increasePosition(0, 0, -0.1f);
 			entity.increaseRotation(1, 1, 1);
 			//render
 			renderer.render(entity, shader);
