@@ -1,4 +1,4 @@
-package dev.flash.eyesworld.Utils;
+package dev.flash.eyesworld.utils;
 
 /**
  * Created by Flash on 29/12/2016.

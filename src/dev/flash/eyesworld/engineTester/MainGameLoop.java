@@ -1,10 +1,10 @@
 package dev.flash.eyesworld.engineTester;
 
-import dev.flash.eyesworld.Utils.Utils;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.RawModel;
 import dev.flash.eyesworld.renderEngine.Renderer;
+import dev.flash.eyesworld.shaders.StaticShader;
 import org.lwjgl.opengl.Display;
 
 /**
@@ -19,6 +19,8 @@ public class MainGameLoop {
 
         Loader loader = new Loader();
         Renderer renderer = new Renderer();
+        StaticShader shader = new StaticShader();
+
 
         float[] vertices = {
                 -0.5f, 0.5f, 0f,    //V0
@@ -36,12 +38,14 @@ public class MainGameLoop {
 
         while(!Display.isCloseRequested()){
             renderer.prepare();
+            shader.start();
             //gamelogic
             //render
             renderer.render(model);
-
+            shader.stop();
             DisplayManager.updateDisplay();
         }
+        shader.cleanUp();
         loader.cleanUp();
         DisplayManager.closeDisplay();
     }
