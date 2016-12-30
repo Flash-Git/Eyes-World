@@ -1,10 +1,12 @@
 package dev.flash.eyesworld.engineTester;
 
+import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
-import dev.flash.eyesworld.renderEngine.RawModel;
+import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.renderEngine.Renderer;
 import dev.flash.eyesworld.shaders.StaticShader;
+import dev.flash.eyesworld.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
 
 /**
@@ -34,14 +36,23 @@ public class MainGameLoop {
                 3, 1, 2     //bot right v3, v1, v2
         };
 
-        RawModel model = loader.loadToVao(vertices, indices);
+        float[] textureCoords = {
+                0, 0,   //V0
+                0, 1,   //V1
+                1, 1,   //V3
+                1, 0    //V4
+        };
+
+        RawModel model = loader.loadToVao(vertices, textureCoords, indices);
+        ModelTexture texture = new ModelTexture(loader.loadTexture("Flash_Silver_Squared"));
+        TexturedModel texturedModel = new TexturedModel(model, texture);
 
         while(!Display.isCloseRequested()){
             renderer.prepare();
             shader.start();
             //gamelogic
             //render
-            renderer.render(model);
+            renderer.render(texturedModel);
             shader.stop();
             DisplayManager.updateDisplay();
         }

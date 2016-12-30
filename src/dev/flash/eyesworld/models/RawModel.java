@@ -1,4 +1,4 @@
-package dev.flash.eyesworld.renderEngine;
+package dev.flash.eyesworld.models;
 
 /**
  * Created by Flash on 29/12/2016.
