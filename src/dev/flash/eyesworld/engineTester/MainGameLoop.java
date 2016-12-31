@@ -1,5 +1,6 @@
 package dev.flash.eyesworld.engineTester;
 
+import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
@@ -49,12 +50,16 @@ public class MainGameLoop {
 		
 		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -1), 0, 0, 0, 1);
 		
+		Camera camera = new Camera();
+		
 		while (!Display.isCloseRequested()) {
+			entity.increasePosition(0, 0,0);
+			entity.increaseRotation(1, 1, 1);
+			camera.move();
+			
 			renderer.prepare();
 			shader.start();
-			entity.increasePosition(0, 0, -0.1f);
-			entity.increaseRotation(1, 1, 1);
-			//render
+			shader.loadViewMatrix(camera);
 			renderer.render(entity, shader);
 			shader.stop();
 			DisplayManager.updateDisplay();
