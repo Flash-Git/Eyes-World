@@ -29,6 +29,17 @@ public class Camera {
 		if (Keyboard.isKeyDown(Keyboard.KEY_Q)){
 			position.x -=0.02f;
 		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+			position.y +=0.02f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+			position.y -=0.02f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_N)){
+			roll +=1f;
+		}
+		
+		
 	}
 	
 	//G and S
