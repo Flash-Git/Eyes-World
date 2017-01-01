@@ -18,22 +18,22 @@ public class Camera {
 	
 	public void move(){
 		if (Keyboard.isKeyDown(Keyboard.KEY_Z)){
-			position.z -=0.02f;
+			position.z -=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)){
-			position.z +=0.02f;
+			position.z +=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)){
-			position.x +=0.02f;
+			position.x +=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_Q)){
-			position.x -=0.02f;
+			position.x -=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-			position.y +=0.02f;
+			position.y +=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
-			position.y -=0.02f;
+			position.y -=0.04f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)){
 			roll +=1f;

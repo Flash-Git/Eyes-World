@@ -19,11 +19,12 @@ import java.util.Map;
 /**
  * Created by Flash on 01/01/2017.
  */
+
 public class MasterRenderer {
 	
 	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;
-	private static final float FAR_PLANE = 1000;
+	private static final float FAR_PLANE = 10000;
 	
 	private Matrix4f projectionMatrix;
 	
@@ -36,12 +37,19 @@ public class MasterRenderer {
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 	
 	public MasterRenderer(){
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glCullFace(GL11.GL_BACK);
+		enableCulling();
 		createProjectionMatrix();
 		entityRenderer = new EntityRenderer(shader, projectionMatrix);
 		terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix);
-		
+	}
+	
+	public static void enableCulling(){
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glCullFace(GL11.GL_BACK);
+	}
+	
+	public static void disableCulling(){
+		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
 	public void render(Light sun, Camera camera) {
