@@ -2,6 +2,7 @@ package dev.flash.eyesworld.engineTester;
 
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
+import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
@@ -28,30 +29,32 @@ public class MainGameLoop {
 		Renderer renderer = new Renderer(shader);
 		
 		
+		RawModel model = OBJLoader.loadObjModel("dragon", loader);
 		
-		RawModel model = OBJLoader.loadObjModel("stall", loader);
+		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("white")));
 		
-		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("stallTexture")));
+		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
-		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -50), 0, 0, 0, 1);
+		Light light = new Light(new Vector3f(0, 0, -20), new Vector3f(1, 1, 1));
 		
 		Camera camera = new Camera();
 		
 		while (!Display.isCloseRequested()) {
-			entity.increasePosition(0, 0,0);
+			entity.increasePosition(0, 0, 0);
 			entity.increaseRotation(0, 0.15f, 0);
 			camera.move();
 			
 			renderer.prepare();
 			shader.start();
+			shader.loadLight(light);
 			shader.loadViewMatrix(camera);
 			renderer.render(entity, shader);
 			shader.stop();
 			DisplayManager.updateDisplay();
 		}
+		
 		shader.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 	}
-	
 }
