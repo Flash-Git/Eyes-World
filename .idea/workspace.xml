@@ -30,11 +30,11 @@
       <file leaf-file-name="MainGameLoop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="58" column="8" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+            <state relative-caret-position="289">
+              <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2022#2030#0" expanded="true" />
+                <element signature="e#2020#2028#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +78,8 @@
       <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+            <state relative-caret-position="510">
+              <caret line="31" column="52" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -177,12 +177,12 @@
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainVertexShader.txt" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/fragmentShader.txt" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Camera.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/MasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/textures/ModelTexture.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/StaticShader.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/EntityRenderer.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/vertexShader.txt" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Camera.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
       </list>
     </option>
@@ -194,10 +194,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1364" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -709,12 +709,12 @@
       <workItem from="1483112407621" duration="5429000" />
       <workItem from="1483165216027" duration="4591000" />
       <workItem from="1483183680648" duration="13074000" />
-      <workItem from="1483261572205" duration="14338000" />
+      <workItem from="1483261572205" duration="15710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66231000" />
+    <option name="totallyTimeSpent" value="67603000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -726,7 +726,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1" y="1" width="1364" height="726" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -735,10 +735,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.2031496" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="268" y="579" width="1095" height="129" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21889764" sideWeight="0.49707174" order="9" side_tool="false" content_ui="tabs" x="3" y="297" width="1360" height="133" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22528364" sideWeight="0.49707174" order="9" side_tool="false" content_ui="tabs" x="3" y="297" width="1360" height="133" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21889764" sideWeight="0.50292826" order="10" side_tool="true" content_ui="tabs" x="752" y="286" width="253" height="635" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18594436" sideWeight="0.5087848" order="7" side_tool="false" content_ui="combo" x="138" y="66" width="271" height="522" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1884273" sideWeight="0.5087848" order="7" side_tool="false" content_ui="combo" x="138" y="66" width="271" height="522" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3623719" sideWeight="0.48818898" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -899,7 +899,7 @@
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2022#2030#0" expanded="true" />
+            <element signature="e#2020#2028#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1079,14 +1079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/MasterRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1151,13 +1143,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="31" column="52" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="58" column="8" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+        <state relative-caret-position="289">
+          <caret line="50" column="8" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2022#2030#0" expanded="true" />
+            <element signature="e#2020#2028#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -39,12 +39,12 @@ public class MainGameLoop {
 		
 		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
-		Terrain terrain = new Terrain(-1, -1, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain2 = new Terrain(0, -1, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain3 = new Terrain(-1, -2, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain4 = new Terrain(0, -2, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain5 = new Terrain(-1, -3, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain6 = new Terrain(0, -3, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain = new Terrain(-1, 0, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain2 = new Terrain(0, 0, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain3 = new Terrain(-1, -1, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain4 = new Terrain(0, -1, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain5 = new Terrain(-1, -2, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain6 = new Terrain(0, -2, loader, new ModelTexture(loader.loadTexture("grass")));
 		
 		TexturedModel grass = new TexturedModel(OBJLoader.loadObjModel("grassModel", loader), new ModelTexture(loader.loadTexture("grassTexture")));
 		
