@@ -4,11 +4,8 @@ import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.models.TexturedModel;
-import dev.flash.eyesworld.renderEngine.DisplayManager;
-import dev.flash.eyesworld.renderEngine.Loader;
+import dev.flash.eyesworld.renderEngine.*;
 import dev.flash.eyesworld.models.RawModel;
-import dev.flash.eyesworld.renderEngine.OBJLoader;
-import dev.flash.eyesworld.renderEngine.Renderer;
 import dev.flash.eyesworld.shaders.StaticShader;
 import dev.flash.eyesworld.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
@@ -25,8 +22,6 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
-		StaticShader shader = new StaticShader();
-		Renderer renderer = new Renderer(shader);
 		
 		
 		RawModel model = OBJLoader.loadObjModel("dragon", loader);
@@ -43,21 +38,20 @@ public class MainGameLoop {
 		
 		Camera camera = new Camera();
 		
+		MasterRenderer renderer = new MasterRenderer();
+		
 		while (!Display.isCloseRequested()) {
 			entity.increasePosition(0, 0, 0);
 			entity.increaseRotation(0, 0.15f, 0);
 			camera.move();
 			
-			renderer.prepare();
-			shader.start();
-			shader.loadLight(light);
-			shader.loadViewMatrix(camera);
-			renderer.render(entity, shader);
-			shader.stop();
+			renderer.processEntity(entity);
+			
+			renderer.render(light, camera);
+			
 			DisplayManager.updateDisplay();
 		}
-		
-		shader.cleanUp();
+		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 	}
