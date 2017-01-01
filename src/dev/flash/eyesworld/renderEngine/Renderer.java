@@ -4,6 +4,7 @@ import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.shaders.StaticShader;
+import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
@@ -42,6 +43,8 @@ public class Renderer {
 		GL20.glEnableVertexAttribArray(2);
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
+		ModelTexture texture = texturedModel.getTexture();
+		shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getID());
 		GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
