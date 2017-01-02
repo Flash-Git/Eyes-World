@@ -43,6 +43,7 @@ public class MainGameLoop {
 		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
+		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
 		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
@@ -59,19 +60,25 @@ public class MainGameLoop {
 		
 		
 		//Grass
-		ModelData grassData = OBJFileLoader.loadOBJ("grassModel");
-		RawModel grassModel = loader.loadToVAO(grassData.getVertices(), grassData.getTextureCoords(), grassData.getNormals(), grassData.getIndices());
-		TexturedModel staticGrassModel = new TexturedModel(grassModel, new ModelTexture(loader.loadTexture("grassTexture")));
-		staticGrassModel.getTexture().setTransparency(true);
-		staticGrassModel.getTexture().setFakeLighting(true);
-		List<Entity> grasses = new ArrayList<Entity>();
+		ModelData treeData = OBJFileLoader.loadOBJ("lowPolyTree");
+		RawModel treeModel = loader.loadToVAO(treeData.getVertices(), treeData.getTextureCoords(), treeData.getNormals(), treeData.getIndices());
+		TexturedModel staticTreeModel = new TexturedModel(treeModel, new ModelTexture(loader.loadTexture("lowPolyTree")));
+		ModelTexture treeTexture = staticTreeModel.getTexture();
+		
+		treeTexture.setShineDamper(10);
+		treeTexture.setReflectivity(0.25f);
+		//staticGrassModel.getTexture().setTransparency(true);
+		//staticGrassModel.getTexture().setFakeLighting(true);
+		List<Entity> trees = new ArrayList<Entity>();
 		Random random = new Random();
-		for (int i = 0; i < 200; i++) {
-			grasses.add(new Entity(staticGrassModel, new Vector3f(random.nextFloat() * 800 - 400, 0, random.nextFloat() * -600), 0, 0, 0, 3));
+		for (int i = 0; i < 30; i++) {
+			float x = random.nextFloat() * 800 ;
+			float z = random.nextFloat() * -800;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat()*180, 0, 1));
 		}
 		
-		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap);
-		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap);
 		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
 		
@@ -83,16 +90,15 @@ public class MainGameLoop {
 			dragonEntity.increasePosition(0, 0, 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
 			
+			player.move(terrain);
 			camera.move();
-			player.move();
 			renderer.processEntity(player);
 			
 			
-			//renderer.processEntity(dragonEntity);
-			for (Entity grass : grasses)
-				renderer.processEntity(grass);
+			renderer.processEntity(dragonEntity);
+			for (Entity tree : trees)
+				renderer.processEntity(tree);
 			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
 			
 			renderer.render(light, camera);
 			

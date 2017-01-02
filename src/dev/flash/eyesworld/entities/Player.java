@@ -2,6 +2,7 @@ package dev.flash.eyesworld.entities;
 
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
+import dev.flash.eyesworld.terrains.Terrain;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -16,8 +17,6 @@ public class Player extends Entity {
 	private static final float GRAVITY = -75;
 	private static final float JUMP_POWER = 45;
 	
-	private static final float TERRAIN_HEIGHT = 0;
-	
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 	private float upwardsSpeed = 0;
@@ -27,7 +26,7 @@ public class Player extends Entity {
 		super(model, position, rotX, rotY, rotZ, scale);
 	}
 	
-	public void move() {
+	public void move(Terrain terrain) {
 		checkInputs();
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeMillis() / 1000;
@@ -36,9 +35,12 @@ public class Player extends Entity {
 		increasePosition(dx, 0, dz);
 		upwardsSpeed += GRAVITY * DisplayManager.getFrameTimeMillis() / 1000;
 		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
-		if (super.getPosition().y < TERRAIN_HEIGHT) {
+		
+		float terrainHeight = terrain.getHeightOfTerrain(super.getPosition().x, super.getPosition().z);
+		
+		if (super.getPosition().y < terrainHeight) {
 			upwardsSpeed = 0;
-			super.getPosition().y = TERRAIN_HEIGHT;
+			super.getPosition().y = terrainHeight;
 			inAir = false;
 		}
 	}
