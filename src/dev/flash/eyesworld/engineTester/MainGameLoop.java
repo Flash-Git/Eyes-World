@@ -10,6 +10,8 @@ import dev.flash.eyesworld.renderEngine.*;
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.shaders.StaticShader;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.terrains.TerrainTexture;
+import dev.flash.eyesworld.terrains.TerrainTexturePack;
 import dev.flash.eyesworld.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
@@ -30,6 +32,17 @@ public class MainGameLoop {
 		
 		Loader loader = new Loader();
 		
+		//Terrain Texture Stuff
+		
+		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
+		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
+		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
+		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
+		
+		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
+		
+		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
 		RawModel dragonModel = loader.loadToVAO(
@@ -48,16 +61,12 @@ public class MainGameLoop {
 		staticGrassModel.getTexture().setFakeLighting(true);
 		List<Entity> grasses = new ArrayList<Entity>();
 		Random random = new Random();
-		for (int i = 0; i < 1000; i++) {
-			grasses.add(new Entity(staticGrassModel, new Vector3f(random.nextFloat() * 800 * 2 - 400 * 2, 0, random.nextFloat() * -600 * 4), 0, 0, 0, 3));
+		for (int i = 0; i < 200; i++) {
+			grasses.add(new Entity(staticGrassModel, new Vector3f(random.nextFloat() * 800 - 400, 0, random.nextFloat() * -600), 0, 0, 0, 3));
 		}
 		
-		Terrain terrain = new Terrain(-1, 0, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain2 = new Terrain(0, 0, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain3 = new Terrain(-1, -1, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain4 = new Terrain(0, -1, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain5 = new Terrain(-1, -2, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain6 = new Terrain(0, -2, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap);
+		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap);
 		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
 		
@@ -76,10 +85,6 @@ public class MainGameLoop {
 				renderer.processEntity(grass);
 			renderer.processTerrain(terrain);
 			renderer.processTerrain(terrain2);
-			renderer.processTerrain(terrain3);
-			renderer.processTerrain(terrain4);
-			renderer.processTerrain(terrain5);
-			renderer.processTerrain(terrain6);
 			
 			renderer.render(light, camera);
 			
