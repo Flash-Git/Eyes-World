@@ -76,7 +76,7 @@ public class MainGameLoop {
 		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
 		
-		Camera camera = new Camera();
+		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
@@ -84,6 +84,7 @@ public class MainGameLoop {
 			dragonEntity.increasePosition(0, 0, 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
 			
+			camera.move();
 			player.move();
 			renderer.processEntity(player);
 			
