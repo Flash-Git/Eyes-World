@@ -44,7 +44,6 @@ public class MainGameLoop {
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
 		
-		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
 		RawModel dragonModel = loader.loadToVAO(

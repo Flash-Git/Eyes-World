@@ -10,7 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
  * Created by Flash on 01/01/2017.
  */
 
-public class TerrainShader extends ShaderProgram{
+public class TerrainShader extends ShaderProgram {
 	
 	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/shaders/terrainVertexShader.txt";
 	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/shaders/terrainFragmentShader.txt";
@@ -57,7 +57,7 @@ public class TerrainShader extends ShaderProgram{
 		location_blendMap = super.getUniformLocation("blendMap");
 	}
 	
-	public void loadLight(Light light){
+	public void loadLight(Light light) {
 		super.loadVector(location_lightPosition, light.getPosition());
 		super.loadVector(location_lightColour, light.getColour());
 	}
@@ -80,11 +80,11 @@ public class TerrainShader extends ShaderProgram{
 		super.loadFloat(location_reflectivity, reflectivity);
 	}
 	
-	public void loadSkyColour(float r, float g, float b){
+	public void loadSkyColour(float r, float g, float b) {
 		super.loadVector(location_skyColour, new Vector3f(r, g, b));
 	}
-
-	public void connectTextureUnits(){
+	
+	public void connectTextureUnits() {
 		super.loadInt(location_backgoundTexture, 0);
 		super.loadInt(location_rTexture, 1);
 		super.loadInt(location_gTexture, 2);

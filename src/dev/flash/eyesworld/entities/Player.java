@@ -31,8 +31,8 @@ public class Player extends Entity {
 		checkInputs();
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeMillis() / 1000;
-		float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY()-90)));
-		float dz = (float) (distance * Math.cos(Math.toRadians(super.getRotY()-90)));
+		float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY() - 90)));
+		float dz = (float) (distance * Math.cos(Math.toRadians(super.getRotY() - 90)));
 		increasePosition(dx, 0, dz);
 		upwardsSpeed += GRAVITY * DisplayManager.getFrameTimeMillis() / 1000;
 		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);

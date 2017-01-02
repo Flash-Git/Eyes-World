@@ -40,19 +40,19 @@ public class MasterRenderer {
 	private Map<TexturedModel, List<Entity>> entities = new HashMap<TexturedModel, List<Entity>>();
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 	
-	public MasterRenderer(){
+	public MasterRenderer() {
 		enableCulling();
 		createProjectionMatrix();
 		entityRenderer = new EntityRenderer(shader, projectionMatrix);
 		terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix);
 	}
 	
-	public static void enableCulling(){
+	public static void enableCulling() {
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glCullFace(GL11.GL_BACK);
 	}
 	
-	public static void disableCulling(){
+	public static void disableCulling() {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
@@ -78,7 +78,7 @@ public class MasterRenderer {
 		entities.clear();
 	}
 	
-	public void processTerrain(Terrain terrain){
+	public void processTerrain(Terrain terrain) {
 		terrains.add(terrain);
 	}
 	
@@ -98,7 +98,7 @@ public class MasterRenderer {
 	
 	public void prepare() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);//renders triangles in correct order
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		
 		GL11.glClearColor(RED, GREEN, BLUE, 1);
 	}
@@ -106,16 +106,16 @@ public class MasterRenderer {
 	
 	private void createProjectionMatrix() {
 		float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
-		float y_scale = (float)((1f / Math.tan(Math.toRadians(FOV / 2f))) * aspectRatio);
+		float y_scale = (float) ((1f / Math.tan(Math.toRadians(FOV / 2f))) * aspectRatio);
 		float x_scale = y_scale / aspectRatio;
 		float frustum_length = FAR_PLANE - NEAR_PLANE;
 		
 		projectionMatrix = new Matrix4f();
 		projectionMatrix.m00 = x_scale;
 		projectionMatrix.m11 = y_scale;
-		projectionMatrix.m22 =  -((FAR_PLANE + NEAR_PLANE)/frustum_length);
+		projectionMatrix.m22 = -((FAR_PLANE + NEAR_PLANE) / frustum_length);
 		projectionMatrix.m23 = -1;
-		projectionMatrix.m32 = -((2*NEAR_PLANE*FAR_PLANE)/frustum_length);
+		projectionMatrix.m32 = -((2 * NEAR_PLANE * FAR_PLANE) / frustum_length);
 		projectionMatrix.m33 = 0;
 		
 		
