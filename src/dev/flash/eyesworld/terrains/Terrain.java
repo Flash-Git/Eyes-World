@@ -2,13 +2,11 @@ package dev.flash.eyesworld.terrains;
 
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.renderEngine.Loader;
-import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

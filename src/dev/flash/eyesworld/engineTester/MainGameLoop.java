@@ -56,7 +56,7 @@ public class MainGameLoop {
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
 		//Player
-		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 0, 0, 1);
+		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
 		
 		
 		//Grass
@@ -71,30 +71,28 @@ public class MainGameLoop {
 		//staticGrassModel.getTexture().setFakeLighting(true);
 		List<Entity> trees = new ArrayList<Entity>();
 		Random random = new Random();
-		for (int i = 0; i < 30; i++) {
-			float x = random.nextFloat() * 800 ;
+		for (int i = 0; i < 90; i++) {
+			float x = random.nextFloat() * 800;
 			float z = random.nextFloat() * -800;
 			float y = terrain.getHeightOfTerrain(x, z);
 			
-			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat()*180, 0, 1));
+			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
-		
 		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
 		
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer();
-		
+		float x = 0;
 		while (!Display.isCloseRequested()) {
-			dragonEntity.increasePosition(0, 0, 0);
+			x += 0.1f;
+			dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
 			
 			player.move(terrain);
 			camera.move();
 			renderer.processEntity(player);
-			
-			
 			renderer.processEntity(dragonEntity);
 			for (Entity tree : trees)
 				renderer.processEntity(tree);

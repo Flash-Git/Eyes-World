@@ -1,6 +1,5 @@
 package dev.flash.eyesworld.entities;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -11,10 +10,10 @@ import org.lwjgl.util.vector.Vector3f;
 public class Camera {
 	
 	private float distanceFromPlayer = 50;
-	private float angleAroundPlayer = 0;
+	private float angleAroundPlayer = -90;
 	private float offsetY = 10;
 	
-	private Vector3f position = new Vector3f(100, 35, 50);
+	private Vector3f position = new Vector3f();
 	private float pitch = 20;
 	private float yaw = 0;
 	private float roll;
@@ -53,14 +52,13 @@ public class Camera {
 		}
 	}
 	
-	
 	private void calculateCameraPosition(float horiDistance, float vertDistance) {
 		float theta = player.getRotY() + angleAroundPlayer;
 		float offsetX = (float) (horiDistance * Math.sin(Math.toRadians(theta)));
 		float offsetZ = (float) (horiDistance * Math.cos(Math.toRadians(theta)));
 		position.x = player.getPosition().x - offsetX;
 		position.z = player.getPosition().z - offsetZ;
-		position.y = player.getPosition().y+offsetY + vertDistance;
+		position.y = player.getPosition().y + offsetY + vertDistance;
 	}
 	
 	private float calculateHorizontalDistance() {
