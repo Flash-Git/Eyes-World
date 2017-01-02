@@ -3,6 +3,7 @@ package dev.flash.eyesworld.engineTester;
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
+import dev.flash.eyesworld.entities.Player;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.objConverter.ModelData;
 import dev.flash.eyesworld.objConverter.OBJFileLoader;
@@ -43,6 +44,7 @@ public class MainGameLoop {
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
 		
+		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
 		RawModel dragonModel = loader.loadToVAO(
@@ -52,6 +54,10 @@ public class MainGameLoop {
 		dragonTexture.setShineDamper(10);
 		dragonTexture.setReflectivity(1);
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
+		
+		//Player
+		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 0, 0, 1);
+		
 		
 		//Grass
 		ModelData grassData = OBJFileLoader.loadOBJ("grassModel");
@@ -78,9 +84,11 @@ public class MainGameLoop {
 			dragonEntity.increasePosition(0, 0, 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
 			
-			camera.move();
+			player.move();
+			renderer.processEntity(player);
 			
-			renderer.processEntity(dragonEntity);
+			
+			//renderer.processEntity(dragonEntity);
 			for (Entity grass : grasses)
 				renderer.processEntity(grass);
 			renderer.processTerrain(terrain);
