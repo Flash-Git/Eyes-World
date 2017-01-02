@@ -4,6 +4,8 @@ import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.models.TexturedModel;
+import dev.flash.eyesworld.objConverter.ModelData;
+import dev.flash.eyesworld.objConverter.OBJFileLoader;
 import dev.flash.eyesworld.renderEngine.*;
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.shaders.StaticShader;
@@ -28,16 +30,27 @@ public class MainGameLoop {
 		
 		Loader loader = new Loader();
 		
+		//Dragon
+		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
+		RawModel dragonModel = loader.loadToVAO(
+				dragonData.getVertices(), dragonData.getTextureCoords(), dragonData.getNormals(), dragonData.getIndices());
+		TexturedModel staticDragonModel = new TexturedModel(dragonModel, new ModelTexture(loader.loadTexture("white")));
+		ModelTexture dragonTexture = staticDragonModel.getTexture();
+		dragonTexture.setShineDamper(10);
+		dragonTexture.setReflectivity(1);
+		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
-		RawModel model = OBJLoader.loadObjModel("dragon", loader);
-		
-		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("white")));
-		
-		ModelTexture texture = staticModel.getTexture();
-		texture.setShineDamper(10);
-		texture.setReflectivity(1);
-		
-		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
+		//Grass
+		ModelData grassData = OBJFileLoader.loadOBJ("grassModel");
+		RawModel grassModel = loader.loadToVAO(grassData.getVertices(), grassData.getTextureCoords(), grassData.getNormals(), grassData.getIndices());
+		TexturedModel staticGrassModel = new TexturedModel(grassModel, new ModelTexture(loader.loadTexture("grassTexture")));
+		staticGrassModel.getTexture().setTransparency(true);
+		staticGrassModel.getTexture().setFakeLighting(true);
+		List<Entity> grasses = new ArrayList<Entity>();
+		Random random = new Random();
+		for (int i = 0; i < 1000; i++) {
+			grasses.add(new Entity(staticGrassModel, new Vector3f(random.nextFloat() * 800 * 2 - 400 * 2, 0, random.nextFloat() * -600 * 4), 0, 0, 0, 3));
+		}
 		
 		Terrain terrain = new Terrain(-1, 0, loader, new ModelTexture(loader.loadTexture("grass")));
 		Terrain terrain2 = new Terrain(0, 0, loader, new ModelTexture(loader.loadTexture("grass")));
@@ -46,39 +59,27 @@ public class MainGameLoop {
 		Terrain terrain5 = new Terrain(-1, -2, loader, new ModelTexture(loader.loadTexture("grass")));
 		Terrain terrain6 = new Terrain(0, -2, loader, new ModelTexture(loader.loadTexture("grass")));
 		
-		TexturedModel grass = new TexturedModel(OBJLoader.loadObjModel("grassModel", loader), new ModelTexture(loader.loadTexture("grassTexture")));
-		
-		grass.getTexture().setTransparency(true);
-		grass.getTexture().setFakeLighting(true);
-		
-		List<Entity> entities = new ArrayList<Entity>();
-		Random random = new Random();
-		for (int i = 0; i < 1000; i++) {
-			entities.add(new Entity(grass, new Vector3f(random.nextFloat() * 800*2 - 400*2, 0, random.nextFloat() * -600*4), 0, 0, 0, 3));
-		}
-		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
-		
 		
 		Camera camera = new Camera();
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
 		while (!Display.isCloseRequested()) {
-			entity.increasePosition(0, 0, 0);
-			entity.increaseRotation(0, 0.15f, 0);
+			dragonEntity.increasePosition(0, 0, 0);
+			dragonEntity.increaseRotation(0, 0.15f, 0);
+			
 			camera.move();
 			
-			renderer.processEntity(entity);
+			renderer.processEntity(dragonEntity);
+			for (Entity grass : grasses)
+				renderer.processEntity(grass);
 			renderer.processTerrain(terrain);
 			renderer.processTerrain(terrain2);
 			renderer.processTerrain(terrain3);
 			renderer.processTerrain(terrain4);
 			renderer.processTerrain(terrain5);
 			renderer.processTerrain(terrain6);
-			
-			for (Entity e:entities)
-				renderer.processEntity(e);
 			
 			renderer.render(light, camera);
 			
