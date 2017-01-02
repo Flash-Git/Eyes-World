@@ -12,7 +12,7 @@ public class Camera {
 	
 	private float distanceFromPlayer = 50;
 	private float angleAroundPlayer = 0;
-	
+	private float offsetY = 10;
 	
 	private Vector3f position = new Vector3f(100, 35, 50);
 	private float pitch = 20;
@@ -60,7 +60,7 @@ public class Camera {
 		float offsetZ = (float) (horiDistance * Math.cos(Math.toRadians(theta)));
 		position.x = player.getPosition().x - offsetX;
 		position.z = player.getPosition().z - offsetZ;
-		position.y = player.getPosition().y + vertDistance;
+		position.y = player.getPosition().y+offsetY + vertDistance;
 	}
 	
 	private float calculateHorizontalDistance() {
