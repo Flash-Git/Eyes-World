@@ -7,7 +7,6 @@ import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.shaders.StaticShader;
 import dev.flash.eyesworld.shaders.TerrainShader;
 import dev.flash.eyesworld.terrains.Terrain;
-import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;

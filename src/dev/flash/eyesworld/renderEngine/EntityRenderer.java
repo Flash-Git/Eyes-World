@@ -6,7 +6,10 @@ import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.shaders.StaticShader;
 import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.utils.Maths;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 
 import java.util.List;

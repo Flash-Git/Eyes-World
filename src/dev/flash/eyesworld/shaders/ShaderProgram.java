@@ -1,6 +1,5 @@
 package dev.flash.eyesworld.shaders;
 
-import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -16,6 +15,7 @@ import java.nio.FloatBuffer;
 /**
  * Created by Flash on 29/12/2016.
  */
+
 public abstract class ShaderProgram {
 	
 	private int programID;

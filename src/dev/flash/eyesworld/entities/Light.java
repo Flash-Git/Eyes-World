@@ -1,6 +1,5 @@
 package dev.flash.eyesworld.entities;
 
-import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 /**

@@ -3,7 +3,6 @@ package dev.flash.eyesworld.shaders;
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.utils.Maths;
-import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -71,8 +70,8 @@ public class StaticShader extends ShaderProgram {
 				super.loadVector(location_lightPosition[i], lights.get(i).getPosition());
 				super.loadVector(location_lightColour[i], lights.get(i).getColour());
 			} else {
-				super.loadVector(location_lightPosition[i], new Vector3f(0,0,0));
-				super.loadVector(location_lightColour[i], new Vector3f(0,0,0));
+				super.loadVector(location_lightPosition[i], new Vector3f(0, 0, 0));
+				super.loadVector(location_lightColour[i], new Vector3f(0, 0, 0));
 			}
 		}
 	}

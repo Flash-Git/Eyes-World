@@ -6,17 +6,17 @@ import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.entities.Player;
 import dev.flash.eyesworld.guis.GuiRenderer;
 import dev.flash.eyesworld.guis.GuiTexture;
+import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.objConverter.ModelData;
 import dev.flash.eyesworld.objConverter.OBJFileLoader;
-import dev.flash.eyesworld.renderEngine.*;
-import dev.flash.eyesworld.models.RawModel;
-import dev.flash.eyesworld.shaders.StaticShader;
+import dev.flash.eyesworld.renderEngine.DisplayManager;
+import dev.flash.eyesworld.renderEngine.Loader;
+import dev.flash.eyesworld.renderEngine.MasterRenderer;
 import dev.flash.eyesworld.terrains.Terrain;
 import dev.flash.eyesworld.terrains.TerrainTexture;
 import dev.flash.eyesworld.terrains.TerrainTexturePack;
 import dev.flash.eyesworld.textures.ModelTexture;
-import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -109,8 +109,8 @@ public class MainGameLoop {
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(light);
-		lights.add(new Light(new Vector3f(-200,10,-200),new Vector3f(10,0,0)));
-		lights.add(new Light(new Vector3f(200,10,200),new Vector3f(0,0,10)));
+		lights.add(new Light(new Vector3f(-200, 10, -200), new Vector3f(10, 0, 0)));
+		lights.add(new Light(new Vector3f(200, 10, 200), new Vector3f(0, 0, 10)));
 		
 		
 		Camera camera = new Camera(player);
@@ -118,7 +118,7 @@ public class MainGameLoop {
 		MasterRenderer renderer = new MasterRenderer();
 		
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
-		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"),new Vector2f(0.5f,0.5f), new Vector2f(0.25f,0.25f));
+		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		guis.add(gui);
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
