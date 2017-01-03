@@ -55,8 +55,32 @@ public class MainGameLoop {
 		dragonTexture.setReflectivity(1);
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
+		
 		//Player
 		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
+		
+		
+		//Fern
+		ModelData fernData = OBJFileLoader.loadOBJ("fern");
+		
+		RawModel fernModel = loader.loadToVAO(
+				fernData.getVertices(), fernData.getTextureCoords(), fernData.getNormals(), fernData.getIndices());
+		ModelTexture fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
+		fernTextureAtlas.setNumberOfRows(2);
+		
+		TexturedModel staticFernModel = new TexturedModel(fernModel, fernTextureAtlas);
+		staticFernModel.getTexture().setTransparency(true);
+		//staticFernModel.getTexture().setFakeLighting(true);
+		
+		List<Entity> ferns = new ArrayList<Entity>();
+		Random random = new Random();
+		for (int i = 0; i < 120; i++) {
+			float x = random.nextFloat() * 800;
+			float z = random.nextFloat() * -800;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
+		}
 		
 		
 		//Grass
@@ -70,7 +94,7 @@ public class MainGameLoop {
 		//staticGrassModel.getTexture().setTransparency(true);
 		//staticGrassModel.getTexture().setFakeLighting(true);
 		List<Entity> trees = new ArrayList<Entity>();
-		Random random = new Random();
+		//Random random = new Random();
 		for (int i = 0; i < 90; i++) {
 			float x = random.nextFloat() * 800;
 			float z = random.nextFloat() * -800;
@@ -96,6 +120,8 @@ public class MainGameLoop {
 			renderer.processEntity(dragonEntity);
 			for (Entity tree : trees)
 				renderer.processEntity(tree);
+			for (Entity fern : ferns)
+				renderer.processEntity(fern);
 			renderer.processTerrain(terrain);
 			
 			renderer.render(light, camera);
