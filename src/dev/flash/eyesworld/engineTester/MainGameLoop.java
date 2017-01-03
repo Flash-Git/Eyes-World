@@ -14,8 +14,8 @@ import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
 import dev.flash.eyesworld.terrains.Terrain;
-import dev.flash.eyesworld.terrains.TerrainTexture;
-import dev.flash.eyesworld.terrains.TerrainTexturePack;
+import dev.flash.eyesworld.textures.TerrainTexture;
+import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
@@ -129,7 +129,7 @@ public class MainGameLoop {
 		
 		Camera camera = new Camera(player);
 		
-		MasterRenderer renderer = new MasterRenderer();
+		MasterRenderer renderer = new MasterRenderer(loader);
 		
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
 		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));

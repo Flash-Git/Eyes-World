@@ -2,6 +2,8 @@ package dev.flash.eyesworld.terrains;
 
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.renderEngine.Loader;
+import dev.flash.eyesworld.textures.TerrainTexture;
+import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;

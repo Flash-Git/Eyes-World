@@ -1,4 +1,4 @@
-package dev.flash.eyesworld.terrains;
+package dev.flash.eyesworld.textures;
 
 /**
  * Created by Flash on 02/01/2017.

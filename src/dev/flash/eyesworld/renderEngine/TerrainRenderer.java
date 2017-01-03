@@ -3,7 +3,7 @@ package dev.flash.eyesworld.renderEngine;
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.shaders.TerrainShader;
 import dev.flash.eyesworld.terrains.Terrain;
-import dev.flash.eyesworld.terrains.TerrainTexturePack;
+import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;

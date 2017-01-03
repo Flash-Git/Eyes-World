@@ -1,6 +1,8 @@
 package dev.flash.eyesworld.renderEngine;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
 import dev.flash.eyesworld.models.RawModel;
+import dev.flash.eyesworld.textures.TextureData;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
 import org.newdawn.slick.opengl.Texture;
@@ -9,6 +11,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -34,11 +37,11 @@ public class Loader {
 		return new RawModel(vaoID, indices.length);
 	}
 	
-	public RawModel loadToVAO(float[] positions) {
+	public RawModel loadToVAO(float[] positions, int dimensions) {
 		int vaoID = createVAO();
-		storeDataInAttributeList(0, 2, positions);
+		storeDataInAttributeList(0, dimensions, positions);
 		unbindVAO();
-		return new RawModel(vaoID, positions.length / 2);
+		return new RawModel(vaoID, positions.length / dimensions);
 	}
 	
 	
@@ -68,6 +71,46 @@ public class Loader {
 			GL11.glDeleteTextures(texture);
 	}
 	
+	public int loadCubeMap(String[] textureFiles) {
+		int texID = GL11.glGenTextures();
+		GL13.glActiveTexture(GL13.GL_TEXTURE0);
+		GL11.glBindTexture(GL13.GL_TEXTURE_CUBE_MAP, texID);
+		
+		for (int i = 0; i < textureFiles.length; i++) {
+			TextureData data = decodeTextureFile("res/" + textureFiles[i] + ".png");
+			GL11.glTexImage2D(GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL11.GL_RGBA,
+					data.getWidth(), data.getHeight(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE,
+					data.getBuffer());//GL_TEXTURE_CUBE_MAP_POSITIVE_X+i = the other faces
+		}
+		GL11.glTexParameteri(GL13.GL_TEXTURE_CUBE_MAP, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+		GL11.glTexParameteri(GL13.GL_TEXTURE_CUBE_MAP, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+		textures.add(texID);
+		GL11.glTexParameteri(GL13.GL_TEXTURE_CUBE_MAP, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);//some hardware requires this or you see seams
+		GL11.glTexParameteri(GL13.GL_TEXTURE_CUBE_MAP, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);//some hardware requires this or you see seams
+		return texID;
+	}
+	
+	
+	private TextureData decodeTextureFile(String fileName) {
+		int width = 0;
+		int height = 0;
+		ByteBuffer buffer = null;
+		try {
+			FileInputStream in = new FileInputStream(fileName);
+			PNGDecoder decoder = new PNGDecoder(in);
+			width = decoder.getWidth();
+			height = decoder.getHeight();
+			buffer = ByteBuffer.allocateDirect(4 * width * height);
+			decoder.decode(buffer, width * 4, PNGDecoder.Format.RGBA);//TODO NOT SURE AT ALL
+			buffer.flip();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Tried to load texture " + fileName + ", didn't work");
+			System.exit(-1);
+		}
+		return new TextureData(buffer, width, height);
+	}
 	
 	private int createVAO() {
 		int vaoID = GL30.glGenVertexArrays();
