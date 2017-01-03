@@ -4,6 +4,8 @@ import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.entities.Player;
+import dev.flash.eyesworld.guis.GuiRenderer;
+import dev.flash.eyesworld.guis.GuiTexture;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.objConverter.ModelData;
 import dev.flash.eyesworld.objConverter.OBJFileLoader;
@@ -15,6 +17,7 @@ import dev.flash.eyesworld.terrains.TerrainTexture;
 import dev.flash.eyesworld.terrains.TerrainTexturePack;
 import dev.flash.eyesworld.textures.ModelTexture;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.util.ArrayList;
@@ -108,6 +111,13 @@ public class MainGameLoop {
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer();
+		
+		List<GuiTexture> guis = new ArrayList<GuiTexture>();
+		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"),new Vector2f(0.5f,0.5f), new Vector2f(0.25f,0.25f));
+		guis.add(gui);
+		
+		GuiRenderer guiRenderer = new GuiRenderer(loader);
+		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
 			x += 0.1f;
@@ -126,8 +136,11 @@ public class MainGameLoop {
 			
 			renderer.render(light, camera);
 			
+			guiRenderer.render(guis);
+			
 			DisplayManager.updateDisplay();
 		}
+		guiRenderer.cleanUp();
 		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
