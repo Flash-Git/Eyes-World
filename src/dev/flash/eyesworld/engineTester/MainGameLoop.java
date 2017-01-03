@@ -63,6 +63,14 @@ public class MainGameLoop {
 		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
 		
 		
+		//Lamps
+		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
+		RawModel lampModel = loader.loadToVAO(
+				lampData.getVertices(), lampData.getTextureCoords(), lampData.getNormals(), lampData.getIndices());
+		TexturedModel staticLampModel = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
+		//staticLampModel.getTexture().setTransparency(true);
+		staticLampModel.getTexture().setFakeLighting(true);
+		
 		//Fern
 		ModelData fernData = OBJFileLoader.loadOBJ("fern");
 		
@@ -106,19 +114,25 @@ public class MainGameLoop {
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
+		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.4f, 0.4f, 0.4f));
 		List<Light> lights = new ArrayList<Light>();
-		lights.add(light);
-		lights.add(new Light(new Vector3f(-200, 10, -200), new Vector3f(10, 0, 0)));
-		lights.add(new Light(new Vector3f(200, 10, 200), new Vector3f(0, 0, 10)));
+		lights.add(sun);
+		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293)+20, -293), new Vector3f(2, 0, 0), new Vector3f(1, 0.01f, 0.002f)));
+		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300)+20, -300), new Vector3f(0, 2, 2), new Vector3f(1, 0.01f, 0.002f)));
+		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305)+20, -305), new Vector3f(2, 2, 0), new Vector3f(1, 0.01f, 0.002f)));
 		
+		List<Entity> lamps = new ArrayList<Entity>();
+		
+		lamps.add(new Entity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293), 0, 0, 0, 1));
+		lamps.add(new Entity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300), 0, 0, 0, 1));
+		lamps.add(new Entity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305), 0, 0, 0, 1));
 		
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
-		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
 		guis.add(gui);
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
@@ -137,6 +151,8 @@ public class MainGameLoop {
 				renderer.processEntity(tree);
 			for (Entity fern : ferns)
 				renderer.processEntity(fern);
+			for (Entity lamp : lamps)
+				renderer.processEntity(lamp);
 			renderer.processTerrain(terrain);
 			
 			renderer.render(lights, camera);
