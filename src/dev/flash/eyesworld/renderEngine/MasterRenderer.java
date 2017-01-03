@@ -7,6 +7,7 @@ import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.shaders.StaticShader;
 import dev.flash.eyesworld.shaders.TerrainShader;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
@@ -41,6 +42,7 @@ public class MasterRenderer {
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 	
 	public MasterRenderer() {
+		
 		enableCulling();
 		createProjectionMatrix();
 		entityRenderer = new EntityRenderer(shader, projectionMatrix);
@@ -56,11 +58,11 @@ public class MasterRenderer {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
-	public void render(Light sun, Camera camera) {
+	public void render(List<Light> lights, Camera camera) {
 		prepare();
 		shader.start();
 		shader.loadSkyColour(RED, GREEN, BLUE);
-		shader.loadLight(sun);
+		shader.loadLights(lights);
 		shader.loadViewMatrix(camera);
 		
 		entityRenderer.render(entities);
@@ -69,7 +71,7 @@ public class MasterRenderer {
 		terrainShader.start();
 		terrainShader.loadSkyColour(RED, GREEN, BLUE);
 		
-		terrainShader.loadLight(sun);
+		terrainShader.loadLights(lights);
 		terrainShader.loadViewMatrix(camera);
 		terrainRenderer.render(terrains);
 		terrainShader.stop();

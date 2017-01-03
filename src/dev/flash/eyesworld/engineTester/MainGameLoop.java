@@ -16,6 +16,7 @@ import dev.flash.eyesworld.terrains.Terrain;
 import dev.flash.eyesworld.terrains.TerrainTexture;
 import dev.flash.eyesworld.terrains.TerrainTexturePack;
 import dev.flash.eyesworld.textures.ModelTexture;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -31,7 +32,6 @@ import java.util.Random;
 public class MainGameLoop {
 	
 	public static void main(String[] args) {
-		
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
@@ -107,6 +107,11 @@ public class MainGameLoop {
 		}
 		
 		Light light = new Light(new Vector3f(0, 500, -20), new Vector3f(1, 1, 1));
+		List<Light> lights = new ArrayList<Light>();
+		lights.add(light);
+		lights.add(new Light(new Vector3f(-200,10,-200),new Vector3f(10,0,0)));
+		lights.add(new Light(new Vector3f(200,10,200),new Vector3f(0,0,10)));
+		
 		
 		Camera camera = new Camera(player);
 		
@@ -134,7 +139,7 @@ public class MainGameLoop {
 				renderer.processEntity(fern);
 			renderer.processTerrain(terrain);
 			
-			renderer.render(light, camera);
+			renderer.render(lights, camera);
 			
 			guiRenderer.render(guis);
 			
