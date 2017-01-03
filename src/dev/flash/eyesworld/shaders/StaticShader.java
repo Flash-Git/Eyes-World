@@ -16,8 +16,8 @@ public class StaticShader extends ShaderProgram {
 	
 	private static final int MAX_LIGHTS = 4;
 	
-	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/shaders/vertexShader.txt";
-	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/shaders/fragmentShader.txt";
+	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/shaders/vertexShader.glsl";
+	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/shaders/fragmentShader.glsl";
 	
 	private int location_transformationMatrix;
 	private int location_projectionMatrix;
