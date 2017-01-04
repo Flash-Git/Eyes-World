@@ -21,7 +21,7 @@ uniform float useFakeLighting;
 uniform float numberOfRows;
 uniform vec2 offset;
 
-const float density = 0.001;
+const float density = 0.002;
 const float gradient = 5.0;
 
 

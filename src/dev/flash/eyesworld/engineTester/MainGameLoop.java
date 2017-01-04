@@ -117,15 +117,21 @@ public class MainGameLoop {
 		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.4f, 0.4f, 0.4f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
-		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293)+20, -293), new Vector3f(2, 0, 0), new Vector3f(1, 0.01f, 0.002f)));
-		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300)+20, -300), new Vector3f(0, 2, 2), new Vector3f(1, 0.01f, 0.002f)));
-		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305)+20, -305), new Vector3f(2, 2, 0), new Vector3f(1, 0.01f, 0.002f)));
+		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293)+15, -293),
+				new Vector3f(2, 0, 0), new Vector3f(1, 0.00007f, 0.000015f)));
+		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300)+15, -300),
+				new Vector3f(0, 2, 2), new Vector3f(1, 0.007f, 0.0015f)));
+		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305)+15, -305),
+				new Vector3f(2, 2, 0), new Vector3f(1, 0.007f, 0.0015f)));
 		
 		List<Entity> lamps = new ArrayList<Entity>();
 		
-		lamps.add(new Entity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293), 0, 0, 0, 1));
-		lamps.add(new Entity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300), 0, 0, 0, 1));
-		lamps.add(new Entity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305), 0, 0, 0, 1));
+		lamps.add(new Entity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
+				, 0, 0, 0, 1));
+		lamps.add(new Entity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300)
+				, 0, 0, 0, 1));
+		lamps.add(new Entity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305)
+				, 0, 0, 0, 1));
 		
 		Camera camera = new Camera(player);
 		

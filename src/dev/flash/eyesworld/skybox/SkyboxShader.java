@@ -1,9 +1,10 @@
 package dev.flash.eyesworld.skybox;
 
 import dev.flash.eyesworld.entities.Camera;
-import org.lwjgl.util.vector.Matrix4f;
 import dev.flash.eyesworld.shaders.ShaderProgram;
 import dev.flash.eyesworld.utils.Maths;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 /**
  * Created by Flash on 03/01/2017.
@@ -16,10 +17,25 @@ public class SkyboxShader extends ShaderProgram {
 	
 	private int location_projectionMatrix;
 	private int location_viewMatrix;
+	private int location_fogColour;
 	
 	public SkyboxShader() {
 		super(VERTEX_FILE, FRAGMENT_FILE);
 	}
+	
+	@Override
+	protected void bindAttributes() {
+		super.bindAttribute(0, "position");
+	}
+	
+	
+	@Override
+	protected void getAllUniformLocations() {
+		location_projectionMatrix = super.getUniformLocation("projectionMatrix");
+		location_viewMatrix = super.getUniformLocation("viewMatrix");
+		location_fogColour = super.getUniformLocation("fogColour");
+	}
+	
 	
 	public void loadProjectionMatrix(Matrix4f matrix) {
 		super.loadMatrix(location_projectionMatrix, matrix);
@@ -33,15 +49,8 @@ public class SkyboxShader extends ShaderProgram {
 		super.loadMatrix(location_viewMatrix, matrix);
 	}
 	
-	@Override
-	protected void getAllUniformLocations() {
-		location_projectionMatrix = super.getUniformLocation("projectionMatrix");
-		location_viewMatrix = super.getUniformLocation("viewMatrix");
-	}
-	
-	@Override
-	protected void bindAttributes() {
-		super.bindAttribute(0, "position");
+	public void loadFogColour(float r, float g, float b) {
+		super.loadVector(location_fogColour, new Vector3f(r, g, b));
 	}
 	
 }
