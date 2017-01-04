@@ -17,6 +17,7 @@ import dev.flash.eyesworld.terrains.Terrain;
 import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
+import dev.flash.eyesworld.utils.EntitySelector;
 import dev.flash.eyesworld.utils.MousePicker;
 import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
@@ -120,11 +121,11 @@ public class MainGameLoop {
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
 		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
-				new Vector3f(2, 0, 0), new Vector3f(1, 0.00007f, 0.000015f)));
+				new Vector3f(2, 0, 0), new Vector3f(1, 0.0007f, 0.00015f)));
 		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 15, -300),
-				new Vector3f(0, 2, 2), new Vector3f(1, 0.007f, 0.0015f)));
+				new Vector3f(0, 2, 2), new Vector3f(1, 0.0007f, 0.00015f)));
 		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 15, -305),
-				new Vector3f(2, 2, 0), new Vector3f(1, 0.007f, 0.0015f)));
+				new Vector3f(2, 2, 0), new Vector3f(1, 0.0007f, 0.00015f)));
 		
 		List<Entity> lamps = new ArrayList<Entity>();
 		
@@ -145,12 +146,12 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
-		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix());
+		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrain);
 		
 		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
-			x += 0.1f;
+			x += 0.065f;
 			dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
 			
@@ -158,6 +159,10 @@ public class MainGameLoop {
 			camera.move();
 			
 			picker.update();
+			Vector3f terrainPoint = picker.getCurrentTerrainPoint();
+			if(terrainPoint!=null){
+				dragonEntity.setPosition(terrainPoint);
+			}
 			Utils.out(picker.getCurrentRay());
 			
 			renderer.processEntity(player);

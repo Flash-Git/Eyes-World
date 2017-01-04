@@ -14,11 +14,11 @@ import org.lwjgl.util.vector.Vector4f;
 
 public class MousePicker {
 	
-	private Vector3f currentRay;
+	protected Vector3f currentRay;
 	
 	private Matrix4f projectionMatrix;
 	private Matrix4f viewMatrix;
-	private Camera camera;
+	protected Camera camera;
 	
 	public MousePicker(Camera camera, Matrix4f projectionMatrix) {
 		this.camera = camera;
@@ -53,8 +53,8 @@ public class MousePicker {
 	
 	
 	private Vector2f getNormalisedDeviceCoords(float mouseX, float mouseY) {
-		float x = (2f * mouseX) / Display.getWidth() - 1;
-		float y = (2f * mouseY) / Display.getHeight() - 1;
+		float x = (2.0f * mouseX) / Display.getWidth() - 1f;
+		float y = (2.0f * mouseY) / Display.getHeight() - 1f;
 		return new Vector2f(x, y);
 	}
 	
