@@ -1,6 +1,5 @@
 package dev.flash.eyesworld.renderEngine;
 
-import com.sun.javafx.fxml.LoadListener;
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
@@ -58,13 +57,12 @@ public class MasterRenderer {
 		skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
 	}
 	
-	public static void enableCulling() {
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glCullFace(GL11.GL_BACK);
-	}
-	
-	public static void disableCulling() {
-		GL11.glDisable(GL11.GL_CULL_FACE);
+	public void renderScene(List<Entity> entities, List<Terrain> terrains, List<Light> lights, Camera camera) {
+		for (Terrain terrain : terrains)
+			processTerrain(terrain);
+		for (Entity entity : entities)
+			processEntity(entity);
+		render(lights, camera);
 	}
 	
 	public void render(List<Light> lights, Camera camera) {
@@ -88,6 +86,15 @@ public class MasterRenderer {
 		terrains.clear();
 		
 		entities.clear();
+	}
+	
+	public static void enableCulling() {
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glCullFace(GL11.GL_BACK);
+	}
+	
+	public static void disableCulling() {
+		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
 	public void processTerrain(Terrain terrain) {

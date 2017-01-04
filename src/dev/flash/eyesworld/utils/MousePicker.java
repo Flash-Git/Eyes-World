@@ -51,7 +51,6 @@ public class MousePicker {
 		return worldRay;
 	}
 	
-	
 	private Vector2f getNormalisedDeviceCoords(float mouseX, float mouseY) {
 		float x = (2.0f * mouseX) / Display.getWidth() - 1f;
 		float y = (2.0f * mouseY) / Display.getHeight() - 1f;

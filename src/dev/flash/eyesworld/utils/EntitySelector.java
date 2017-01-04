@@ -22,10 +22,8 @@ public class EntitySelector extends MousePicker {
 		this.terrain = terrain;
 	}
 	
-
-	
 	@Override
-	public void update(){
+	public void update() {
 		super.update();
 		if (intersectionInRange(0, RAY_RANGE, currentRay)) {
 			currentTerrainPoint = binarySearch(0, 0, RAY_RANGE, currentRay);

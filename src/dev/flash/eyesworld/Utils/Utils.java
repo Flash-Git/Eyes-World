@@ -9,6 +9,7 @@ import java.util.Vector;
 /**
  * Created by Flash on 29/12/2016.
  */
+
 public class Utils {
 	public static void out(String data) {
 		System.out.println(data);

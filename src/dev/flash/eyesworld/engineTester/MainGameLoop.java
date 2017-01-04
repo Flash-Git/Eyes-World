@@ -18,8 +18,10 @@ import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.EntitySelector;
-import dev.flash.eyesworld.utils.MousePicker;
-import dev.flash.eyesworld.utils.Utils;
+import dev.flash.eyesworld.water.WaterFrameBuffers;
+import dev.flash.eyesworld.water.WaterRenderer;
+import dev.flash.eyesworld.water.WaterShader;
+import dev.flash.eyesworld.water.WaterTile;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -50,6 +52,10 @@ public class MainGameLoop {
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		List<Terrain> terrains = new ArrayList<>();
+		terrains.add(terrain);
+		terrains.add(terrain2);
 		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
@@ -105,10 +111,8 @@ public class MainGameLoop {
 		
 		treeTexture.setShineDamper(10);
 		treeTexture.setReflectivity(0.25f);
-		//staticGrassModel.getTexture().setTransparency(true);
-		//staticGrassModel.getTexture().setFakeLighting(true);
+		
 		List<Entity> trees = new ArrayList<Entity>();
-		//Random random = new Random();
 		for (int i = 0; i < 90; i++) {
 			float x = random.nextFloat() * 800;
 			float z = random.nextFloat() * -800;
@@ -148,41 +152,55 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrain);
 		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.addAll(trees);
+		entities.addAll(lamps);
+		entities.addAll(ferns);
+		entities.add(player);
+		entities.add(dragonEntity);
+		
+		
+		WaterShader waterShader = new WaterShader();
+		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix());
+		List<WaterTile> waters = new ArrayList<>();
+		waters.add(new WaterTile(75, -75, 0));
+		
+		WaterFrameBuffers fbos = new WaterFrameBuffers();
+		
+		GuiTexture guiTexture = new GuiTexture(fbos.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.5f, 0.5f));
+		guis.add(guiTexture);
 		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
 			x += 0.065f;
 			dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
 			dragonEntity.increaseRotation(0, 0.15f, 0);
-			
 			player.move(terrain);
 			camera.move();
-			
 			picker.update();
+			
+			fbos.bindReflectionFrameBuffer();
+			renderer.renderScene(entities, terrains, lights, camera);
+			
+			fbos.unbindCurrentFrameBuffer();
+			
+			renderer.renderScene(entities, terrains, lights, camera);
+			waterRenderer.render(waters, camera);
+			guiRenderer.render(guis);
+			
+			
 			Vector3f terrainPoint = picker.getCurrentTerrainPoint();
-			if(terrainPoint!=null){
+			if (terrainPoint != null) {
 				dragonEntity.setPosition(terrainPoint);
 			}
-			Utils.out(picker.getCurrentRay());
 			
-			renderer.processEntity(player);
-			renderer.processEntity(dragonEntity);
-			for (Entity tree : trees)
-				renderer.processEntity(tree);
-			for (Entity fern : ferns)
-				renderer.processEntity(fern);
-			for (Entity lamp : lamps)
-				renderer.processEntity(lamp);
-			renderer.processTerrain(terrain);
-			
-			renderer.render(lights, camera);
-			
-			guiRenderer.render(guis);
 			
 			DisplayManager.updateDisplay();
 		}
+		fbos.cleanUp();
 		guiRenderer.cleanUp();
-		renderer.cleanUp();
+		renderer.cleanUp();//water renderer not need to clean up?
+		waterShader.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 	}
