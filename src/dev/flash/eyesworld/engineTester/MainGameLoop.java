@@ -14,9 +14,11 @@ import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
-import dev.flash.eyesworld.textures.ModelTexture;
+import dev.flash.eyesworld.utils.MousePicker;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -117,11 +119,11 @@ public class MainGameLoop {
 		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.4f, 0.4f, 0.4f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
-		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293)+15, -293),
+		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
 				new Vector3f(2, 0, 0), new Vector3f(1, 0.00007f, 0.000015f)));
-		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300)+15, -300),
+		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 15, -300),
 				new Vector3f(0, 2, 2), new Vector3f(1, 0.007f, 0.0015f)));
-		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305)+15, -305),
+		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 15, -305),
 				new Vector3f(2, 2, 0), new Vector3f(1, 0.007f, 0.0015f)));
 		
 		List<Entity> lamps = new ArrayList<Entity>();
@@ -143,6 +145,9 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
+		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix());
+		
+		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
 			x += 0.1f;
@@ -151,6 +156,10 @@ public class MainGameLoop {
 			
 			player.move(terrain);
 			camera.move();
+			
+			picker.update();
+			Utils.out(picker.getCurrentRay());
+			
 			renderer.processEntity(player);
 			renderer.processEntity(dragonEntity);
 			for (Entity tree : trees)
