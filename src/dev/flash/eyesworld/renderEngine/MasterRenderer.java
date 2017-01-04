@@ -33,9 +33,9 @@ public class MasterRenderer {
 	//private static final float GREEN = 0.3f;
 	//private static final float BLUE = 0.7f;
 	
-	private static final float RED = 0.03f;
-	private static final float GREEN = 0.15f;
-	private static final float BLUE = 0.2f;
+	private static final float RED = 0.2f;
+	private static final float GREEN = 0.25f;
+	private static final float BLUE = 0.27f;
 	
 	private Matrix4f projectionMatrix;
 	

@@ -1,6 +1,7 @@
 package dev.flash.eyesworld.skybox;
 
 import dev.flash.eyesworld.entities.Camera;
+import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.shaders.ShaderProgram;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.util.vector.Matrix4f;
@@ -14,6 +15,10 @@ public class SkyboxShader extends ShaderProgram {
 	
 	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/skybox/skyboxVertexShader.glsl";
 	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/skybox/skyboxFragmentShader.glsl";
+	
+	private static final float ROTATE_SPEED = 1f;
+	
+	private float rotation = 0;
 	
 	private int location_projectionMatrix;
 	private int location_viewMatrix;
@@ -46,6 +51,8 @@ public class SkyboxShader extends ShaderProgram {
 		matrix.m30 = 0;
 		matrix.m31 = 0;
 		matrix.m32 = 0;
+		rotation += ROTATE_SPEED * DisplayManager.getFrameTimeMillis()/1000;
+		Matrix4f.rotate((float)Math.toRadians(rotation), new Vector3f(0,1,0), matrix, matrix);
 		super.loadMatrix(location_viewMatrix, matrix);
 	}
 	
