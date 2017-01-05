@@ -205,7 +205,7 @@ public class MainGameLoop {
 			buffers.unbindCurrentFrameBuffer();
 			
 			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
-			waterRenderer.render(waters, camera);
+			waterRenderer.render(waters, camera, sun);
 			guiRenderer.render(guis);
 			
 			
