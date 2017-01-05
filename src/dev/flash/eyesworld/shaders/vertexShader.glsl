@@ -21,12 +21,19 @@ uniform float useFakeLighting;
 uniform float numberOfRows;
 uniform vec2 offset;
 
-const float density = 0.002;
+uniform vec4 plane = vec4(0, -1, 0, 15);//culling plane for water
+
+const float density = 0.002;//try 0
 const float gradient = 5.0;
 
 
-void main(void){
+
+void main(void) {
+
     vec4 worldPosition = transformationMatrix * vec4(position, 1.0);
+
+	gl_ClipDistance[0] = dot(worldPosition, plane);
+
     vec4 positionRelativeToCam = viewMatrix * worldPosition;
     gl_Position = projectionMatrix * positionRelativeToCam;
     pass_textureCoords = (textureCoords/numberOfRows) + offset;

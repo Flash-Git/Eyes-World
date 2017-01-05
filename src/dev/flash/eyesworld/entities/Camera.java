@@ -70,6 +70,10 @@ public class Camera {
 	}
 	
 	
+	public void invertPitch(){
+		this.pitch = -pitch;
+	}
+	
 	//G and S
 	
 	public Vector3f getPosition() {

@@ -23,8 +23,11 @@ import dev.flash.eyesworld.water.WaterRenderer;
 import dev.flash.eyesworld.water.WaterShader;
 import dev.flash.eyesworld.water.WaterTile;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +124,7 @@ public class MainGameLoop {
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.4f, 0.4f, 0.4f));
+		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.7f, 0.7f, 0.7f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
 		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
@@ -145,8 +148,8 @@ public class MainGameLoop {
 		MasterRenderer renderer = new MasterRenderer(loader);
 		
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
-		GuiTexture gui = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
-		guis.add(gui);
+		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
+		guis.add(flashIcon);
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
@@ -165,10 +168,12 @@ public class MainGameLoop {
 		List<WaterTile> waters = new ArrayList<>();
 		waters.add(new WaterTile(75, -75, 0));
 		
-		WaterFrameBuffers fbos = new WaterFrameBuffers();
+		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		
-		GuiTexture guiTexture = new GuiTexture(fbos.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.5f, 0.5f));
-		guis.add(guiTexture);
+		GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		guis.add(reflection);
+		guis.add(refraction);
 		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
@@ -179,12 +184,27 @@ public class MainGameLoop {
 			camera.move();
 			picker.update();
 			
-			fbos.bindReflectionFrameBuffer();
-			renderer.renderScene(entities, terrains, lights, camera);
+			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
 			
-			fbos.unbindCurrentFrameBuffer();
+			buffers.bindReflectionFrameBuffer();
+			float distance = 2 * (camera.getPosition().y - waters.get(0).getHeight());
+			camera.getPosition().y -= distance;
+			camera.invertPitch();
 			
-			renderer.renderScene(entities, terrains, lights, camera);
+			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()));
+			
+			camera.getPosition().y += distance;
+			camera.invertPitch();
+			
+			
+			
+			buffers.bindRefractionFrameBuffer();
+			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, waters.get(0).getHeight()));
+			
+			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
+			buffers.unbindCurrentFrameBuffer();
+			
+			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
 			waterRenderer.render(waters, camera);
 			guiRenderer.render(guis);
 			
@@ -197,7 +217,7 @@ public class MainGameLoop {
 			
 			DisplayManager.updateDisplay();
 		}
-		fbos.cleanUp();
+		buffers.cleanUp();
 		guiRenderer.cleanUp();
 		renderer.cleanUp();//water renderer not need to clean up?
 		waterShader.cleanUp();
