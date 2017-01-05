@@ -2,6 +2,7 @@ package dev.flash.eyesworld.water;
 
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.models.RawModel;
+import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.utils.Maths;
 import org.lwjgl.opengl.GL11;
@@ -20,12 +21,16 @@ import java.util.List;
 public class WaterRenderer {
 	
 	private static final String DUDV_MAP = "waterDUDV";
+	private static final float WAVE_SPEED = 0.017f;
 	
 	private RawModel quad;
 	private WaterShader shader;
 	private WaterFrameBuffers fbos;
 	
 	private int dudvTexture;
+	
+	private float moveFactor = 0;
+	
 	
 	public WaterRenderer(Loader loader, WaterShader shader, Matrix4f projectionMatrix, WaterFrameBuffers fbos) {
 		this.shader = shader;
@@ -53,6 +58,9 @@ public class WaterRenderer {
 	private void prepareRender(Camera camera) {
 		shader.start();
 		shader.loadViewMatrix(camera);
+		moveFactor+= WAVE_SPEED * DisplayManager.getFrameTimeMillis()/1000;
+		moveFactor %= 1;
+		shader.loadMoveFactor(moveFactor);
 		GL30.glBindVertexArray(quad.getVaoID());
 		GL20.glEnableVertexAttribArray(0);
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);

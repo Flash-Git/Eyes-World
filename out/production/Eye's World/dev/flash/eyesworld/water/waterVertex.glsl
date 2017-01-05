@@ -9,7 +9,7 @@ uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 
-const float tiling = 6.0;
+const float tiling = 4.0;
 
 void main(void) {
 

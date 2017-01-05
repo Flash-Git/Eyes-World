@@ -124,7 +124,7 @@ public class MainGameLoop {
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light sun = new Light(new Vector3f(0, 500, -7000), new Vector3f(0.7f, 0.7f, 0.7f));
+		Light sun = new Light(new Vector3f(0, 5000, -500), new Vector3f(0.9f, 0.9f, 0.9f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
 		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
@@ -174,7 +174,7 @@ public class MainGameLoop {
 		
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-
+		
 		
 		float x = 0;
 		while (!Display.isCloseRequested()) {

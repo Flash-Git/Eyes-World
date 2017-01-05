@@ -16,7 +16,7 @@ public class SkyboxShader extends ShaderProgram {
 	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/skybox/skyboxVertexShader.glsl";
 	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/skybox/skyboxFragmentShader.glsl";
 	
-	private static final float ROTATE_SPEED = 1f;
+	private static final float ROTATE_SPEED = 0.2f;
 	
 	private float rotation = 0;
 	
