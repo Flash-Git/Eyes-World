@@ -116,7 +116,7 @@ public class MainGameLoop {
 		treeTexture.setReflectivity(0.25f);
 		
 		List<Entity> trees = new ArrayList<Entity>();
-		for (int i = 0; i < 90; i++) {
+		for (int i = 0; i < 160; i++) {
 			float x = random.nextFloat() * 800;
 			float z = random.nextFloat() * -800;
 			float y = terrain.getHeightOfTerrain(x, z);
@@ -124,7 +124,7 @@ public class MainGameLoop {
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light sun = new Light(new Vector3f(0, 5000, -500), new Vector3f(0.9f, 0.9f, 0.9f));
+		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.9f, 0.9f, 0.9f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
 		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
@@ -169,21 +169,21 @@ public class MainGameLoop {
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		List<WaterTile> waters = new ArrayList<>();
-		waters.add(new WaterTile(100, -100, 0));
+		waters.add(new WaterTile(220, -170, -0.5f));
 		
 		
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		
 		
-		float x = 0;
+		//float x = 0;
 		while (!Display.isCloseRequested()) {
-			x += 0.065f;
-			dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
-			dragonEntity.increaseRotation(0, 0.15f, 0);
+			//x += 0.065f;
+			//dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
+			//dragonEntity.increaseRotation(0, 0.15f, 0);
 			player.move(terrain);
 			camera.move();
-			picker.update();
+			//picker.update();
 			
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
 			
@@ -214,9 +214,9 @@ public class MainGameLoop {
 				dragonEntity.setPosition(terrainPoint);
 			}
 			
-			
 			DisplayManager.updateDisplay();
 		}
+		
 		buffers.cleanUp();
 		guiRenderer.cleanUp();
 		renderer.cleanUp();//water renderer not need to clean up?
