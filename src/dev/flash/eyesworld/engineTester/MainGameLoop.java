@@ -163,17 +163,18 @@ public class MainGameLoop {
 		entities.add(dragonEntity);
 		
 		
+		WaterFrameBuffers buffers = new WaterFrameBuffers();
+		
+		
 		WaterShader waterShader = new WaterShader();
-		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix());
+		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		List<WaterTile> waters = new ArrayList<>();
 		waters.add(new WaterTile(75, -75, 0));
 		
-		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		
-		GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-		GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-		guis.add(reflection);
-		guis.add(refraction);
+		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+
 		
 		float x = 0;
 		while (!Display.isCloseRequested()) {
@@ -195,7 +196,6 @@ public class MainGameLoop {
 			
 			camera.getPosition().y += distance;
 			camera.invertPitch();
-			
 			
 			
 			buffers.bindRefractionFrameBuffer();
