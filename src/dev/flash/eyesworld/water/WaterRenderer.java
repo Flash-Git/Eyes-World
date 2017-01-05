@@ -19,13 +19,18 @@ import java.util.List;
 
 public class WaterRenderer {
 	
+	private static final String DUDV_MAP = "waterDUDV";
+	
 	private RawModel quad;
 	private WaterShader shader;
 	private WaterFrameBuffers fbos;
 	
+	private int dudvTexture;
+	
 	public WaterRenderer(Loader loader, WaterShader shader, Matrix4f projectionMatrix, WaterFrameBuffers fbos) {
 		this.shader = shader;
 		this.fbos = fbos;
+		dudvTexture = loader.loadTexture(DUDV_MAP);
 		shader.start();
 		shader.connectTextureUnits();
 		shader.loadProjectionMatrix(projectionMatrix);
@@ -54,6 +59,8 @@ public class WaterRenderer {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, fbos.getReflectionTexture());
 		GL13.glActiveTexture(GL13.GL_TEXTURE1);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, fbos.getRefractionTexture());
+		GL13.glActiveTexture(GL13.GL_TEXTURE2);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, dudvTexture);
 		
 	}
 	
