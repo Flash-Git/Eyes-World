@@ -56,9 +56,13 @@ public class MainGameLoop {
 		
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
 		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain3 = new Terrain(0, 0, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain4 = new Terrain(-1, 0, loader, texturePack, blendMap, "heightMap");
 		List<Terrain> terrains = new ArrayList<>();
 		terrains.add(terrain);
 		terrains.add(terrain2);
+		terrains.add(terrain3);
+		terrains.add(terrain4);
 		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
@@ -178,6 +182,9 @@ public class MainGameLoop {
 		
 		//float x = 0;
 		while (!Display.isCloseRequested()) {
+			float fps = 1000/DisplayManager.getFrameTimeMillis();
+			String title = Float.toString(fps);
+			Display.setTitle(title);
 			//x += 0.065f;
 			//dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
 			//dragonEntity.increaseRotation(0, 0.15f, 0);
