@@ -8,6 +8,7 @@ import dev.flash.eyesworld.guis.GuiRenderer;
 import dev.flash.eyesworld.guis.GuiTexture;
 import dev.flash.eyesworld.models.RawModel;
 import dev.flash.eyesworld.models.TexturedModel;
+import dev.flash.eyesworld.normalMappingObjConverter.NormalMappedObjLoader;
 import dev.flash.eyesworld.objConverter.ModelData;
 import dev.flash.eyesworld.objConverter.OBJFileLoader;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
@@ -102,13 +103,12 @@ public class MainGameLoop {
 		List<Entity> ferns = new ArrayList<Entity>();
 		Random random = new Random();
 		for (int i = 0; i < 120; i++) {
-			float x = random.nextFloat() * 800;
-			float z = random.nextFloat() * -800;
+			float x = random.nextFloat() * 1600-800;
+			float z = random.nextFloat() * -1600+800;
 			float y = terrain.getHeightOfTerrain(x, z);
 			
 			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
-		
 		
 		//Grass
 		ModelData treeData = OBJFileLoader.loadOBJ("lowPolyTree");
@@ -121,23 +121,23 @@ public class MainGameLoop {
 		
 		List<Entity> trees = new ArrayList<Entity>();
 		for (int i = 0; i < 160; i++) {
-			float x = random.nextFloat() * 800;
-			float z = random.nextFloat() * -800;
+			float x = random.nextFloat() * 1600-800;
+			float z = random.nextFloat() * -1600+800;
 			float y = terrain.getHeightOfTerrain(x, z);
 			
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.9f, 0.9f, 0.9f));
+		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(1.1f, 1.1f, 1.1f));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
-		lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
+		/*lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
 				new Vector3f(2, 0, 0), new Vector3f(1, 0.0007f, 0.00015f)));
 		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 15, -300),
 				new Vector3f(0, 2, 2), new Vector3f(1, 0.0007f, 0.00015f)));
 		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 15, -305),
 				new Vector3f(2, 2, 0), new Vector3f(1, 0.0007f, 0.00015f)));
-		
+		*/
 		List<Entity> lamps = new ArrayList<Entity>();
 		
 		lamps.add(new Entity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
@@ -146,6 +146,22 @@ public class MainGameLoop {
 				, 0, 0, 0, 1));
 		lamps.add(new Entity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305)
 				, 0, 0, 0, 1));
+		
+		
+		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), new ModelTexture(loader.loadTexture("barrel")));
+		barrelModel.getTexture().setReflectivity(0.5f);
+		barrelModel.getTexture().setShineDamper(10);
+		barrelModel.getTexture().setNormalMap(loader.loadTexture("barrelNormal"));
+		
+		List<Entity> barrels = new ArrayList<>();
+		for (int i = 0; i < 50; i++) {
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
+			float y = terrain.getHeightOfTerrain(x, z)+20;
+			
+			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
+		}
+		
 		
 		Camera camera = new Camera(player);
 		
@@ -160,12 +176,15 @@ public class MainGameLoop {
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrain);
 		
 		List<Entity> entities = new ArrayList<Entity>();
+		List<Entity> normalMappedEntities = new ArrayList<Entity>();
+		
 		entities.addAll(trees);
 		entities.addAll(lamps);
 		entities.addAll(ferns);
 		entities.add(player);
 		entities.add(dragonEntity);
 		
+		normalMappedEntities.addAll(barrels);
 		
 		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		
@@ -182,7 +201,10 @@ public class MainGameLoop {
 		
 		//float x = 0;
 		while (!Display.isCloseRequested()) {
-			float fps = 1000/DisplayManager.getFrameTimeMillis();
+			for(Entity entity : barrels)
+				entity.increaseRotation(0, 0.25f, 0);
+			
+			float fps = 1000 / DisplayManager.getFrameTimeMillis();
 			String title = Float.toString(fps);
 			Display.setTitle(title);
 			//x += 0.065f;
@@ -199,19 +221,19 @@ public class MainGameLoop {
 			camera.getPosition().y -= distance;
 			camera.invertPitch();
 			
-			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()+0.2f));//little offset reduces edge water glitch
+			renderer.renderScene(entities, normalMappedEntities, terrains, lights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
 			
 			camera.getPosition().y += distance;
 			camera.invertPitch();
 			
 			
 			buffers.bindRefractionFrameBuffer();
-			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, waters.get(0).getHeight()+0.2f));//little offset reduces edge water glitch
+			renderer.renderScene(entities, normalMappedEntities, terrains, lights, camera, new Vector4f(0, -1, 0, waters.get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
 			
 			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
 			buffers.unbindCurrentFrameBuffer();
 			
-			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
+			renderer.renderScene(entities, normalMappedEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
 			waterRenderer.render(waters, camera, sun);
 			guiRenderer.render(guis);
 			

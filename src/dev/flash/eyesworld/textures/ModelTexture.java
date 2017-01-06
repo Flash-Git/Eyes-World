@@ -3,9 +3,12 @@ package dev.flash.eyesworld.textures;
 /**
  * Created by Flash on 30/12/2016.
  */
+
 public class ModelTexture {
 	
-	public int textureID;
+	private int textureID;
+	private int normalMap;
+	
 	
 	private float shineDamper = 1;
 	private float reflectivity = 0;
@@ -21,6 +24,14 @@ public class ModelTexture {
 	
 	public int getID() {
 		return this.textureID;//this or no this better?
+	}
+	
+	public int getNormalMap() {
+		return normalMap;
+	}
+	
+	public void setNormalMap(int normalMap) {
+		this.normalMap = normalMap;
 	}
 	
 	public float getShineDamper() {

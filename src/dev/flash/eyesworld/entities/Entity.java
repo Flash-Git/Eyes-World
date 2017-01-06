@@ -6,6 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 /**
  * Created by Flash on 30/12/2016.
  */
+
 public class Entity {
 	private TexturedModel model;
 	private Vector3f position;
