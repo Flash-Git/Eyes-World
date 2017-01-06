@@ -199,14 +199,14 @@ public class MainGameLoop {
 			camera.getPosition().y -= distance;
 			camera.invertPitch();
 			
-			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()));
+			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight()+0.2f));//little offset reduces edge water glitch
 			
 			camera.getPosition().y += distance;
 			camera.invertPitch();
 			
 			
 			buffers.bindRefractionFrameBuffer();
-			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, waters.get(0).getHeight()));
+			renderer.renderScene(entities, terrains, lights, camera, new Vector4f(0, -1, 0, waters.get(0).getHeight()+0.2f));//little offset reduces edge water glitch
 			
 			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
 			buffers.unbindCurrentFrameBuffer();
