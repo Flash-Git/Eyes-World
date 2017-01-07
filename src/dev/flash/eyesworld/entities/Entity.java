@@ -12,6 +12,7 @@ public class Entity {
 	private Vector3f position;
 	private float rotX, rotY, rotZ;
 	private float scale;
+	public float i = 0;
 	
 	private int textureIndex;
 	

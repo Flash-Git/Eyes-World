@@ -103,8 +103,8 @@ public class MainGameLoop {
 		List<Entity> ferns = new ArrayList<Entity>();
 		Random random = new Random();
 		for (int i = 0; i < 120; i++) {
-			float x = random.nextFloat() * 1600-800;
-			float z = random.nextFloat() * -1600+800;
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
 			float y = terrain.getHeightOfTerrain(x, z);
 			
 			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -121,8 +121,8 @@ public class MainGameLoop {
 		
 		List<Entity> trees = new ArrayList<Entity>();
 		for (int i = 0; i < 160; i++) {
-			float x = random.nextFloat() * 1600-800;
-			float z = random.nextFloat() * -1600+800;
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
 			float y = terrain.getHeightOfTerrain(x, z);
 			
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -157,7 +157,7 @@ public class MainGameLoop {
 		for (int i = 0; i < 50; i++) {
 			float x = random.nextFloat() * 1600 - 800;
 			float z = random.nextFloat() * -1600 + 800;
-			float y = terrain.getHeightOfTerrain(x, z)+20;
+			float y = terrain.getHeightOfTerrain(x, z) + 20;
 			
 			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
 		}
@@ -199,15 +199,29 @@ public class MainGameLoop {
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		
 		
-		//float x = 0;
 		while (!Display.isCloseRequested()) {
-			for(Entity entity : barrels)
-				entity.increaseRotation(0, 0.25f, 0);
+			
+			for (Entity entity : entities) {
+				entity.i += random.nextFloat() / 10;
+				if (entity.equals(player))
+					break;
+				entity.increasePosition(0, (float) Math.sin(entity.i), 0);
+				entity.increaseRotation(0, 0.9f, 0);
+				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
+				
+			}
+			for (Entity entity : normalMappedEntities) {
+				entity.i += random.nextFloat() / 15;
+				if (entity.equals(player))
+					break;
+				entity.increasePosition(0, (float) (Math.sin(entity.i)), 0);
+				entity.increaseRotation(0, -0.9f, 0);
+			}
 			
 			float fps = 1000 / DisplayManager.getFrameTimeMillis();
 			String title = Float.toString(fps);
 			Display.setTitle(title);
-			//x += 0.065f;
+			
 			//dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
 			//dragonEntity.increaseRotation(0, 0.15f, 0);
 			player.move(terrain);
