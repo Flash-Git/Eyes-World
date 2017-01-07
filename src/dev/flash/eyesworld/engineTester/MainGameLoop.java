@@ -4,6 +4,9 @@ import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.entities.Light;
 import dev.flash.eyesworld.entities.Player;
+import dev.flash.eyesworld.fontMeshCreator.FontType;
+import dev.flash.eyesworld.fontMeshCreator.GUIText;
+import dev.flash.eyesworld.fontRendering.TextMaster;
 import dev.flash.eyesworld.guis.GuiRenderer;
 import dev.flash.eyesworld.guis.GuiTexture;
 import dev.flash.eyesworld.models.RawModel;
@@ -30,6 +33,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,6 +48,11 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
+		
+		TextMaster.init(loader);
+		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
+		GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
+		text.setColour(1, 0, 1);
 		
 		//Terrain Texture Stuff
 		
@@ -198,7 +207,6 @@ public class MainGameLoop {
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		
-		
 		while (!Display.isCloseRequested()) {
 			
 			for (Entity entity : entities) {
@@ -222,8 +230,6 @@ public class MainGameLoop {
 			String title = Float.toString(fps);
 			Display.setTitle(title);
 			
-			//dragonEntity.increasePosition(0, (float) (Math.sin(x)), 0);
-			//dragonEntity.increaseRotation(0, 0.15f, 0);
 			player.move(terrain);
 			camera.move();
 			//picker.update();
@@ -257,9 +263,13 @@ public class MainGameLoop {
 				dragonEntity.setPosition(terrainPoint);
 			}
 			
+			//text
+			TextMaster.render();
+			
+			
 			DisplayManager.updateDisplay();
 		}
-		
+		TextMaster.cleanUp();
 		buffers.cleanUp();
 		guiRenderer.cleanUp();
 		renderer.cleanUp();//water renderer not need to clean up?
