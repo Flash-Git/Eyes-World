@@ -29,11 +29,6 @@ public class MasterRenderer {
 	private static final float NEAR_PLANE = 0.1f;//should be uniform vars
 	private static final float FAR_PLANE = 2000;
 	
-	//blue sky
-	//private static final float RED = 0;
-	//private static final float GREEN = 0.3f;
-	//private static final float BLUE = 0.7f;
-	
 	public static final float RED = 0.2f;
 	public static final float GREEN = 0.25f;
 	public static final float BLUE = 0.27f;
@@ -84,6 +79,7 @@ public class MasterRenderer {
 		
 		entityRenderer.render(entities);
 		shader.stop();
+
 		normalMappingRenderer.render(normalMappingEntities, clipPlane, lights, camera);
 		
 		

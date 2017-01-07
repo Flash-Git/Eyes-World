@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class StaticShader extends ShaderProgram {
 	
-	private static final int MAX_LIGHTS = 4;
+	private static final int MAX_LIGHTS = 6;
 	
 	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/shaders/vertexShader.glsl";
 	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/shaders/fragmentShader.glsl";

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TerrainShader extends ShaderProgram {
 	
-	private static final int MAX_LIGHTS = 4;
+	private static final int MAX_LIGHTS = 6;
 	
 	private static final String VERTEX_FILE = "src/dev/flash/eyesworld/shaders/terrainVertexShader.glsl";
 	private static final String FRAGMENT_FILE = "src/dev/flash/eyesworld/shaders/terrainFragmentShader.glsl";

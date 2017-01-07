@@ -2,7 +2,6 @@ package dev.flash.eyesworld.engineTester;
 
 import dev.flash.eyesworld.entities.*;
 import dev.flash.eyesworld.fontMeshCreator.FontType;
-import dev.flash.eyesworld.fontMeshCreator.GUIText;
 import dev.flash.eyesworld.fontRendering.TextMaster;
 import dev.flash.eyesworld.guis.GuiRenderer;
 import dev.flash.eyesworld.guis.GuiTexture;
@@ -48,8 +47,8 @@ public class MainGameLoop {
 		
 		TextMaster.init(loader);
 		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
-		GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
-		text.setColour(1, 0, 1);
+		//GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
+		//text.setColour(1, 0, 1);
 		
 		//Terrain Texture Stuff
 		
@@ -137,12 +136,11 @@ public class MainGameLoop {
 		List<Light> lights = new ArrayList<Light>();
 		
 		
-		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(1.1f, 1.1f, 1.1f));
+		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.8f, 0.8f, 0.8f));
 		
-		lights.add(sun);
 		
 		List<LightEntity> lamps = new ArrayList<LightEntity>();
-		
+		/*
 		lamps.add(new LightEntity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
 				, 0, 0, 0, 1, new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 13, -293),
 				new Vector3f(1, 0, 0), new Vector3f(1, 0.001f, 0.0003f))));
@@ -156,6 +154,22 @@ public class MainGameLoop {
 		lights.add(lamps.get(0).getLight());
 		lights.add(lamps.get(1).getLight());
 		lights.add(lamps.get(2).getLight());
+		*/
+		
+		for (int i = 0; i < 5; i++) {
+			//float x = random.nextFloat() * 1600 - 800;
+			//float z = random.nextFloat() * -1600 + 800;
+			float x = random.nextFloat() * 700;
+			float z = random.nextFloat() * -700;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
+					new Light(new Vector3f(x, y + 14, z),
+							new Vector3f(random.nextFloat() * 1.5f-0.5f, random.nextFloat() * 1.5f-0.5f, random.nextFloat() * 1.5f-0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
+			lights.add(lamps.get(i).getLight());
+		}
+		lights.add(sun);
+		
 		
 		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), new ModelTexture(loader.loadTexture("barrel")));
 		barrelModel.getTexture().setReflectivity(0.5f);
@@ -201,31 +215,31 @@ public class MainGameLoop {
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		List<WaterTile> waters = new ArrayList<>();
-		waters.add(new WaterTile(220, -170, 25f));
+		waters.add(new WaterTile(220, -170, -0.5f));
+		waters.add(new WaterTile(220, -170, 50f));
 		
 		
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		
 		while (!Display.isCloseRequested()) {
-			
+			//Utils.out(lights.size()+" "+lamps.size());
 			for (Entity entity : entities) {
-				entity.i += random.nextFloat() / 15;
+				entity.i += random.nextFloat() / 5;
 				if (entity.equals(player))
-					break;
-				entity.increasePosition(0, (float) Math.sin(entity.i) - 0.5f, 0);
+					continue;
+				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 4 - 0.5f, 0);
 				entity.increaseRotation(0, 1.1f, 0);
 				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
 				
 			}
 			for (Entity entity : normalMappedEntities) {
-				entity.i += random.nextFloat() / 15;
+				entity.i += random.nextFloat() / 5;
 				if (entity.equals(player))
-					break;
-				entity.increasePosition(0, (float) (Math.sin(entity.i + entity.getScale() * 17) - entity.getScale() / 4), 0);
+					continue;
+				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 4 - entity.getScale() / 4, 0);
 				entity.increaseRotation(0, -1.1f, 0);
-				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) + entity.getScale() * 17 / 2 - 3f, entity.getPosition().y), entity.getPosition().z));
-				
+				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) - entity.getScale() * 4 + 17, entity.getPosition().y), entity.getPosition().z));
 			}
 			
 			float fps = 1000 / DisplayManager.getFrameTimeMillis();
@@ -262,7 +276,7 @@ public class MainGameLoop {
 			
 			Vector3f terrainPoint = picker.getCurrentTerrainPoint();
 			if (terrainPoint != null) {
-				dragonEntity.setPosition(terrainPoint);
+				lamps.get(0).setPosition(terrainPoint);
 			}
 			
 			//text
