@@ -1,9 +1,6 @@
 package dev.flash.eyesworld.engineTester;
 
-import dev.flash.eyesworld.entities.Camera;
-import dev.flash.eyesworld.entities.Entity;
-import dev.flash.eyesworld.entities.Light;
-import dev.flash.eyesworld.entities.Player;
+import dev.flash.eyesworld.entities.*;
 import dev.flash.eyesworld.fontMeshCreator.FontType;
 import dev.flash.eyesworld.fontMeshCreator.GUIText;
 import dev.flash.eyesworld.fontRendering.TextMaster;
@@ -137,25 +134,28 @@ public class MainGameLoop {
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
 		}
 		
-		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(1.1f, 1.1f, 1.1f));
 		List<Light> lights = new ArrayList<Light>();
+		
+		
+		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(1.1f, 1.1f, 1.1f));
+		
 		lights.add(sun);
-		/*lights.add(new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 15, -293),
-				new Vector3f(2, 0, 0), new Vector3f(1, 0.0007f, 0.00015f)));
-		lights.add(new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 15, -300),
-				new Vector3f(0, 2, 2), new Vector3f(1, 0.0007f, 0.00015f)));
-		lights.add(new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 15, -305),
-				new Vector3f(2, 2, 0), new Vector3f(1, 0.0007f, 0.00015f)));
-		*/
-		List<Entity> lamps = new ArrayList<Entity>();
 		
-		lamps.add(new Entity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
-				, 0, 0, 0, 1));
-		lamps.add(new Entity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300)
-				, 0, 0, 0, 1));
-		lamps.add(new Entity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305)
-				, 0, 0, 0, 1));
+		List<LightEntity> lamps = new ArrayList<LightEntity>();
 		
+		lamps.add(new LightEntity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
+				, 0, 0, 0, 1, new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 13, -293),
+				new Vector3f(1, 0, 0), new Vector3f(1, 0.001f, 0.0003f))));
+		lamps.add(new LightEntity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300)
+				, 0, 0, 0, 1, new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 13, -300),
+				new Vector3f(0, 1, 1), new Vector3f(1, 0.001f, 0.0003f))));
+		lamps.add(new LightEntity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305)
+				, 0, 0, 0, 1, new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 13, -305),
+				new Vector3f(1, 1, 0), new Vector3f(1, 0.001f, 0.0003f))));
+		
+		lights.add(lamps.get(0).getLight());
+		lights.add(lamps.get(1).getLight());
+		lights.add(lamps.get(2).getLight());
 		
 		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), new ModelTexture(loader.loadTexture("barrel")));
 		barrelModel.getTexture().setReflectivity(0.5f);
@@ -201,7 +201,7 @@ public class MainGameLoop {
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		List<WaterTile> waters = new ArrayList<>();
-		waters.add(new WaterTile(220, -170, -0.5f));
+		waters.add(new WaterTile(220, -170, 25f));
 		
 		
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
@@ -210,11 +210,11 @@ public class MainGameLoop {
 		while (!Display.isCloseRequested()) {
 			
 			for (Entity entity : entities) {
-				entity.i += random.nextFloat() / 10;
+				entity.i += random.nextFloat() / 15;
 				if (entity.equals(player))
 					break;
-				entity.increasePosition(0, (float) Math.sin(entity.i), 0);
-				entity.increaseRotation(0, 0.9f, 0);
+				entity.increasePosition(0, (float) Math.sin(entity.i) - 0.5f, 0);
+				entity.increaseRotation(0, 1.1f, 0);
 				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
 				
 			}
@@ -222,8 +222,10 @@ public class MainGameLoop {
 				entity.i += random.nextFloat() / 15;
 				if (entity.equals(player))
 					break;
-				entity.increasePosition(0, (float) (Math.sin(entity.i)), 0);
-				entity.increaseRotation(0, -0.9f, 0);
+				entity.increasePosition(0, (float) (Math.sin(entity.i + entity.getScale() * 17) - entity.getScale() / 4), 0);
+				entity.increaseRotation(0, -1.1f, 0);
+				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) + entity.getScale() * 17 / 2 - 3f, entity.getPosition().y), entity.getPosition().z));
+				
 			}
 			
 			float fps = 1000 / DisplayManager.getFrameTimeMillis();
@@ -232,7 +234,7 @@ public class MainGameLoop {
 			
 			player.move(terrain);
 			camera.move();
-			//picker.update();
+			picker.update();
 			
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
 			

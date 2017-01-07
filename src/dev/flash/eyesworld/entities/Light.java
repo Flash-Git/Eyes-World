@@ -23,6 +23,12 @@ public class Light {
 		this.attenuation = attenuation;
 	}
 	
+	public void increasePosition(float dx, float dy, float dz) {
+		position.x += dx;
+		position.y += dy;
+		position.z += dz;
+	}
+	
 	public Vector3f getPosition() {
 		return position;
 	}
