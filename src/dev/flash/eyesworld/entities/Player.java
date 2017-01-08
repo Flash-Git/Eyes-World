@@ -54,7 +54,7 @@ public class Player extends Entity {
 	}
 	
 	private void checkInputs() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_Z)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			currentSpeed = RUN_SPEED;
 		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			currentSpeed = -RUN_SPEED / 2;
@@ -63,7 +63,7 @@ public class Player extends Entity {
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			currentTurnSpeed = -TURN_SPEED;
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			currentTurnSpeed = TURN_SPEED;
 		} else {
 			currentTurnSpeed = 0;

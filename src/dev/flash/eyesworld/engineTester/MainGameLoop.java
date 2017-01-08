@@ -165,7 +165,7 @@ public class MainGameLoop {
 			
 			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
 					new Light(new Vector3f(x, y + 14, z),
-							new Vector3f(random.nextFloat() * 1.5f-0.5f, random.nextFloat() * 1.5f-0.5f, random.nextFloat() * 1.5f-0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
+							new Vector3f(random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
 			lights.add(lamps.get(i).getLight());
 		}
 		lights.add(sun);
@@ -184,7 +184,6 @@ public class MainGameLoop {
 			
 			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
 		}
-		
 		
 		Camera camera = new Camera(player);
 		
@@ -216,29 +215,29 @@ public class MainGameLoop {
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		List<WaterTile> waters = new ArrayList<>();
 		waters.add(new WaterTile(220, -170, -0.5f));
-		waters.add(new WaterTile(220, -170, 50f));
+		//waters.add(new WaterTile(220, -170, 50f));
 		
 		
 		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
 		
 		while (!Display.isCloseRequested()) {
-			//Utils.out(lights.size()+" "+lamps.size());
+			//utils.out(lights.size()+" "+lamps.size());
 			for (Entity entity : entities) {
-				entity.i += random.nextFloat() / 5;
+				entity.i += random.nextFloat() / 50;
 				if (entity.equals(player))
 					continue;
-				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 4 - 0.5f, 0);
-				entity.increaseRotation(0, 1.1f, 0);
+				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - 0.5f, 0);
+				entity.increaseRotation(0, 0.4f, 0);
 				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
 				
 			}
 			for (Entity entity : normalMappedEntities) {
-				entity.i += random.nextFloat() / 5;
+				entity.i += random.nextFloat() / 50;
 				if (entity.equals(player))
 					continue;
-				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 4 - entity.getScale() / 4, 0);
-				entity.increaseRotation(0, -1.1f, 0);
+				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - entity.getScale() / 4, 0);
+				entity.increaseRotation(0, -0.2f, 0);
 				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) - entity.getScale() * 4 + 17, entity.getPosition().y), entity.getPosition().z));
 			}
 			

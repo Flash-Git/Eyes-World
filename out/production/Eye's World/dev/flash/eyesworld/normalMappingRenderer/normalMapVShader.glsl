@@ -18,7 +18,7 @@ uniform vec3 lightPositionEyeSpace[4];
 uniform float numberOfRows;
 uniform vec2 offset;
 
-const float density = 0.002;
+const float density = 0.000;//try 0.002
 const float gradient = 5.0;
 
 uniform vec4 plane;

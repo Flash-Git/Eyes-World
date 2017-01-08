@@ -15,7 +15,7 @@ import org.lwjgl.util.vector.Matrix4f;
  */
 
 public class SkyboxRenderer {
-	private static final float SIZE = 1000f;
+	private static final float SIZE = 5000;
 	
 	private static final float[] VERTICES = {
 			-SIZE, SIZE, -SIZE,

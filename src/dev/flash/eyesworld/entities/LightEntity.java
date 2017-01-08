@@ -22,7 +22,7 @@ public class LightEntity extends Entity {
 		yOffset = light.getPosition().y - position.y;
 		zOffset = light.getPosition().z - position.z;
 		
-		//Utils.out(xOffset + " " + yOffset + " " + zOffset);
+		//utils.out(xOffset + " " + yOffset + " " + zOffset);
 		
 	}
 	
