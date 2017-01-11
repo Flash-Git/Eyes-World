@@ -2,7 +2,9 @@ package dev.flash.eyesworld.engineTester;
 
 import dev.flash.eyesworld.entities.*;
 import dev.flash.eyesworld.fontMeshCreator.FontType;
+import dev.flash.eyesworld.fontMeshCreator.GUIText;
 import dev.flash.eyesworld.fontRendering.TextMaster;
+import dev.flash.eyesworld.guis.GuiManager;
 import dev.flash.eyesworld.guis.GuiRenderer;
 import dev.flash.eyesworld.guis.GuiTexture;
 import dev.flash.eyesworld.models.RawModel;
@@ -41,41 +43,26 @@ public class MainGameLoop {
 	private static TerrainManager terrainManager = new TerrainManager();
 	private static EntityManager entityManager = new EntityManager();
 	private static WaterManager waterManager = new WaterManager();
+	private static GuiManager guiManager = new GuiManager();
 	private static Camera camera;
 	
 	public static void main(String[] args) {
 		DisplayManager.createDisplay();
-		
 		Loader loader = new Loader();
-		
 		TextMaster.init(loader);
-		
-		
-		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
-		//GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
-		//text.setColour(1, 0, 1);
-		
-		
 		MasterRenderer renderer = new MasterRenderer(loader);
 		
-		createTerrains(loader);
-		
-		createEntities(loader);
-		camera = new Camera(entityManager.getPlayer());
-		
-		createWaters();
-		
 		WaterFrameBuffers buffers = new WaterFrameBuffers();
-		
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
 		
-		
-		List<GuiTexture> guis = new ArrayList<>();
-		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
-		guis.add(flashIcon);
-		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
+		
+		createWaters();
+		createTerrains(loader);
+		createEntities(loader);
+		createGUIs(loader);
+		camera = new Camera(entityManager.getPlayer());
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
 		
@@ -93,7 +80,7 @@ public class MainGameLoop {
 			renderWater(buffers, renderer);
 			renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
 			waterRenderer.render(waterManager.getWaters(), camera, entityManager.getSun());
-			guiRenderer.render(guis);
+			guiRenderer.render(guiManager.getGuis());
 			TextMaster.render();
 			
 			//Push to Screen
@@ -108,7 +95,7 @@ public class MainGameLoop {
 		DisplayManager.closeDisplay();
 	}
 	
-	private static void grabEntities(EntitySelector picker){
+	private static void grabEntities(EntitySelector picker) {
 		try {
 			entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
 		} catch (Exception e) {
@@ -156,7 +143,6 @@ public class MainGameLoop {
 		camera.getPosition().y += distance;
 		camera.invertPitch();
 		
-		
 		buffers.bindRefractionFrameBuffer();
 		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
 		
@@ -165,8 +151,6 @@ public class MainGameLoop {
 	}
 	
 	private static void createEntities(Loader loader) {
-		
-		
 		//Dragon
 		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
 		RawModel dragonModel = loader.loadToVAO(
@@ -177,10 +161,8 @@ public class MainGameLoop {
 		dragonTexture.setReflectivity(1);
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
-		
 		//Player
 		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
-		
 		
 		//Lamps
 		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
@@ -232,9 +214,7 @@ public class MainGameLoop {
 		
 		List<Light> lights = new ArrayList<>();
 		
-		
 		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.8f, 0.8f, 0.8f));
-		
 		
 		List<LightEntity> lamps = new ArrayList<>();
 		
@@ -282,8 +262,6 @@ public class MainGameLoop {
 	}
 	
 	private static void createTerrains(Loader loader) {
-		//Terrain Texture Stuff
-		
 		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
 		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
 		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
@@ -301,9 +279,8 @@ public class MainGameLoop {
 		terrains.add(terrain2);
 		terrains.add(terrain3);
 		terrains.add(terrain4);
-		terrainManager.addTerains(terrains);
+		terrainManager.addTerrains(terrains);
 		terrainManager.setDummyTerrain(terrain);
-		
 	}
 	
 	private static void createWaters() {
@@ -334,4 +311,13 @@ public class MainGameLoop {
 		}
 	}
 	
+	private static void createGUIs(Loader loader) {
+		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
+		GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
+		text.setColour(1, 0, 1);
+		
+		List<GuiTexture> guis = new ArrayList<>();
+		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
+		//guis.add(flashIcon);
+	}
 }

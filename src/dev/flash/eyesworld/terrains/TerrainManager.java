@@ -24,19 +24,19 @@ public class TerrainManager {
 	}
 	
 	
-	public void addTerain(Terrain terrain) {
+	public void addTerrain(Terrain terrain) {
 		terrains.add(terrain);
 	}
 	
-	public void removeTerain(Terrain terrain) {
+	public void removeTerrain(Terrain terrain) {
 		terrains.remove(terrain);
 	}
 	
-	public void addTerains(List<Terrain> terrains) {
+	public void addTerrains(List<Terrain> terrains) {
 		this.terrains.addAll(terrains);
 	}
 	
-	public void removeTerains(List<Terrain> terrains) {
+	public void removeTerrains(List<Terrain> terrains) {
 		for (Terrain terrain : terrains) {
 			for (int i = 0; i < this.terrains.size(); i++) {
 				if (terrain.equals(this.terrains.get(i))) {
