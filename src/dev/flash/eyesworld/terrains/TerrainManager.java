@@ -14,9 +14,9 @@ public class TerrainManager {
 		
 	}
 	
-	public Terrain getTerrain(int x, int z){
-		for (Terrain terrain : terrains){
-			if(terrain.getX()==x && terrain.getZ()==z){
+	public Terrain getTerrain(float x, float z) {
+		for (Terrain terrain : terrains) {
+			if (terrain.getX() == Math.floor(x/terrain.SIZE) * terrain.SIZE && terrain.getZ() == Math.floor(z/terrain.SIZE) * terrain.SIZE) {
 				return terrain;
 			}
 		}
@@ -47,4 +47,13 @@ public class TerrainManager {
 		
 	}
 	
+	//G and S
+	
+	public List<Terrain> getTerrains() {
+		return terrains;
+	}
+	
+	public void setTerrains(List<Terrain> terrains) {
+		this.terrains = terrains;
+	}
 }

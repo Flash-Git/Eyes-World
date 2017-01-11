@@ -10,7 +10,9 @@ import java.util.List;
 public class EntityManager {
 	private List<Entity> entities = new ArrayList<>();
 	private List<Entity> normalMappedEntities = new ArrayList<>();
-	private Entity player;
+	private List<Light> lights = new ArrayList<>();
+	private Player player;
+	private Light sun;
 	
 	
 	public EntityManager() {
@@ -63,14 +65,71 @@ public class EntityManager {
 		
 	}
 	
+	//Lights
+	
+	public void addLight(Light light) {
+		lights.add(light);
+	}
+	
+	public void removeLight(Light light) {
+		lights.remove(light);
+	}
+	
+	public void addLights(List<Light> lights) {
+		this.lights.addAll(lights);
+	}
+	
+	public void removeLights(List<Light> lights) {
+		for (Light light : lights) {
+			for (int i = 0; i < this.lights.size(); i++) {
+				if (light.equals(this.lights.get(i))) {
+					this.lights.remove(i);
+				}
+			}
+		}
+	}
+	
 	//Getters n Setters
 	
-	public Entity getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 	
-	public void setPlayer(Entity player) {
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
 	
+	
+	public Light getSun() {
+		return sun;
+	}
+	
+	public void setSun(Light sun) {
+		this.sun = sun;
+	}
+	
+	
+	public List<Entity> getEntities() {
+		return entities;
+	}
+	
+	public void setEntities(List<Entity> entities) {
+		this.entities = entities;
+	}
+	
+	public List<Entity> getNormalMappedEntities() {
+		return normalMappedEntities;
+	}
+	
+	public void setNormalMappedEntities(List<Entity> normalMappedEntities) {
+		this.normalMappedEntities = normalMappedEntities;
+	}
+	
+	public List<Light> getLights() {
+		return lights;
+	}
+	
+	public void setLights(List<Light> lights) {
+		this.lights = lights;
+	}
 }

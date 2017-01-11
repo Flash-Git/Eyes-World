@@ -61,6 +61,8 @@ public class Entity {
 	//G and S
 	
 	
+	
+	
 	public TexturedModel getModel() {
 		return model;
 	}
