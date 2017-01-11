@@ -14,6 +14,7 @@ import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.terrains.TerrainManager;
 import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
@@ -39,6 +40,8 @@ import java.util.Random;
  */
 
 public class MainGameLoop {
+	private static TerrainManager terrainManager = new TerrainManager();
+	private static EntityManager entityManager = new EntityManager();
 	
 	public static void main(String[] args) {
 		DisplayManager.createDisplay();
@@ -46,144 +49,17 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		
 		TextMaster.init(loader);
+		
+		
 		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
 		//GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
 		//text.setColour(1, 0, 1);
 		
-		//Terrain Texture Stuff
 		
-		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
-		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
-		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
-		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
+		terrainManager.addTerains(createTerrains(loader));
 		
-		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
+		entityManager.addEntities(createEntities(loader));
 		
-		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain3 = new Terrain(0, 0, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain4 = new Terrain(-1, 0, loader, texturePack, blendMap, "heightMap");
-		List<Terrain> terrains = new ArrayList<>();
-		terrains.add(terrain);
-		terrains.add(terrain2);
-		terrains.add(terrain3);
-		terrains.add(terrain4);
-		
-		//Dragon
-		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
-		RawModel dragonModel = loader.loadToVAO(
-				dragonData.getVertices(), dragonData.getTextureCoords(), dragonData.getNormals(), dragonData.getIndices());
-		TexturedModel staticDragonModel = new TexturedModel(dragonModel, new ModelTexture(loader.loadTexture("white")));
-		ModelTexture dragonTexture = staticDragonModel.getTexture();
-		dragonTexture.setShineDamper(10);
-		dragonTexture.setReflectivity(1);
-		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
-		
-		
-		//Player
-		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
-		
-		
-		//Lamps
-		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
-		RawModel lampModel = loader.loadToVAO(
-				lampData.getVertices(), lampData.getTextureCoords(), lampData.getNormals(), lampData.getIndices());
-		TexturedModel staticLampModel = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
-		//staticLampModel.getTexture().setTransparency(true);
-		staticLampModel.getTexture().setFakeLighting(true);
-		
-		//Fern
-		ModelData fernData = OBJFileLoader.loadOBJ("fern");
-		
-		RawModel fernModel = loader.loadToVAO(
-				fernData.getVertices(), fernData.getTextureCoords(), fernData.getNormals(), fernData.getIndices());
-		ModelTexture fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
-		fernTextureAtlas.setNumberOfRows(2);
-		
-		TexturedModel staticFernModel = new TexturedModel(fernModel, fernTextureAtlas);
-		staticFernModel.getTexture().setTransparency(true);
-		//staticFernModel.getTexture().setFakeLighting(true);
-		
-		List<Entity> ferns = new ArrayList<Entity>();
-		Random random = new Random();
-		for (int i = 0; i < 120; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
-			float y = terrain.getHeightOfTerrain(x, z);
-			
-			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
-		}
-		
-		//Grass
-		ModelData treeData = OBJFileLoader.loadOBJ("lowPolyTree");
-		RawModel treeModel = loader.loadToVAO(treeData.getVertices(), treeData.getTextureCoords(), treeData.getNormals(), treeData.getIndices());
-		TexturedModel staticTreeModel = new TexturedModel(treeModel, new ModelTexture(loader.loadTexture("lowPolyTree")));
-		ModelTexture treeTexture = staticTreeModel.getTexture();
-		
-		treeTexture.setShineDamper(10);
-		treeTexture.setReflectivity(0.25f);
-		
-		List<Entity> trees = new ArrayList<Entity>();
-		for (int i = 0; i < 160; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
-			float y = terrain.getHeightOfTerrain(x, z);
-			
-			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
-		}
-		
-		List<Light> lights = new ArrayList<Light>();
-		
-		
-		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.8f, 0.8f, 0.8f));
-		
-		
-		List<LightEntity> lamps = new ArrayList<LightEntity>();
-		/*
-		lamps.add(new LightEntity(staticLampModel, new Vector3f(185, terrain.getHeightOfTerrain(185, -293), -293)
-				, 0, 0, 0, 1, new Light(new Vector3f(185, terrain.getHeightOfTerrain(185, -293) + 13, -293),
-				new Vector3f(1, 0, 0), new Vector3f(1, 0.001f, 0.0003f))));
-		lamps.add(new LightEntity(staticLampModel, new Vector3f(370, terrain.getHeightOfTerrain(370, -300), -300)
-				, 0, 0, 0, 1, new Light(new Vector3f(370, terrain.getHeightOfTerrain(370, -300) + 13, -300),
-				new Vector3f(0, 1, 1), new Vector3f(1, 0.001f, 0.0003f))));
-		lamps.add(new LightEntity(staticLampModel, new Vector3f(293, terrain.getHeightOfTerrain(293, -305), -305)
-				, 0, 0, 0, 1, new Light(new Vector3f(293, terrain.getHeightOfTerrain(293, -305) + 13, -305),
-				new Vector3f(1, 1, 0), new Vector3f(1, 0.001f, 0.0003f))));
-		
-		lights.add(lamps.get(0).getLight());
-		lights.add(lamps.get(1).getLight());
-		lights.add(lamps.get(2).getLight());
-		*/
-		
-		for (int i = 0; i < 5; i++) {
-			//float x = random.nextFloat() * 1600 - 800;
-			//float z = random.nextFloat() * -1600 + 800;
-			float x = random.nextFloat() * 700;
-			float z = random.nextFloat() * -700;
-			float y = terrain.getHeightOfTerrain(x, z);
-			
-			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
-					new Light(new Vector3f(x, y + 14, z),
-							new Vector3f(random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
-			lights.add(lamps.get(i).getLight());
-		}
-		lights.add(sun);
-		
-		
-		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), new ModelTexture(loader.loadTexture("barrel")));
-		barrelModel.getTexture().setReflectivity(0.5f);
-		barrelModel.getTexture().setShineDamper(10);
-		barrelModel.getTexture().setNormalMap(loader.loadTexture("barrelNormal"));
-		
-		List<Entity> barrels = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
-			float y = terrain.getHeightOfTerrain(x, z) + 20;
-			
-			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
-		}
 		
 		Camera camera = new Camera(player);
 		
@@ -197,16 +73,7 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrain);
 		
-		List<Entity> entities = new ArrayList<Entity>();
-		List<Entity> normalMappedEntities = new ArrayList<Entity>();
 		
-		entities.addAll(trees);
-		entities.addAll(lamps);
-		entities.addAll(ferns);
-		entities.add(player);
-		entities.add(dragonEntity);
-		
-		normalMappedEntities.addAll(barrels);
 		
 		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		
@@ -292,4 +159,147 @@ public class MainGameLoop {
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 	}
+	
+	private static void createEntities(Loader loader){
+	
+		
+		//Dragon
+		ModelData dragonData = OBJFileLoader.loadOBJ("dragon");
+		RawModel dragonModel = loader.loadToVAO(
+				dragonData.getVertices(), dragonData.getTextureCoords(), dragonData.getNormals(), dragonData.getIndices());
+		TexturedModel staticDragonModel = new TexturedModel(dragonModel, new ModelTexture(loader.loadTexture("white")));
+		ModelTexture dragonTexture = staticDragonModel.getTexture();
+		dragonTexture.setShineDamper(10);
+		dragonTexture.setReflectivity(1);
+		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
+		
+		
+		//Player
+		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
+		
+		
+		//Lamps
+		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
+		RawModel lampModel = loader.loadToVAO(
+				lampData.getVertices(), lampData.getTextureCoords(), lampData.getNormals(), lampData.getIndices());
+		TexturedModel staticLampModel = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
+		//staticLampModel.getTexture().setTransparency(true);
+		staticLampModel.getTexture().setFakeLighting(true);
+		
+		//Fern
+		ModelData fernData = OBJFileLoader.loadOBJ("fern");
+		
+		RawModel fernModel = loader.loadToVAO(
+				fernData.getVertices(), fernData.getTextureCoords(), fernData.getNormals(), fernData.getIndices());
+		ModelTexture fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
+		fernTextureAtlas.setNumberOfRows(2);
+		
+		TexturedModel staticFernModel = new TexturedModel(fernModel, fernTextureAtlas);
+		staticFernModel.getTexture().setTransparency(true);
+		//staticFernModel.getTexture().setFakeLighting(true);
+		
+		List<Entity> ferns = new ArrayList<Entity>();
+		Random random = new Random();
+		for (int i = 0; i < 120; i++) {
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
+		}
+		
+		//Grass
+		ModelData treeData = OBJFileLoader.loadOBJ("lowPolyTree");
+		RawModel treeModel = loader.loadToVAO(treeData.getVertices(), treeData.getTextureCoords(), treeData.getNormals(), treeData.getIndices());
+		TexturedModel staticTreeModel = new TexturedModel(treeModel, new ModelTexture(loader.loadTexture("lowPolyTree")));
+		ModelTexture treeTexture = staticTreeModel.getTexture();
+		
+		treeTexture.setShineDamper(10);
+		treeTexture.setReflectivity(0.25f);
+		
+		List<Entity> trees = new ArrayList<Entity>();
+		for (int i = 0; i < 160; i++) {
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
+		}
+		
+		List<Light> lights = new ArrayList<Light>();
+		
+		
+		Light sun = new Light(new Vector3f(0, 5000, -2000), new Vector3f(0.8f, 0.8f, 0.8f));
+		
+		
+		List<LightEntity> lamps = new ArrayList<LightEntity>();
+	
+		for (int i = 0; i < 5; i++) {
+			//float x = random.nextFloat() * 1600 - 800;
+			//float z = random.nextFloat() * -1600 + 800;
+			float x = random.nextFloat() * 700;
+			float z = random.nextFloat() * -700;
+			float y = terrain.getHeightOfTerrain(x, z);
+			
+			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
+					new Light(new Vector3f(x, y + 14, z),
+							new Vector3f(random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
+			lights.add(lamps.get(i).getLight());
+		}
+		lights.add(sun);
+		
+		
+		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), new ModelTexture(loader.loadTexture("barrel")));
+		barrelModel.getTexture().setReflectivity(0.5f);
+		barrelModel.getTexture().setShineDamper(10);
+		barrelModel.getTexture().setNormalMap(loader.loadTexture("barrelNormal"));
+		
+		List<Entity> barrels = new ArrayList<>();
+		for (int i = 0; i < 50; i++) {
+			float x = random.nextFloat() * 1600 - 800;
+			float z = random.nextFloat() * -1600 + 800;
+			float y = terrain.getHeightOfTerrain(x, z) + 20;
+			
+			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
+		}
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		List<Entity> normalMappedEntities = new ArrayList<Entity>();
+		
+		entities.addAll(trees);
+		entities.addAll(lamps);
+		entities.addAll(ferns);
+		entities.add(player);
+		entities.add(dragonEntity);
+		normalMappedEntities.addAll(barrels);
+		
+		entityManager.addEntities(entities);
+		entityManager.addNormalMappedEntities(normalMappedEntities);
+		entityManager.setPlayer(player);
+	}
+	
+	private static void createTerrains(Loader loader){
+		//Terrain Texture Stuff
+		
+		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
+		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
+		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
+		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
+		
+		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
+		
+		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain3 = new Terrain(0, 0, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain4 = new Terrain(-1, 0, loader, texturePack, blendMap, "heightMap");
+		List<Terrain> terrains = new ArrayList<>();
+		terrains.add(terrain);
+		terrains.add(terrain2);
+		terrains.add(terrain3);
+		terrains.add(terrain4);
+		terrainManager.addTerains(terrains);
+	}
+	
+	
 }
