@@ -12,10 +12,10 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Player extends Entity {
 	
-	private static final float RUN_SPEED = 30;//units/second
-	private static final float TURN_SPEED = 180;//degrees/second
-	private static final float GRAVITY = -75;
-	private static final float JUMP_POWER = 45;
+	private static final float RUN_SPEED = 100;//units/second
+	private static final float TURN_SPEED = 240;//degrees/second
+	private static final float GRAVITY = -100;
+	private static final float JUMP_POWER = 90;//45
 	
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;

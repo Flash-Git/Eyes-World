@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c34ceb-48bb-489f-a689-542c9a7a0418" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Entity.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/EntityManager.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/EntityManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/TerrainManager.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/TerrainManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,6 +39,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,7 +163,6 @@
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/TerrainShader.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/fragmentShader.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainFragmentShader.glsl" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/normalMappingRenderer/normalMapVShader.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/MasterRenderer.java" />
@@ -167,6 +174,7 @@
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/EntityManager.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/TerrainManager.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java" />
       </list>
     </option>
   </component>
@@ -1036,12 +1044,12 @@
       <workItem from="1483887789752" duration="2991000" />
       <workItem from="1483983241045" duration="102000" />
       <workItem from="1484012985413" duration="625000" />
-      <workItem from="1484135493482" duration="9627000" />
+      <workItem from="1484135493482" duration="10073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201122000" />
+    <option name="totallyTimeSpent" value="201568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1865,14 +1873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="52" column="21" lean-forward="false" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1023">
@@ -1914,6 +1914,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/entities/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
