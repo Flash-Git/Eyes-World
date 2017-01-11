@@ -9,6 +9,7 @@ import java.util.List;
 
 public class EntityManager {
 	private List<Entity> entities = new ArrayList<>();
+	private List<Entity> normalMappedEntities = new ArrayList<>();
 	private Entity player;
 	
 	
@@ -38,6 +39,31 @@ public class EntityManager {
 		
 	}
 	
+	//normalMapped
+	public void addNormalMappedEntity(Entity entity) {
+		normalMappedEntities.add(entity);
+	}
+	
+	public void removeNormalMappedEntity(Entity entity) {
+		normalMappedEntities.remove(entity);
+	}
+	
+	public void addNormalMappedEntities(List<Entity> entities) {
+		this.normalMappedEntities.addAll(entities);
+	}
+	
+	public void removeNormalMappedEntities(List<Entity> entities) {
+		for (Entity entity : entities) {
+			for (int i = 0; i < this.normalMappedEntities.size(); i++) {
+				if (entity.equals(this.normalMappedEntities.get(i))) {
+					this.normalMappedEntities.remove(i);
+				}
+			}
+		}
+		
+	}
+	
+	//Getters n Setters
 	
 	public Entity getPlayer() {
 		return player;
