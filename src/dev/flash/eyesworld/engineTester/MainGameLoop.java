@@ -69,7 +69,7 @@ public class MainGameLoop {
 		
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
-	
+		
 		
 		List<GuiTexture> guis = new ArrayList<>();
 		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
@@ -78,7 +78,7 @@ public class MainGameLoop {
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
-
+		
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
 			
@@ -86,27 +86,7 @@ public class MainGameLoop {
 			entityManager.getPlayer().move(terrainManager.getTerrain(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().z));
 			camera.move();
 			picker.update();
-			try {
-				entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
-			}catch (Exception e) {
-				for(Entity entity : entityManager.getEntities()){
-					try {
-						if (Math.floor(picker.getCurrentTerrainPoint().x/5)==Math.floor(entity.getPosition().x/5)&&Math.floor(picker.getCurrentTerrainPoint().z/5)==Math.floor(entity.getPosition().z/5))
-							entityManager.setSelectedEntity(entity);
-					}catch (Exception e1){
-						
-					}
-				}
-			}
-			if(Mouse.isButtonDown(0)) {
-				try {
-					entityManager.getSelectedEntity().setPosition(new Vector3f(entityManager.getSelectedEntity().getPosition().x, entityManager.getSelectedEntity().getPosition().y+0, entityManager.getSelectedEntity().getPosition().z));
-					entityManager.setSelectedEntity(null);
-				}catch (Exception e){
-					
-				}
-				
-			}
+			grabEntities(picker);
 			makeThemBounce();
 			
 			////RENDER////
@@ -128,7 +108,42 @@ public class MainGameLoop {
 		DisplayManager.closeDisplay();
 	}
 	
-	private static void renderWater(WaterFrameBuffers buffers, MasterRenderer renderer){
+	private static void grabEntities(EntitySelector picker){
+		try {
+			entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
+		} catch (Exception e) {
+			for (Entity entity : entityManager.getEntities()) {
+				try {
+					if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+						entityManager.setSelectedEntity(entity);
+				} catch (Exception e1) {
+					
+				}
+			}
+		}
+		try {
+			entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
+		} catch (Exception e) {
+			for (Entity entity : entityManager.getNormalMappedEntities()) {
+				try {
+					if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+						entityManager.setSelectedEntity(entity);
+				} catch (Exception e1) {
+					
+				}
+			}
+		}
+		if (Mouse.isButtonDown(0)) {
+			try {
+				entityManager.getSelectedEntity().setPosition(new Vector3f(entityManager.getSelectedEntity().getPosition().x, entityManager.getSelectedEntity().getPosition().y + 0, entityManager.getSelectedEntity().getPosition().z));
+				entityManager.setSelectedEntity(null);
+			} catch (Exception e) {
+				
+			}
+		}
+	}
+	
+	private static void renderWater(WaterFrameBuffers buffers, MasterRenderer renderer) {
 		GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
 		
 		buffers.bindReflectionFrameBuffer();
@@ -291,18 +306,18 @@ public class MainGameLoop {
 		
 	}
 	
-	private static void createWaters(){
+	private static void createWaters() {
 		
 		List<WaterTile> waters = new ArrayList<>();
 		waters.add(new WaterTile(220, -170, -0.5f));
 		waterManager.addWaters(waters);
 	}
 	
-	private static void makeThemBounce(){
+	private static void makeThemBounce() {
 		Random random = new Random();
 		for (Entity entity : entityManager.getEntities()) {
 			entity.i += random.nextFloat() / 50;
-			if (entity.equals(entityManager.getPlayer())||entity.equals(entityManager.getSelectedEntity()))
+			if (entity.equals(entityManager.getPlayer()) || entity.equals(entityManager.getSelectedEntity()))
 				continue;
 			entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - 0.5f, 0);
 			entity.increaseRotation(0, 0.4f, 0);
