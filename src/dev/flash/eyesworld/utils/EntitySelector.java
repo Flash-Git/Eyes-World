@@ -2,6 +2,7 @@ package dev.flash.eyesworld.utils;
 
 import dev.flash.eyesworld.entities.Camera;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.terrains.TerrainManager;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -11,15 +12,16 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class EntitySelector extends MousePicker {
 	
-	private static final int RECURSION_COUNT = 200;
-	private static final float RAY_RANGE = 600;
+	private static final int RECURSION_COUNT = 250;
+	private static final float RAY_RANGE = 2000;
 	
-	private Terrain terrain;
 	private Vector3f currentTerrainPoint;
 	
-	public EntitySelector(Camera camera, Matrix4f projectionMatrix, Terrain terrain) {
+	private TerrainManager terrainManager;
+	
+	public EntitySelector(Camera camera, Matrix4f projectionMatrix, TerrainManager terrainManager) {
 		super(camera, projectionMatrix);
-		this.terrain = terrain;
+		this.terrainManager = terrainManager;
 	}
 	
 	@Override
@@ -45,7 +47,7 @@ public class EntitySelector extends MousePicker {
 		float half = start + ((finish - start) / 2f);
 		if (count >= RECURSION_COUNT) {
 			Vector3f endPoint = getPointOnRay(ray, half);
-			Terrain terrain = getTerrain(endPoint.getX(), endPoint.getZ());
+			Terrain terrain = terrainManager.getTerrain(endPoint.getX(), endPoint.getZ());
 			if (terrain != null) {
 				return endPoint;
 			} else {
@@ -70,7 +72,7 @@ public class EntitySelector extends MousePicker {
 	}
 	
 	private boolean isUnderGround(Vector3f testPoint) {
-		Terrain terrain = getTerrain(testPoint.getX(), testPoint.getZ());
+		Terrain terrain = terrainManager.getTerrain(testPoint.getX(), testPoint.getZ());
 		float height = 0;
 		if (terrain != null) {
 			height = terrain.getHeightOfTerrain(testPoint.getX(), testPoint.getZ());
@@ -81,10 +83,7 @@ public class EntitySelector extends MousePicker {
 			return false;
 		}
 	}
-	
-	private Terrain getTerrain(float worldX, float worldZ) {
-		return terrain;
-	}
+
 	
 	public Vector3f getCurrentTerrainPoint() {
 		return currentTerrainPoint;

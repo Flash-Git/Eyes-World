@@ -9,9 +9,9 @@ import java.util.List;
 
 public class TerrainManager {
 	private List<Terrain> terrains = new ArrayList<>();
+	private Terrain dummyTerrain;
 	
 	public TerrainManager() {
-		
 	}
 	
 	public Terrain getTerrain(float x, float z) {
@@ -20,7 +20,7 @@ public class TerrainManager {
 				return terrain;
 			}
 		}
-		return null;
+		return dummyTerrain;
 	}
 	
 	
@@ -55,5 +55,13 @@ public class TerrainManager {
 	
 	public void setTerrains(List<Terrain> terrains) {
 		this.terrains = terrains;
+	}
+	
+	public Terrain getDummyTerrain() {
+		return dummyTerrain;
+	}
+	
+	public void setDummyTerrain(Terrain dummyTerrain) {
+		this.dummyTerrain = dummyTerrain;
 	}
 }

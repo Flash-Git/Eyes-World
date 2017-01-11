@@ -19,10 +19,8 @@ import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.EntitySelector;
-import dev.flash.eyesworld.water.WaterFrameBuffers;
-import dev.flash.eyesworld.water.WaterRenderer;
-import dev.flash.eyesworld.water.WaterShader;
-import dev.flash.eyesworld.water.WaterTile;
+import dev.flash.eyesworld.water.*;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -42,6 +40,8 @@ import java.util.Random;
 public class MainGameLoop {
 	private static TerrainManager terrainManager = new TerrainManager();
 	private static EntityManager entityManager = new EntityManager();
+	private static WaterManager waterManager = new WaterManager();
+	private static Camera camera;
 	
 	public static void main(String[] args) {
 		DisplayManager.createDisplay();
@@ -56,14 +56,20 @@ public class MainGameLoop {
 		//text.setColour(1, 0, 1);
 		
 		
+		MasterRenderer renderer = new MasterRenderer(loader);
+		
 		createTerrains(loader);
 		
 		createEntities(loader);
+		camera = new Camera(entityManager.getPlayer());
 		
+		createWaters();
 		
-		Camera camera = new Camera(entityManager.getPlayer());
+		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		
-		MasterRenderer renderer = new MasterRenderer(loader);
+		WaterShader waterShader = new WaterShader();
+		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
+	
 		
 		List<GuiTexture> guis = new ArrayList<>();
 		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
@@ -71,87 +77,46 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
-		//EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrain);
-		
-		
-		WaterFrameBuffers buffers = new WaterFrameBuffers();
-		
-		
-		WaterShader waterShader = new WaterShader();
-		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), buffers);
-		List<WaterTile> waters = new ArrayList<>();
-		waters.add(new WaterTile(220, -170, -0.5f));
-		//waters.add(new WaterTile(220, -170, 50f));
-		
-		
-		//GuiTexture reflection = new GuiTexture(buffers.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-		//GuiTexture refraction = new GuiTexture(buffers.getRefractionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-		
+		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
+
 		while (!Display.isCloseRequested()) {
-			//utils.out(lights.size()+" "+lamps.size());
+			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
 			
-			/*
-			for (Entity entity : entities) {
-				entity.i += random.nextFloat() / 50;
-				if (entity.equals(player))
-					continue;
-				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - 0.5f, 0);
-				entity.increaseRotation(0, 0.4f, 0);
-				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
-				
-			}
-			for (Entity entity : normalMappedEntities) {
-				entity.i += random.nextFloat() / 50;
-				if (entity.equals(player))
-					continue;
-				entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - entity.getScale() / 4, 0);
-				entity.increaseRotation(0, -0.2f, 0);
-				entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrain.getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) - entity.getScale() * 4 + 17, entity.getPosition().y), entity.getPosition().z));
-			}
-			
-			*/
-			
-			float fps = 1000 / DisplayManager.getFrameTimeMillis();
-			String title = Float.toString(fps);
-			Display.setTitle(title);
-			
+			////UPDATE////
 			entityManager.getPlayer().move(terrainManager.getTerrain(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().z));
 			camera.move();
-			//picker.update();
+			picker.update();
+			try {
+				entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
+			}catch (Exception e) {
+				for(Entity entity : entityManager.getEntities()){
+					try {
+						if (Math.floor(picker.getCurrentTerrainPoint().x/5)==Math.floor(entity.getPosition().x/5)&&Math.floor(picker.getCurrentTerrainPoint().z/5)==Math.floor(entity.getPosition().z/5))
+							entityManager.setSelectedEntity(entity);
+					}catch (Exception e1){
+						
+					}
+				}
+			}
+			if(Mouse.isButtonDown(0)) {
+				try {
+					entityManager.getSelectedEntity().setPosition(new Vector3f(entityManager.getSelectedEntity().getPosition().x, entityManager.getSelectedEntity().getPosition().y+0, entityManager.getSelectedEntity().getPosition().z));
+					entityManager.setSelectedEntity(null);
+				}catch (Exception e){
+					
+				}
+				
+			}
+			makeThemBounce();
 			
-			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
-			
-			buffers.bindReflectionFrameBuffer();
-			float distance = 2 * (camera.getPosition().y - waters.get(0).getHeight());
-			camera.getPosition().y -= distance;
-			camera.invertPitch();
-			
-			renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waters.get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
-			
-			camera.getPosition().y += distance;
-			camera.invertPitch();
-			
-			
-			buffers.bindRefractionFrameBuffer();
-			renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waters.get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
-			
-			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
-			buffers.unbindCurrentFrameBuffer();
-			
+			////RENDER////
+			renderWater(buffers, renderer);
 			renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
-			waterRenderer.render(waters, camera, entityManager.getSun());
+			waterRenderer.render(waterManager.getWaters(), camera, entityManager.getSun());
 			guiRenderer.render(guis);
-			
-			
-			//Vector3f terrainPoint = picker.getCurrentTerrainPoint();
-			//if (terrainPoint != null) {
-			//	lamps.get(0).setPosition(terrainPoint);
-			//}
-			
-			//text
 			TextMaster.render();
 			
-			
+			//Push to Screen
 			DisplayManager.updateDisplay();
 		}
 		TextMaster.cleanUp();
@@ -161,6 +126,27 @@ public class MainGameLoop {
 		waterShader.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
+	}
+	
+	private static void renderWater(WaterFrameBuffers buffers, MasterRenderer renderer){
+		GL11.glEnable(GL30.GL_CLIP_DISTANCE0);//allows clipping/culling on one side of a plane TODO verify 2:30 3rd water opengl thinmatrix
+		
+		buffers.bindReflectionFrameBuffer();
+		float distance = 2 * (camera.getPosition().y - waterManager.getWaters().get(0).getHeight());//only works on one water height
+		camera.getPosition().y -= distance;
+		camera.invertPitch();
+		
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waterManager.getWaters().get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
+		
+		camera.getPosition().y += distance;
+		camera.invertPitch();
+		
+		
+		buffers.bindRefractionFrameBuffer();
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
+		
+		GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
+		buffers.unbindCurrentFrameBuffer();
 	}
 	
 	private static void createEntities(Loader loader) {
@@ -301,7 +287,36 @@ public class MainGameLoop {
 		terrains.add(terrain3);
 		terrains.add(terrain4);
 		terrainManager.addTerains(terrains);
+		terrainManager.setDummyTerrain(terrain);
+		
 	}
 	
+	private static void createWaters(){
+		
+		List<WaterTile> waters = new ArrayList<>();
+		waters.add(new WaterTile(220, -170, -0.5f));
+		waterManager.addWaters(waters);
+	}
+	
+	private static void makeThemBounce(){
+		Random random = new Random();
+		for (Entity entity : entityManager.getEntities()) {
+			entity.i += random.nextFloat() / 50;
+			if (entity.equals(entityManager.getPlayer())||entity.equals(entityManager.getSelectedEntity()))
+				continue;
+			entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - 0.5f, 0);
+			entity.increaseRotation(0, 0.4f, 0);
+			entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrainManager.getTerrain(entity.getPosition().x, entity.getPosition().z).getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z), entity.getPosition().y), entity.getPosition().z));
+			
+		}
+		for (Entity entity : entityManager.getNormalMappedEntities()) {
+			entity.i += random.nextFloat() / 50;
+			if (entity.equals(entityManager.getPlayer()))
+				continue;
+			entity.increasePosition(0, (float) Math.sin(entity.i / 2) * 2.5f - entity.getScale() / 4, 0);
+			entity.increaseRotation(0, -0.2f, 0);
+			entity.setPosition(new Vector3f(entity.getPosition().x, Math.max(terrainManager.getTerrain(entity.getPosition().x, entity.getPosition().z).getHeightOfTerrain(entity.getPosition().x, entity.getPosition().z) - entity.getScale() * 4 + 17, entity.getPosition().y), entity.getPosition().z));
+		}
+	}
 	
 }

@@ -1,6 +1,7 @@
 package dev.flash.eyesworld.entities;
 
 import dev.flash.eyesworld.models.TexturedModel;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.util.vector.Vector3f;
 
 /**
@@ -45,6 +46,13 @@ public class Entity {
 		rotX += dx;
 		rotY += dy;
 		rotZ += dz;
+	}
+	
+	public void moveTowards(Vector3f targetposition) {
+		Vector3f vec = new Vector3f(targetposition.x-position.x, targetposition.y-position.y,targetposition.z-position.z);
+		vec.normalise();
+		position.translate(vec.x, vec.y, vec.z);
+		
 	}
 	
 	public float getTextureXOffset() {

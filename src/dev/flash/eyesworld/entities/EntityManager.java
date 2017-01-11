@@ -13,10 +13,11 @@ public class EntityManager {
 	private List<Light> lights = new ArrayList<>();
 	private Player player;
 	private Light sun;
-	
+	private Entity selectedEntity;
 	
 	public EntityManager() {
 	}
+	
 	
 	public void addEntity(Entity entity) {
 		entities.add(entity);
@@ -91,6 +92,15 @@ public class EntityManager {
 	
 	//Getters n Setters
 	
+	public Entity getSelectedEntity() {
+		return selectedEntity;
+	}
+	
+	public void setSelectedEntity(Entity selectedEntity) {
+		this.selectedEntity = selectedEntity;
+	}
+	
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -117,6 +127,7 @@ public class EntityManager {
 		this.entities = entities;
 	}
 	
+	
 	public List<Entity> getNormalMappedEntities() {
 		return normalMappedEntities;
 	}
@@ -124,6 +135,7 @@ public class EntityManager {
 	public void setNormalMappedEntities(List<Entity> normalMappedEntities) {
 		this.normalMappedEntities = normalMappedEntities;
 	}
+	
 	
 	public List<Light> getLights() {
 		return lights;
