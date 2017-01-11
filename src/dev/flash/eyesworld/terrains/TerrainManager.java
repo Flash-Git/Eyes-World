@@ -37,9 +37,9 @@ public class TerrainManager {
 	}
 	
 	public void removeTerains(List<Terrain> terrains) {
-		for (Terrain terrain : this.terrains) {
-			for (int i = 0; i < terrains.size(); i++) {
-				if (terrain.equals(terrains.get(i))) {
+		for (Terrain terrain : terrains) {
+			for (int i = 0; i < this.terrains.size(); i++) {
+				if (terrain.equals(this.terrains.get(i))) {
 					this.terrains.remove(i);
 				}
 			}
