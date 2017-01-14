@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class TextMaster {
 	private static Loader loader;
-	private static Map<FontType, List<GUIText>> texts = new HashMap<FontType, List<GUIText>>();
+	private static Map<FontType, List<GUIText>> texts = new HashMap<>();
 	private static FontRenderer renderer;
 	
 	public static void init(Loader theLoader) {

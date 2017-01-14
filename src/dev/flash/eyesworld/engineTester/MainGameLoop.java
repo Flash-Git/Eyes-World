@@ -99,28 +99,32 @@ public class MainGameLoop {
 		try {
 			entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
 		} catch (Exception e) {
-			for (Entity entity : entityManager.getEntities()) {
-				try {
-					if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
-						entityManager.setSelectedEntity(entity);
-				} catch (Exception e1) {
-					
+			if (Mouse.isButtonDown(0)) {
+				for (Entity entity : entityManager.getEntities()) {
+					try {
+						if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+							entityManager.setSelectedEntity(entity);
+					} catch (Exception e1) {
+						
+					}
 				}
 			}
 		}
 		try {
 			entityManager.getSelectedEntity().moveTowards(picker.getCurrentTerrainPoint());
 		} catch (Exception e) {
-			for (Entity entity : entityManager.getNormalMappedEntities()) {
-				try {
-					if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
-						entityManager.setSelectedEntity(entity);
-				} catch (Exception e1) {
-					
+			if (Mouse.isButtonDown(0)) {
+				for (Entity entity : entityManager.getNormalMappedEntities()) {
+					try {
+						if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+							entityManager.setSelectedEntity(entity);
+					} catch (Exception e1) {
+						
+					}
 				}
 			}
 		}
-		if (Mouse.isButtonDown(0)) {
+		if (Mouse.isButtonDown(1)) {
 			try {
 				entityManager.getSelectedEntity().setPosition(new Vector3f(entityManager.getSelectedEntity().getPosition().x, entityManager.getSelectedEntity().getPosition().y + 0, entityManager.getSelectedEntity().getPosition().z));
 				entityManager.setSelectedEntity(null);
@@ -312,12 +316,12 @@ public class MainGameLoop {
 	}
 	
 	private static void createGUIs(Loader loader) {
-		FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
-		GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
-		text.setColour(1, 0, 1);
+		//FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
+		//GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
+		//text.setColour(1, 0, 1);
 		
 		List<GuiTexture> guis = new ArrayList<>();
 		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
-		//guis.add(flashIcon);
+		guis.add(flashIcon);
 	}
 }
