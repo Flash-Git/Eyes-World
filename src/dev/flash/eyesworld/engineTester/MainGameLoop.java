@@ -102,7 +102,7 @@ public class MainGameLoop {
 			if (Mouse.isButtonDown(0)) {
 				for (Entity entity : entityManager.getEntities()) {
 					try {
-						if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+						if (Math.floor(picker.getCurrentTerrainPoint().x / 10) == Math.floor(entity.getPosition().x / 10) && Math.floor(picker.getCurrentTerrainPoint().z / 10) == Math.floor(entity.getPosition().z / 10))
 							entityManager.setSelectedEntity(entity);
 					} catch (Exception e1) {
 						
@@ -116,7 +116,7 @@ public class MainGameLoop {
 			if (Mouse.isButtonDown(0)) {
 				for (Entity entity : entityManager.getNormalMappedEntities()) {
 					try {
-						if (Math.floor(picker.getCurrentTerrainPoint().x / 5) == Math.floor(entity.getPosition().x / 5) && Math.floor(picker.getCurrentTerrainPoint().z / 5) == Math.floor(entity.getPosition().z / 5))
+						if (Math.floor(picker.getCurrentTerrainPoint().x / 10) == Math.floor(entity.getPosition().x / 10) && Math.floor(picker.getCurrentTerrainPoint().z / 10) == Math.floor(entity.getPosition().z / 10))
 							entityManager.setSelectedEntity(entity);
 					} catch (Exception e1) {
 						
@@ -321,7 +321,8 @@ public class MainGameLoop {
 		//text.setColour(1, 0, 1);
 		
 		List<GuiTexture> guis = new ArrayList<>();
-		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.9f), new Vector2f(0.1f, 0.1f));
+		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.85f), new Vector2f(0.1f, 0.15f));
 		guis.add(flashIcon);
+		guiManager.addGuis(guis);
 	}
 }
