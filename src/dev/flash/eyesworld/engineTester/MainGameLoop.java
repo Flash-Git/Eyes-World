@@ -316,9 +316,9 @@ public class MainGameLoop {
 	}
 	
 	private static void createGUIs(Loader loader) {
-		//FontType font = new FontType(loader.loadTexture("Verdana", 0), new File("res/Verdana.fnt"));
-		//GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 1, font, new Vector2f(0.5f, 0.5f), 0.5f, true);
-		//text.setColour(1, 0, 1);
+		FontType font = new FontType(loader.loadTexture("Candara", 0), new File("res/Candara.fnt"));
+		GUIText text = new GUIText("TEST TEXT THAT SHOULD ALSO WRAP AROUND IF IT IS LONG ENOUGH", 3, font, new Vector2f(0.25f, 0.15f), 0.5f, true);
+		text.setColour(0.1f, 0.1f, 0.1f);
 		
 		List<GuiTexture> guis = new ArrayList<>();
 		GuiTexture flashIcon = new GuiTexture(loader.loadTexture("Flash_Silver_Squared"), new Vector2f(0.9f, -0.85f), new Vector2f(0.1f, 0.15f));
