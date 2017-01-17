@@ -37,7 +37,6 @@ public class Player extends Entity {
 		
 		checkInputs();
 		
-		
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeMillis() / 1000;
 		float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY() - 90)));
@@ -79,7 +78,6 @@ public class Player extends Entity {
 		} else {
 			currentSpeed = 0;
 		}
-		
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			jump();

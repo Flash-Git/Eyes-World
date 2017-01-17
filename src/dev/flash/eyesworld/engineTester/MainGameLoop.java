@@ -144,13 +144,13 @@ public class MainGameLoop {
 		camera.getPosition().y -= distance;
 		camera.invertPitch();
 		
-		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waterManager.getWaters().get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waterManager.getWaters().get(0).getHeight() + 0.4f));//little offset reduces edge water glitch
 		
 		camera.getPosition().y += distance;
 		camera.invertPitch();
 		
 		buffers.bindRefractionFrameBuffer();
-		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 0.2f));//little offset reduces edge water glitch
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 0.4f));//little offset reduces edge water glitch
 		
 		GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
 		buffers.unbindCurrentFrameBuffer();
