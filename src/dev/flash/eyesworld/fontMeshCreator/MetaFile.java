@@ -12,42 +12,40 @@ import org.lwjgl.opengl.Display;
 
 /**
  * Provides functionality for getting the values from a font file.
- * 
- * @author Karl
  *
+ * @author Karl
  */
 
 public class MetaFile {
-
+	
 	private static final int PAD_TOP = 0;
 	private static final int PAD_LEFT = 1;
 	private static final int PAD_BOTTOM = 2;
 	private static final int PAD_RIGHT = 3;
-
+	
 	private static final int DESIRED_PADDING = 8;
-
+	
 	private static final String SPLITTER = " ";
 	private static final String NUMBER_SEPARATOR = ",";
-
+	
 	private double aspectRatio;
-
+	
 	private double verticalPerPixelSize;
 	private double horizontalPerPixelSize;
 	private double spaceWidth;
 	private int[] padding;
 	private int paddingWidth;
 	private int paddingHeight;
-
+	
 	private Map<Integer, Character> metaData = new HashMap<Integer, Character>();
-
+	
 	private BufferedReader reader;
 	private Map<String, String> values = new HashMap<String, String>();
-
+	
 	/**
 	 * Opens a font file in preparation for reading.
-	 * 
-	 * @param file
-	 *            - the font file.
+	 *
+	 * @param file - the font file.
 	 */
 	protected MetaFile(File file) {
 		this.aspectRatio = (double) Display.getWidth() / (double) Display.getHeight();
@@ -61,18 +59,18 @@ public class MetaFile {
 		close();
 		
 	}
-
+	
 	protected double getSpaceWidth() {
 		return spaceWidth;
 	}
-
+	
 	protected Character getCharacter(int ascii) {
 		return metaData.get(ascii);
 	}
-
+	
 	/**
 	 * Read in the next line and store the variable values.
-	 * 
+	 *
 	 * @return {@code true} if the end of the file hasn't been reached.
 	 */
 	private boolean processNextLine() {
@@ -85,7 +83,7 @@ public class MetaFile {
 		if (line == null) {
 			return false;
 		}
-		if(line.startsWith("kern"))
+		if (line.startsWith("kern"))
 			return false;
 		for (String part : line.split(SPLITTER)) {
 			String[] valuePairs = part.split("=");
@@ -95,24 +93,22 @@ public class MetaFile {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Gets the {@code int} value of the variable with a certain name on the
 	 * current line.
-	 * 
-	 * @param variable
-	 *            - the name of the variable.
+	 *
+	 * @param variable - the name of the variable.
 	 * @return The value of the variable.
 	 */
 	private int getValueOfVariable(String variable) {
 		return Integer.parseInt(values.get(variable));
 	}
-
+	
 	/**
 	 * Gets the array of ints associated with a variable on the current line.
-	 * 
-	 * @param variable
-	 *            - the name of the variable.
+	 *
+	 * @param variable - the name of the variable.
 	 * @return The int array of values associated with the variable.
 	 */
 	private int[] getValuesOfVariable(String variable) {
@@ -123,7 +119,7 @@ public class MetaFile {
 		}
 		return actualValues;
 	}
-
+	
 	/**
 	 * Closes the font file after finishing reading.
 	 */
@@ -134,12 +130,11 @@ public class MetaFile {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Opens the font file, ready for reading.
-	 * 
-	 * @param file
-	 *            - the font file.
+	 *
+	 * @param file - the font file.
 	 */
 	private void openFile(File file) {
 		try {
@@ -149,7 +144,7 @@ public class MetaFile {
 			System.err.println("Couldn't read font meta file!");
 		}
 	}
-
+	
 	/**
 	 * Loads the data about how much padding is used around each character in
 	 * the texture atlas.
@@ -160,7 +155,7 @@ public class MetaFile {
 		this.paddingWidth = padding[PAD_LEFT] + padding[PAD_RIGHT];
 		this.paddingHeight = padding[PAD_TOP] + padding[PAD_BOTTOM];
 	}
-
+	
 	/**
 	 * Loads information about the line height for this font in pixels, and uses
 	 * this as a way to find the conversion rate between pixels in the texture
@@ -172,13 +167,12 @@ public class MetaFile {
 		verticalPerPixelSize = TextMeshCreator.LINE_HEIGHT / (double) lineHeightPixels;
 		horizontalPerPixelSize = verticalPerPixelSize / aspectRatio;
 	}
-
+	
 	/**
 	 * Loads in data about each character and stores the data in the
 	 * {@link Character} class.
-	 * 
-	 * @param imageWidth
-	 *            - the width of the texture atlas in pixels.
+	 *
+	 * @param imageWidth - the width of the texture atlas in pixels.
 	 */
 	private void loadCharacterData(int imageWidth) {
 		processNextLine();
@@ -190,14 +184,13 @@ public class MetaFile {
 			}
 		}
 	}
-
+	
 	/**
 	 * Loads all the data about one character in the texture atlas and converts
 	 * it all from 'pixels' to 'screen-space' before storing. The effects of
 	 * padding are also removed from the data.
-	 * 
-	 * @param imageSize
-	 *            - the size of the texture atlas in pixels.
+	 *
+	 * @param imageSize - the size of the texture atlas in pixels.
 	 * @return The data about the character.
 	 */
 	private Character loadCharacter(int imageSize) {

@@ -48,12 +48,12 @@ public class Camera {
 	}
 	
 	private void calculateAngleAroundPlayer() {
-		/*
-		if (Mouse.isButtonDown(1)) {
+		
+		if (Mouse.isButtonDown(0)) {
 			float angleChange = Mouse.getDX() * 0.3f;
 			angleAroundPlayer -= angleChange;
 		}
-		*/
+		
 	}
 	
 	private void calculateCameraPosition(float horiDistance, float vertDistance) {
