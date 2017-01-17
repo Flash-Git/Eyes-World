@@ -3,7 +3,9 @@ package dev.flash.eyesworld.entities;
 import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.terrains.Terrain;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 /**
@@ -13,7 +15,7 @@ import org.lwjgl.util.vector.Vector3f;
 public class Player extends Entity {
 	
 	private static final float RUN_SPEED = 100;//units/second
-	private static final float TURN_SPEED = 240;//degrees/second
+	private static final float TURN_SPEED = 360;//degrees/second
 	private static final float GRAVITY = -100;
 	private static final float JUMP_POWER = 90;//45
 	
@@ -27,7 +29,15 @@ public class Player extends Entity {
 	}
 	
 	public void move(Terrain terrain) {
+		if (Mouse.isButtonDown(0))
+			Mouse.setGrabbed(true);
+		
+		if (!Mouse.isGrabbed())
+			return;
+		
 		checkInputs();
+		
+		
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeMillis() / 1000;
 		float dx = (float) (distance * Math.sin(Math.toRadians(super.getRotY() - 90)));
@@ -54,6 +64,14 @@ public class Player extends Entity {
 	}
 	
 	private void checkInputs() {
+		if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+			Mouse.setGrabbed(false);
+			return;
+		}
+		currentTurnSpeed = -(Mouse.getX() - DisplayManager.WIDTH / 2) * 50;
+		
+		Mouse.setCursorPosition(DisplayManager.WIDTH / 2, DisplayManager.HEIGHT / 2);
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			currentSpeed = RUN_SPEED;
 		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
@@ -61,13 +79,8 @@ public class Player extends Entity {
 		} else {
 			currentSpeed = 0;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			currentTurnSpeed = -TURN_SPEED;
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			currentTurnSpeed = TURN_SPEED;
-		} else {
-			currentTurnSpeed = 0;
-		}
+		
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			jump();
 		}

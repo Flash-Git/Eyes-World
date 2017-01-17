@@ -46,7 +46,9 @@ public class MainGameLoop {
 	private static GuiManager guiManager = new GuiManager();
 	private static Camera camera;
 	
+	
 	public static void main(String[] args) {
+		Mouse.setGrabbed(true);
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
 		TextMaster.init(loader);
@@ -288,7 +290,6 @@ public class MainGameLoop {
 	}
 	
 	private static void createWaters() {
-		
 		List<WaterTile> waters = new ArrayList<>();
 		waters.add(new WaterTile(220, -170, -0.5f));
 		waterManager.addWaters(waters);

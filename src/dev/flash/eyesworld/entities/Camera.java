@@ -24,6 +24,8 @@ public class Camera {
 	}
 	
 	public void move() {
+		if (!Mouse.isGrabbed())
+			return;
 		calculateZoom();
 		calculatePitch();
 		calculateAngleAroundPlayer();
@@ -39,17 +41,19 @@ public class Camera {
 	}
 	
 	private void calculatePitch() {
-		if (Mouse.isButtonDown(1)) {
-			float pitchChange = Mouse.getDY() * 0.1f;
-			pitch -= pitchChange;
-		}
+		//if (Mouse.isButtonDown(1)) {
+		float pitchChange = Mouse.getDY() * 0.1f;
+		pitch -= pitchChange;
+		//}
 	}
 	
 	private void calculateAngleAroundPlayer() {
-		if (Mouse.isButtonDown(0)) {
+		/*
+		if (Mouse.isButtonDown(1)) {
 			float angleChange = Mouse.getDX() * 0.3f;
 			angleAroundPlayer -= angleChange;
 		}
+		*/
 	}
 	
 	private void calculateCameraPosition(float horiDistance, float vertDistance) {
@@ -70,7 +74,7 @@ public class Camera {
 	}
 	
 	
-	public void invertPitch(){
+	public void invertPitch() {
 		this.pitch = -pitch;
 	}
 	
