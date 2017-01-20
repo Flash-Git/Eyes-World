@@ -64,11 +64,7 @@ public class EntitySelector extends MousePicker {
 	private boolean intersectionInRange(float start, float finish, Vector3f ray) {
 		Vector3f startPoint = getPointOnRay(ray, start);
 		Vector3f endPoint = getPointOnRay(ray, finish);
-		if (!isUnderGround(startPoint) && isUnderGround(endPoint)) {
-			return true;
-		} else {
-			return false;
-		}
+		return !isUnderGround(startPoint) && isUnderGround(endPoint);
 	}
 	
 	private boolean isUnderGround(Vector3f testPoint) {
@@ -77,11 +73,7 @@ public class EntitySelector extends MousePicker {
 		if (terrain != null) {
 			height = terrain.getHeightOfTerrain(testPoint.getX(), testPoint.getZ());
 		}
-		if (testPoint.y < height) {
-			return true;
-		} else {
-			return false;
-		}
+		return testPoint.y < height;
 	}
 
 	

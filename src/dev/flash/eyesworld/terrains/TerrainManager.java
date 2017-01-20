@@ -16,7 +16,7 @@ public class TerrainManager {
 	
 	public Terrain getTerrain(float x, float z) {
 		for (Terrain terrain : terrains) {
-			if (terrain.getX() == Math.floor(x / terrain.SIZE) * terrain.SIZE && terrain.getZ() == Math.floor(z / terrain.SIZE) * terrain.SIZE) {
+			if (terrain.getX() == Math.floor(x / Terrain.SIZE) * Terrain.SIZE && terrain.getZ() == Math.floor(z / Terrain.SIZE) * Terrain.SIZE) {
 				return terrain;
 			}
 		}

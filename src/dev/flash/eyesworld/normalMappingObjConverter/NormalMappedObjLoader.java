@@ -36,22 +36,22 @@ public class NormalMappedObjLoader {
 				line = reader.readLine();
 				if (line.startsWith("v ")) {
 					String[] currentLine = line.split(" ");
-					Vector3f vertex = new Vector3f((float) Float.valueOf(currentLine[1]),
-							(float) Float.valueOf(currentLine[2]),
-							(float) Float.valueOf(currentLine[3]));
+					Vector3f vertex = new Vector3f(Float.valueOf(currentLine[1]),
+							Float.valueOf(currentLine[2]),
+							Float.valueOf(currentLine[3]));
 					VertexNM newVertex = new VertexNM(vertices.size(), vertex);
 					vertices.add(newVertex);
 					
 				} else if (line.startsWith("vt ")) {
 					String[] currentLine = line.split(" ");
-					Vector2f texture = new Vector2f((float) Float.valueOf(currentLine[1]),
-							(float) Float.valueOf(currentLine[2]));
+					Vector2f texture = new Vector2f(Float.valueOf(currentLine[1]),
+							Float.valueOf(currentLine[2]));
 					textures.add(texture);
 				} else if (line.startsWith("vn ")) {
 					String[] currentLine = line.split(" ");
-					Vector3f normal = new Vector3f((float) Float.valueOf(currentLine[1]),
-							(float) Float.valueOf(currentLine[2]),
-							(float) Float.valueOf(currentLine[3]));
+					Vector3f normal = new Vector3f(Float.valueOf(currentLine[1]),
+							Float.valueOf(currentLine[2]),
+							Float.valueOf(currentLine[3]));
 					normals.add(normal);
 				} else if (line.startsWith("f ")) {
 					break;
