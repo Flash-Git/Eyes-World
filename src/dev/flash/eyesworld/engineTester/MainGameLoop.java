@@ -12,6 +12,8 @@ import dev.flash.eyesworld.models.TexturedModel;
 import dev.flash.eyesworld.normalMappingObjConverter.NormalMappedObjLoader;
 import dev.flash.eyesworld.objConverter.ModelData;
 import dev.flash.eyesworld.objConverter.OBJFileLoader;
+import dev.flash.eyesworld.particles.Particle;
+import dev.flash.eyesworld.particles.ParticleMaster;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
@@ -22,6 +24,7 @@ import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.EntitySelector;
 import dev.flash.eyesworld.water.*;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -53,6 +56,8 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		TextMaster.init(loader);
 		MasterRenderer renderer = new MasterRenderer(loader);
+		ParticleMaster.init(loader, renderer.getProjectionMatrix());
+		
 		
 		WaterFrameBuffers buffers = new WaterFrameBuffers();
 		WaterShader waterShader = new WaterShader();
@@ -75,6 +80,13 @@ public class MainGameLoop {
 			entityManager.getPlayer().move(terrainManager.getTerrain(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().z));
 			camera.move();
 			picker.update();
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_Y)) {
+				new Particle(new Vector3f(entityManager.getPlayer().getPosition()), new Vector3f(0, 30, 0),1, 4, 0, 1);
+			}
+			
+			ParticleMaster.update();
+			
 			grabEntities(picker);
 			makeThemBounce();
 			
@@ -82,12 +94,16 @@ public class MainGameLoop {
 			renderWater(buffers, renderer);
 			renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, 100000));//hacky and gross cos drivers ignore command
 			waterRenderer.render(waterManager.getWaters(), camera, entityManager.getSun());
+			
+			ParticleMaster.renderParticles(camera);
+			
 			guiRenderer.render(guiManager.getGuis());
 			TextMaster.render();
 			
 			//Push to Screen
 			DisplayManager.updateDisplay();
 		}
+		ParticleMaster.cleanUp();
 		TextMaster.cleanUp();
 		buffers.cleanUp();
 		guiRenderer.cleanUp();
