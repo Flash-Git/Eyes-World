@@ -16,7 +16,7 @@ public class Player extends Entity {
 	
 	private static final float RUN_SPEED = 100;//units/second
 	private static final float TURN_SPEED = 360;//degrees/second
-	public static final float GRAVITY = -50;
+	public static final float GRAVITY = -100;
 	private static final float JUMP_POWER = 90;//45
 	
 	private float currentSpeed = 0;
@@ -44,6 +44,15 @@ public class Player extends Entity {
 		increasePosition(dx, 0, dz);
 		upwardsSpeed += GRAVITY * DisplayManager.getFrameTimeMillis() / 1000;
 		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeMillis() / 1000, 0);
+		
+		//TODO//
+		if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			increasePosition((float) (RUN_SPEED * DisplayManager.getFrameTimeMillis() / 1000 * Math.sin(Math.toRadians(super.getRotY()))), 0, (float) (RUN_SPEED * DisplayManager.getFrameTimeMillis() / 1000 * Math.cos(Math.toRadians(super.getRotY()))));
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			increasePosition((float) (RUN_SPEED * DisplayManager.getFrameTimeMillis() / 1000 * Math.sin(Math.toRadians(super.getRotY() + 180))), 0, (float) (RUN_SPEED * DisplayManager.getFrameTimeMillis() / 1000 * Math.cos(Math.toRadians(super.getRotY() + 180))));
+		}
+		//TODO//
 		
 		float terrainHeight = terrain.getHeightOfTerrain(super.getPosition().x, super.getPosition().z);
 		
