@@ -1,20 +1,20 @@
 package dev.flash.eyesworld.particles;
 
 import dev.flash.eyesworld.entities.Camera;
+import dev.flash.eyesworld.entities.Entity;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.util.vector.Matrix4f;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Flash on 23/01/2017.
  */
 
 public class ParticleMaster {
-	private static List<Particle> particles = new ArrayList<>();
+	
+	private static Map<ParticleTexture, List<Particle>> particles = new HashMap<>();
 	private static ParticleRenderer renderer;
 	
 	public static void init(Loader loader, Matrix4f projectionMatrix) {
@@ -22,17 +22,36 @@ public class ParticleMaster {
 	}
 	
 	public static void update() {
-		//Utils.out(particles.size());
-		Iterator<Particle> iterator = particles.iterator();
-		while (iterator.hasNext()) {
-			Particle p = iterator.next();
-			boolean stillAlive = p.update();
-			if (!stillAlive) {
-				iterator.remove();
+		Iterator<Map.Entry<ParticleTexture, List<Particle>>> mapIterator = particles.entrySet().iterator();
+		while(mapIterator.hasNext()){
+			List<Particle> list = mapIterator.next().getValue();
+			Iterator<Particle> iterator = list.iterator();
+			while (iterator.hasNext()) {
+				Particle p = iterator.next();
+				boolean stillAlive = p.update();
+				if (!stillAlive) {
+					iterator.remove();
+					if(list.isEmpty()){
+						mapIterator.remove();
+					}
+				}
+				
 			}
-			
 		}
+		
+		
+		
 	}
+	
+	public static void addParticle(Particle particle) {
+		List<Particle> list = particles.get(particle.getTexture());
+		if (list==null){
+			list = new ArrayList<>();
+			particles.put(particle.getTexture(), list);
+		}
+		list.add(particle);
+	}
+	
 	
 	public static void renderParticles(Camera camera) {
 		renderer.render(particles, camera);
@@ -42,9 +61,6 @@ public class ParticleMaster {
 		renderer.cleanUp();
 	}
 	
-	public static void addParticle(Particle particle) {
-		particles.add(particle);
-	}
 	
 	
 }

@@ -15,6 +15,7 @@ import dev.flash.eyesworld.objConverter.OBJFileLoader;
 import dev.flash.eyesworld.particles.Particle;
 import dev.flash.eyesworld.particles.ParticleMaster;
 import dev.flash.eyesworld.particles.ParticleSystem;
+import dev.flash.eyesworld.particles.ParticleTexture;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
@@ -74,7 +75,9 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
 		
-		ParticleSystem particleSystem = new ParticleSystem(10, 50, 0.3f, 2, 1);
+		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleStar"), 1);
+		
+		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 10, 50, 0.3f, 2, 1);
 		
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
@@ -99,7 +102,7 @@ public class MainGameLoop {
 			ParticleMaster.renderParticles(camera);
 			
 			guiRenderer.render(guiManager.getGuis());
-			TextMaster.render();
+			//TextMaster.render();
 			
 			//Push to Screen
 			DisplayManager.updateDisplay();
