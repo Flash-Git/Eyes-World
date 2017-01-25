@@ -74,7 +74,7 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
 		
-		ParticleSystem particleSystem = new ParticleSystem(10, 50, 0.3f, 2);
+		ParticleSystem particleSystem = new ParticleSystem(10, 50, 0.3f, 2, 1);
 		
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
