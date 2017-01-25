@@ -75,7 +75,7 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
 		
-		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleStar"), 1);
+		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleAtlas"), 4);
 		
 		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 100, 50, 0.3f, 2, 2);
 		
