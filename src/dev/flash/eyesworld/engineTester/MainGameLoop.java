@@ -77,7 +77,7 @@ public class MainGameLoop {
 		
 		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleStar"), 1);
 		
-		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 10, 50, 0.3f, 2, 1);
+		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 100, 50, 0.3f, 2, 2);
 		
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
