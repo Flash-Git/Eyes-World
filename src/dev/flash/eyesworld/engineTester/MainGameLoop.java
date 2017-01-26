@@ -75,9 +75,10 @@ public class MainGameLoop {
 		
 		EntitySelector picker = new EntitySelector(camera, renderer.getProjectionMatrix(), terrainManager);
 		
-		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleAtlas"), 4);
+		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("fire"), 8);
 		
-		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 100, 50, 0.3f, 2, 2);
+		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 100, 5, 0.01f, 1, 5);
+		particleSystem.setDirection(new Vector3f(0, 1, 0), 0.1f);
 		
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
@@ -87,9 +88,9 @@ public class MainGameLoop {
 			camera.move();
 			picker.update();
 			
-			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().y+5, entityManager.getPlayer().getPosition().z));
+			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().y + 10, entityManager.getPlayer().getPosition().z));
 			
-			ParticleMaster.update();
+			ParticleMaster.update(camera);
 			
 			grabEntities(picker);
 			makeThemBounce();
