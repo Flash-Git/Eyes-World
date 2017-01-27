@@ -39,7 +39,7 @@ public class ParticleRenderer {
 		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
 		prepare();
 		
-		for(ParticleTexture texture : particles.keySet()) {
+		for (ParticleTexture texture : particles.keySet()) {
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture.getTextureID());
 			for (Particle particle : particles.get(texture)) {

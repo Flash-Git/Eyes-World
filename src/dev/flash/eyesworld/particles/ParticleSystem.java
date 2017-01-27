@@ -47,31 +47,28 @@ public class ParticleSystem {
 	}
 	
 	/**
-	 * @param error
-	 *            - A number between 0 and 1, where 0 means no error margin.
+	 * @param error - A number between 0 and 1, where 0 means no error margin.
 	 */
 	public void setSpeedError(float error) {
 		this.speedError = error * averageSpeed;
 	}
 	
 	/**
-	 * @param error
-	 *            - A number between 0 and 1, where 0 means no error margin.
+	 * @param error - A number between 0 and 1, where 0 means no error margin.
 	 */
 	public void setLifeError(float error) {
 		this.lifeError = error * averageLifeLength;
 	}
 	
 	/**
-	 * @param error
-	 *            - A number between 0 and 1, where 0 means no error margin.
+	 * @param error - A number between 0 and 1, where 0 means no error margin.
 	 */
 	public void setScaleError(float error) {
 		this.scaleError = error * averageScale;
 	}
 	
 	public void generateParticles(Vector3f systemCenter) {
-		float delta = DisplayManager.getFrameTimeMillis()/1000;
+		float delta = DisplayManager.getFrameTimeMillis() / 1000;
 		float particlesToCreate = pps * delta;
 		int count = (int) Math.floor(particlesToCreate);
 		float partialParticle = particlesToCreate % 1;
@@ -85,9 +82,9 @@ public class ParticleSystem {
 	
 	private void emitParticle(Vector3f center) {
 		Vector3f velocity = null;
-		if(direction!=null){
+		if (direction != null) {
 			velocity = generateRandomUnitVectorWithinCone(direction, directionDeviation);
-		}else{
+		} else {
 			velocity = generateRandomUnitVector();
 		}
 		velocity.normalise();
