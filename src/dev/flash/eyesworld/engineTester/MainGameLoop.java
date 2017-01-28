@@ -77,7 +77,7 @@ public class MainGameLoop {
 		
 		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("fire"), 8);
 		
-		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 150, 4f, 0.005f, 1f, 3f);
+		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 150, 3f, 0.005f, 1f, 3f);
 		particleSystem.setDirection(new Vector3f(0, 1, 0), 0.2f);
 		particleSystem.setScaleError(0.3f);
 		particleSystem.setSpeedError(0.4f);

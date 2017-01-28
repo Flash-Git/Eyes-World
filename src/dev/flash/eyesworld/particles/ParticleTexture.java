@@ -8,7 +8,7 @@ public class ParticleTexture {
 	
 	private int textureID;
 	private int numOfRows;
-	private boolean additive = false;
+	private boolean additive = true;
 	
 	public ParticleTexture(int textureID, int numOfRows) {
 		this.textureID = textureID;

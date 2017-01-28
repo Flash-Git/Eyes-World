@@ -22,7 +22,7 @@ import dev.flash.eyesworld.utils.Maths;
 public class ParticleRenderer {
 	
 	private static final float[] VERTICES = {-0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f};
-	private static final int MAX_INSTANCES = 100000;
+	private static final int MAX_INSTANCES = 20000;
 	private static final int INSTANCE_DATA_LENGTH = 21;
 	
 	private static final FloatBuffer buffer = BufferUtils.createFloatBuffer(MAX_INSTANCES * INSTANCE_DATA_LENGTH);
@@ -83,9 +83,9 @@ public class ParticleRenderer {
 		modelMatrix.m20 = viewMatrix.m02;
 		modelMatrix.m21 = viewMatrix.m12;
 		modelMatrix.m22 = viewMatrix.m22;
-		Matrix4f.rotate((float) Math.toRadians(rotation), new Vector3f(0, 0, 1), modelMatrix, modelMatrix);
-		Matrix4f.scale(new Vector3f(scale, scale, scale), modelMatrix, modelMatrix);
 		Matrix4f modelViewMatrix = Matrix4f.mul(viewMatrix, modelMatrix, null);
+		Matrix4f.rotate((float) Math.toRadians(rotation), new Vector3f(0, 0, 1), modelViewMatrix, modelViewMatrix);
+		Matrix4f.scale(new Vector3f(scale, scale, scale), modelViewMatrix, modelViewMatrix);
 		storeMatrixData(modelViewMatrix, vboData);
 	}
 	
@@ -127,6 +127,7 @@ public class ParticleRenderer {
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
 		GL20.glEnableVertexAttribArray(3);
+		GL20.glEnableVertexAttribArray(4);
 		GL20.glEnableVertexAttribArray(5);
 		GL20.glEnableVertexAttribArray(6);
 		GL11.glEnable(GL11.GL_BLEND);

@@ -1,1 +1,5 @@
 Object oriented rendering?
+
+Particle systems need to use object pooling
+
+re-use vectors and other objects

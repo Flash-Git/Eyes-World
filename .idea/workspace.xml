@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c34ceb-48bb-489f-a689-542c9a7a0418" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/ParticleRenderer.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/ParticleRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thoughts.txt" afterPath="$PROJECT_DIR$/Thoughts.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleVShader.txt" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleVShader.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +38,8 @@
       <file leaf-file-name="MainGameLoop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="83" column="39" lean-forward="false" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+            <state relative-caret-position="299">
+              <caret line="79" column="82" lean-forward="false" selection-start-line="79" selection-start-column="82" selection-end-line="79" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
@@ -50,13 +51,23 @@
       <file leaf-file-name="ParticleSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
+            <state relative-caret-position="1598">
               <caret line="100" column="4" lean-forward="true" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1530#1531#0" expanded="true" />
                 <element signature="e#1575#1576#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParticleTexture.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,7 +105,7 @@
       <file leaf-file-name="ParticleShader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="544">
               <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,13 +116,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParticleRenderer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java">
+      <file leaf-file-name="Particle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+            <state relative-caret-position="68">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParticleRenderer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParticleMaster.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1579#1580#0" expanded="true" />
+                <element signature="e#1620#1621#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,8 +157,8 @@
       <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="172" column="60" lean-forward="false" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
+            <state relative-caret-position="2601">
+              <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -219,15 +256,15 @@
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleFShader.txt" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/InsertionSort.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleSystem.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleVShader.txt" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java" />
       </list>
     </option>
   </component>
@@ -1162,12 +1199,12 @@
       <workItem from="1485218158555" duration="30000" />
       <workItem from="1485221065211" duration="1198000" />
       <workItem from="1485307090561" duration="6694000" />
-      <workItem from="1485427560941" duration="9341000" />
+      <workItem from="1485427560941" duration="10965000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263606000" />
+    <option name="totallyTimeSpent" value="265230000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1192,7 +1229,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.2031496" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="268" y="579" width="1095" height="129" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23160173" sideWeight="0.49707174" order="9" side_tool="false" content_ui="tabs" x="3" y="297" width="1360" height="133" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23160173" sideWeight="0.49707174" order="9" side_tool="false" content_ui="tabs" x="3" y="297" width="1360" height="133" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21889764" sideWeight="0.50292826" order="10" side_tool="true" content_ui="tabs" x="752" y="286" width="253" height="635" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2584,35 +2621,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java">
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="100" column="4" lean-forward="true" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1530#1531#0" expanded="true" />
-            <element signature="e#1575#1576#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="21" column="56" lean-forward="false" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2620,38 +2633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="83" column="39" lean-forward="false" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/DisplayManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="56" lean-forward="false" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -2664,9 +2645,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2601">
+          <caret line="168" column="0" lean-forward="false" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="79" column="82" lean-forward="false" selection-start-line="79" selection-start-column="82" selection-end-line="79" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1579#1580#0" expanded="true" />
+            <element signature="e#1620#1621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
+        <state relative-caret-position="544">
           <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2676,21 +2708,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/Loader.java">
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="172" column="60" lean-forward="false" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
-          <folding />
+        <state relative-caret-position="1598">
+          <caret line="100" column="4" lean-forward="true" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1530#1531#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java">
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleTexture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="84" column="41" lean-forward="true" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
