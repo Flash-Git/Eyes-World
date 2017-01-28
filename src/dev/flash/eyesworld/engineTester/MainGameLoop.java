@@ -77,9 +77,12 @@ public class MainGameLoop {
 		
 		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("fire"), 8);
 		
-		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 100, 5, 0.01f, 1, 5);
-		particleSystem.setDirection(new Vector3f(0, 1, 0), 0.1f);
-		
+		ParticleSystem particleSystem = new ParticleSystem(particleTexture, 150, 4f, 0.005f, 1f, 3f);
+		particleSystem.setDirection(new Vector3f(0, 1, 0), 0.2f);
+		particleSystem.setScaleError(0.3f);
+		particleSystem.setSpeedError(0.4f);
+		particleSystem.setLifeError(0.7f);
+		Random random = new Random();
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
 			
@@ -88,7 +91,7 @@ public class MainGameLoop {
 			camera.move();
 			picker.update();
 			
-			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x, entityManager.getPlayer().getPosition().y + 10, entityManager.getPlayer().getPosition().z));
+			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x+random.nextFloat()*2-1, entityManager.getPlayer().getPosition().y + 10+random.nextFloat(), entityManager.getPlayer().getPosition().z+random.nextFloat()*2-1));
 			
 			ParticleMaster.update(camera);
 			
