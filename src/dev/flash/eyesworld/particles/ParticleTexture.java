@@ -8,10 +8,17 @@ public class ParticleTexture {
 	
 	private int textureID;
 	private int numOfRows;
+	private boolean additive = false;
 	
 	public ParticleTexture(int textureID, int numOfRows) {
 		this.textureID = textureID;
 		this.numOfRows = numOfRows;
+	}
+	
+	public ParticleTexture(int textureID, int numOfRows, boolean additive) {
+		this.textureID = textureID;
+		this.numOfRows = numOfRows;
+		this.additive = additive;
 	}
 	
 	public int getTextureID() {
@@ -28,5 +35,13 @@ public class ParticleTexture {
 	
 	public void setNumOfRows(int numOfRows) {
 		this.numOfRows = numOfRows;
+	}
+	
+	public boolean isAdditive() {
+		return additive;
+	}
+	
+	public void setAdditive(boolean additive) {
+		this.additive = additive;
 	}
 }
