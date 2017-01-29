@@ -76,4 +76,5 @@ void main(void) {
 
 	out_Color = mix(reflectionColour, refractionColour, refractiveFactor);
 	out_Color = mix(out_Color, vec4(0.0, 0.4, 0.5, 1.0), 0.2) + vec4(specularHighlights, 0.0);//Adding blue/gree tint
+	out_Color.a = clamp(waterDepth/7.0, 0.0, 1.0);
 }
