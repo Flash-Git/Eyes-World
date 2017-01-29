@@ -20,10 +20,10 @@ import java.util.Random;
 
 public class Terrain {
 	
-	public static final float SIZE = 1024;
+	public static final float SIZE = 512;
 	private static final float MAX_HEIGHT = 40;
 	private static final float MAX_PIXEL_COLOUR = 256 * 256 * 256;
-	private static final int VERTEX_COUNT = 256;
+	private static final int VERTEX_COUNT = 64;
 	
 	private float x, z;
 	private RawModel model;
