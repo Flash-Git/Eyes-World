@@ -68,7 +68,7 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
-		createWaters();
+		//createWaters();
 		createTerrains(loader);
 		createEntities(loader);
 		createGUIs(loader);
@@ -193,7 +193,7 @@ public class MainGameLoop {
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
 		//Player
-		Player player = new Player(staticDragonModel, new Vector3f(100, 0, -5), 0, 270, 0, 1);
+		Player player = new Player(staticDragonModel, new Vector3f(3000, 0, 3000), 0, 270, 0, 1);
 		
 		//Lamps
 		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
@@ -279,12 +279,12 @@ public class MainGameLoop {
 		List<Entity> entities = new ArrayList<>();
 		List<Entity> normalMappedEntities = new ArrayList<>();
 		
-		//entities.addAll(trees);
-		//entities.addAll(lamps);
-		//entities.addAll(ferns);
+		entities.addAll(trees);
+		entities.addAll(lamps);
+		entities.addAll(ferns);
 		entities.add(player);
-		//entities.add(dragonEntity);
-		//normalMappedEntities.addAll(barrels);
+		entities.add(dragonEntity);
+		normalMappedEntities.addAll(barrels);
 		
 		entityManager.addEntities(entities);
 		entityManager.addNormalMappedEntities(normalMappedEntities);
@@ -303,35 +303,18 @@ public class MainGameLoop {
 		
 		Random random = new Random();
 		int seed = random.nextInt(1000000000);
-		Terrain terrain = new Terrain(0 + 1, -1 + 1, loader, texturePack, blendMap, seed);
-		Terrain terrain2 = new Terrain(-1 + 1, -1 + 1, loader, texturePack, blendMap, seed);
-		Terrain terrain3 = new Terrain(0 + 1, 0 + 1, loader, texturePack, blendMap, seed);
-		Terrain terrain4 = new Terrain(-1 + 1, 0 + 1, loader, texturePack, blendMap, seed);
-		
-		Terrain terrain5 = new Terrain(0 + 2, 0 , loader, texturePack, blendMap, seed);
-		Terrain terrain6 = new Terrain(0 + 2, 0 + 1, loader, texturePack, blendMap, seed);
-		Terrain terrain7 = new Terrain(0 + 2, 0 + 2 , loader, texturePack, blendMap, seed);
-		Terrain terrain8 = new Terrain(0 + 1, 0 + 2 , loader, texturePack, blendMap, seed);
-		Terrain terrain9 = new Terrain(0, 0 + 2 , loader, texturePack, blendMap, seed);
-		
 		List<Terrain> terrains = new ArrayList<>();
-		terrains.add(terrain);
-		terrains.add(terrain2);
-		terrains.add(terrain3);
-		terrains.add(terrain4);
-		terrains.add(terrain5);
-		terrains.add(terrain6);
-		terrains.add(terrain7);
-		terrains.add(terrain8);
-		terrains.add(terrain9);
-		terrainManager.addTerrains(terrains);
-		terrainManager.setDummyTerrain(terrain);
-	}
-	
-	private static void createWaters() {
 		List<WaterTile> waters = new ArrayList<>();
-		waters.add(new WaterTile(220, -170, -0.5f));
+		
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				terrains.add(new Terrain(i, j, loader, texturePack, blendMap, seed));
+				waters.add(new WaterTile(i*512, j*512, -10f));
+			}
+		}
 		waterManager.addWaters(waters);
+		terrainManager.addTerrains(terrains);
+		terrainManager.setDummyTerrain(new Terrain(0, 0, loader, texturePack, blendMap, seed));
 	}
 	
 	private static void makeThemBounce() {

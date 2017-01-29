@@ -29,7 +29,7 @@ void main(void) {
 
 
 	float near = 0.1;
-	float far = 2000.0;
+	float far = 10000.0;
 
 	float depth = texture(depthMap, refractTexCoords).r;//0-1 (non linear)
 	float floorDistance = 2.0 * near * far / (far + near - (2.0 * depth - 1.0) * (far - near));//convert to distance
