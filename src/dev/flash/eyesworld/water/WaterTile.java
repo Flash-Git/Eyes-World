@@ -7,7 +7,7 @@ package dev.flash.eyesworld.water;
 
 public class WaterTile {
 	
-	public static final float TILE_SIZE = 512;
+	public static final float TILE_SIZE = 256;
 	
 	private float height;
 	private float x, z;

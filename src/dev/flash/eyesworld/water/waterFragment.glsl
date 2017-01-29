@@ -40,7 +40,7 @@ void main(void) {
 
 	vec2 distortedTexCoords = texture(dudvMap, vec2(textureCoords.x + moveFactor, textureCoords.y)).rg*0.1;
     distortedTexCoords = textureCoords + vec2(distortedTexCoords.x, distortedTexCoords.y+moveFactor);
-    vec2 totalDistortion = (texture(dudvMap, distortedTexCoords).rg * 2.0 - 1.0) * waveStr * clamp(waterDepth/20.0, 0.0, 1.0);
+    vec2 totalDistortion = (texture(dudvMap, distortedTexCoords).rg * 2.0 - 1.0) * waveStr * clamp(waterDepth/35.0, 0.0, 1.0);
 
 	reflectTexCoords += totalDistortion;
 	refractTexCoords += totalDistortion;
@@ -54,7 +54,7 @@ void main(void) {
 	vec4 refractionColour = texture(refractionTexture, refractTexCoords);
 
 	vec4 murkyWaterColour = vec4(0.001, 0.015, 0.3, 1.0);//should be uniform
-	refractionColour = mix(refractionColour, murkyWaterColour, clamp(waterDepth/60.0, 0.0, 1.0));
+	refractionColour = mix(refractionColour, murkyWaterColour, clamp(waterDepth/100.0, 0.0, 1.0));
 
 	vec4 normalMapColour = texture(normalMap, distortedTexCoords);
 	vec3 normal = vec3(normalMapColour.r * 2.0 - 1.0, normalMapColour.b * 3.0, normalMapColour.g * 2.0 - 1.0);//multiplying the b for the normals to point further upward
@@ -71,10 +71,9 @@ void main(void) {
 	vec3 reflectedLight = reflect(normalize(fromLightVector), normal);
 	float specular = max(dot(reflectedLight, viewVector), 0.0);
 	specular = pow(specular, shineDamper);
-	vec3 specularHighlights = lightColour * specular * reflectivity * clamp(waterDepth/5.0, 0.0, 1.0);;
+	vec3 specularHighlights = lightColour * specular * reflectivity * clamp(waterDepth/10.0, 0.0, 1.0);;
 
 
 	out_Color = mix(reflectionColour, refractionColour, refractiveFactor);
 	out_Color = mix(out_Color, vec4(0.0, 0.4, 0.5, 1.0), 0.2) + vec4(specularHighlights, 0.0);//Adding blue/gree tint
-	out_Color.a = clamp(waterDepth/5.0, 0.0, 1.0);
 }

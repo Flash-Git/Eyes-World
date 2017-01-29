@@ -54,7 +54,6 @@ public class MainGameLoop {
 	
 	
 	public static void main(String[] args) {
-		Mouse.setGrabbed(true);
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
 		TextMaster.init(loader);
@@ -84,6 +83,8 @@ public class MainGameLoop {
 		particleSystem.setSpeedError(0.4f);
 		particleSystem.setLifeError(0.7f);
 		Random random = new Random();
+		
+		Mouse.setGrabbed(true);
 		while (!Display.isCloseRequested()) {
 			Display.setTitle(Float.toString(1000 / DisplayManager.getFrameTimeMillis()));
 			
@@ -169,13 +170,13 @@ public class MainGameLoop {
 		camera.getPosition().y -= distance;
 		camera.invertPitch();
 		
-		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waterManager.getWaters().get(0).getHeight() + 0.4f));//little offset reduces edge water glitch
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, 1, 0, -waterManager.getWaters().get(0).getHeight() + 1f));//little offset reduces edge water glitch
 		
 		camera.getPosition().y += distance;
 		camera.invertPitch();
 		
 		buffers.bindRefractionFrameBuffer();
-		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 0.4f));//little offset reduces edge water glitch
+		renderer.renderScene(entityManager.getEntities(), entityManager.getNormalMappedEntities(), terrainManager.getTerrains(), entityManager.getLights(), camera, new Vector4f(0, -1, 0, waterManager.getWaters().get(0).getHeight() + 1f));//little offset reduces edge water glitch
 		
 		GL11.glDisable(GL30.GL_CLIP_DISTANCE0);//Some drivers ignore this command
 		buffers.unbindCurrentFrameBuffer();
@@ -193,7 +194,7 @@ public class MainGameLoop {
 		Entity dragonEntity = new Entity(staticDragonModel, new Vector3f(0, 0, -25), 0, 0, 0, 1);
 		
 		//Player
-		Player player = new Player(staticDragonModel, new Vector3f(3000, 0, 3000), 0, 270, 0, 1);
+		Player player = new Player(staticDragonModel, new Vector3f(500, 100, 500), 0, 270, 0, 1);
 		
 		//Lamps
 		ModelData lampData = OBJFileLoader.loadOBJ("lamp");
@@ -309,9 +310,12 @@ public class MainGameLoop {
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				terrains.add(new Terrain(i, j, loader, texturePack, blendMap, seed));
-				waters.add(new WaterTile(i*512, j*512, -10f));
+				waters.add(new WaterTile(i*512+256, j*512+256, -15f));
 			}
 		}
+		waters.add(new WaterTile(0*512, 0*512, -10f));
+		//waters.add(new WaterTile(1*512, 0*512, -10f));
+		
 		waterManager.addWaters(waters);
 		terrainManager.addTerrains(terrains);
 		terrainManager.setDummyTerrain(new Terrain(0, 0, loader, texturePack, blendMap, seed));
