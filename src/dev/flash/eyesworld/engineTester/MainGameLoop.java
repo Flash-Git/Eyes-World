@@ -19,6 +19,7 @@ import dev.flash.eyesworld.particles.ParticleTexture;
 import dev.flash.eyesworld.renderEngine.DisplayManager;
 import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.renderEngine.MasterRenderer;
+import dev.flash.eyesworld.terrains.HeightsGenerator;
 import dev.flash.eyesworld.terrains.Terrain;
 import dev.flash.eyesworld.terrains.TerrainManager;
 import dev.flash.eyesworld.textures.ModelTexture;
@@ -278,12 +279,12 @@ public class MainGameLoop {
 		List<Entity> entities = new ArrayList<>();
 		List<Entity> normalMappedEntities = new ArrayList<>();
 		
-		entities.addAll(trees);
-		entities.addAll(lamps);
-		entities.addAll(ferns);
+		//entities.addAll(trees);
+		//entities.addAll(lamps);
+		//entities.addAll(ferns);
 		entities.add(player);
-		entities.add(dragonEntity);
-		normalMappedEntities.addAll(barrels);
+		//entities.add(dragonEntity);
+		//normalMappedEntities.addAll(barrels);
 		
 		entityManager.addEntities(entities);
 		entityManager.addNormalMappedEntities(normalMappedEntities);
@@ -300,10 +301,13 @@ public class MainGameLoop {
 		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
-		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain3 = new Terrain(0, 0, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain4 = new Terrain(-1, 0, loader, texturePack, blendMap, "heightMap");
+		Random random = new Random();
+		int seed = random.nextInt(1000000000);
+		Terrain terrain = new Terrain(0+1, -1+1, loader, texturePack, blendMap, seed);
+		Terrain terrain2 = new Terrain(-1+1, -1+1, loader, texturePack, blendMap, seed);
+		Terrain terrain3 = new Terrain(0+1, 0+1, loader, texturePack, blendMap, seed);
+		Terrain terrain4 = new Terrain(-1+1, 0+1, loader, texturePack, blendMap, seed);
+		
 		List<Terrain> terrains = new ArrayList<>();
 		terrains.add(terrain);
 		terrains.add(terrain2);
