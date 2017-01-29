@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c34ceb-48bb-489f-a689-542c9a7a0418" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/Particle.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/Particle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/ParticleRenderer.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/particles/ParticleRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/skybox/SkyboxRenderer.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/skybox/SkyboxRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/HeightsGenerator.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/HeightsGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/Terrain.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/Terrain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/TerrainManager.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/terrains/TerrainManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterFrameBuffers.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterFrameBuffers.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterRenderer.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterTile.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/WaterTile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thoughts.txt" afterPath="$PROJECT_DIR$/Thoughts.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/waterFragment.glsl" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/waterFragment.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/waterVertex.glsl" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/water/waterVertex.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterFrameBuffers.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterFrameBuffers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterTile.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterTile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -52,7 +30,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainGameLoop.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainGameLoop.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
@@ -61,6 +39,26 @@
                 <element signature="imports" expanded="true" />
                 <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="waterFragment.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="waterVertex.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,7 +86,7 @@
       <file leaf-file-name="WaterRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-527">
+            <state relative-caret-position="-398">
               <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
               <folding />
             </state>
@@ -115,7 +113,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="terrainFragmentShader.glsl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="terrainFragmentShader.glsl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainFragmentShader.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="918">
@@ -138,8 +136,8 @@
       <file leaf-file-name="HeightsGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+            <state relative-caret-position="306">
+              <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -184,6 +182,36 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
               <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SkyboxRenderer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SkyboxShader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxShader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="skyboxFragmentShader.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/skyboxFragmentShader.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -286,16 +314,16 @@
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/Particle.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleRenderer.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterFrameBuffers.java" />
-        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterTile.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/vertexShader.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainVertexShader.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/renderEngine/MasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java" />
+        <option value="$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl" />
       </list>
     </option>
   </component>
@@ -1230,12 +1258,12 @@
       <workItem from="1485218158555" duration="30000" />
       <workItem from="1485221065211" duration="1198000" />
       <workItem from="1485307090561" duration="6694000" />
-      <workItem from="1485427560941" duration="33194000" />
+      <workItem from="1485427560941" duration="34379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287459000" />
+    <option name="totallyTimeSpent" value="288644000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1300,22 +1328,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleFShader.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/particleVShader.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/particles/ParticleShader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -2608,14 +2620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -2627,22 +2631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/skyboxVertexShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-527">
-          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/Terrain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -2651,76 +2639,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/vertexShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/fragmentShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainVertexShader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainFragmentShader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -2751,6 +2673,112 @@
             <element signature="imports" expanded="true" />
             <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterFragment.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/SkyboxRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/skyboxVertexShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/skybox/skyboxFragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/waterVertex.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/vertexShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/fragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/terrains/HeightsGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterTile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/water/WaterRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-398">
+          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/shaders/terrainFragmentShader.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
