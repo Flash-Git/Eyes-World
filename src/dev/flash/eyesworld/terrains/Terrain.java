@@ -23,9 +23,9 @@ public class Terrain {
 	public static final float SIZE = 1024;
 	private static final float MAX_HEIGHT = 40;
 	private static final float MAX_PIXEL_COLOUR = 256 * 256 * 256;
+	private static final int VERTEX_COUNT = 256;
 	
 	private float x, z;
-	private int gridX, gridZ;
 	private RawModel model;
 	private TerrainTexturePack texturePack;
 	private TerrainTexture blendMap;
@@ -35,20 +35,15 @@ public class Terrain {
 	private HeightsGenerator generator;
 	
 	public Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap, int seed) {
-		this.gridX = gridX;
-		this.gridZ = gridZ;
 		this.texturePack = texturePack;
 		this.blendMap = blendMap;
 		this.x = gridX * SIZE;
 		this.z = gridZ * SIZE;
-		this.generator = new HeightsGenerator((int) gridX, (int) gridZ, 256, seed);
+		generator = new HeightsGenerator((int) gridX, (int) gridZ, VERTEX_COUNT, seed);
 		this.model = generateTerrain(loader);
 	}
 	
 	private RawModel generateTerrain(Loader loader) {
-		
-		
-		int VERTEX_COUNT = 128;
 		heights = new float[VERTEX_COUNT][VERTEX_COUNT];
 		
 		int count = VERTEX_COUNT * VERTEX_COUNT;

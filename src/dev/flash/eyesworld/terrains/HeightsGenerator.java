@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class HeightsGenerator {
 	private static final float AMPLITUDE = 70f;
-	private static final int OCTAVES = 3;
-	private static final float ROUGHNESS = 0.3f;
+	private static final int OCTAVES = 4;
+	private static final float ROUGHNESS = 0.2f;
 	
 	private Random random = new Random();
 	private int seed;
@@ -24,7 +24,6 @@ public class HeightsGenerator {
 		this.seed = seed;
 		xOffset = gridX * (vertexCount - 1);
 		zOffset = gridZ * (vertexCount - 1);
-		Utils.out(xOffset + " "+ zOffset);
 	}
 	
 	public float generateHeight(int x, int z) {
@@ -35,7 +34,6 @@ public class HeightsGenerator {
 			float amp = (float) Math.pow(ROUGHNESS, i) * AMPLITUDE;
 			total += getInterpolatedNoise((x + xOffset) * freq, (z + zOffset) * freq) * amp;
 		}
-		Utils.out(total + " at x= " + (x+ xOffset) + " z= " + (z+zOffset));
 		return total;
 	}
 	

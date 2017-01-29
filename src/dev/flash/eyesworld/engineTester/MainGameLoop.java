@@ -92,7 +92,7 @@ public class MainGameLoop {
 			camera.move();
 			picker.update();
 			
-			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x+random.nextFloat()*2-1, entityManager.getPlayer().getPosition().y + 10+random.nextFloat(), entityManager.getPlayer().getPosition().z+random.nextFloat()*2-1));
+			particleSystem.generateParticles(new Vector3f(entityManager.getPlayer().getPosition().x + random.nextFloat() * 2 - 1, entityManager.getPlayer().getPosition().y + 10 + random.nextFloat(), entityManager.getPlayer().getPosition().z + random.nextFloat() * 2 - 1));
 			
 			ParticleMaster.update(camera);
 			
@@ -303,16 +303,27 @@ public class MainGameLoop {
 		
 		Random random = new Random();
 		int seed = random.nextInt(1000000000);
-		Terrain terrain = new Terrain(0+1, -1+1, loader, texturePack, blendMap, seed);
-		Terrain terrain2 = new Terrain(-1+1, -1+1, loader, texturePack, blendMap, seed);
-		Terrain terrain3 = new Terrain(0+1, 0+1, loader, texturePack, blendMap, seed);
-		Terrain terrain4 = new Terrain(-1+1, 0+1, loader, texturePack, blendMap, seed);
+		Terrain terrain = new Terrain(0 + 1, -1 + 1, loader, texturePack, blendMap, seed);
+		Terrain terrain2 = new Terrain(-1 + 1, -1 + 1, loader, texturePack, blendMap, seed);
+		Terrain terrain3 = new Terrain(0 + 1, 0 + 1, loader, texturePack, blendMap, seed);
+		Terrain terrain4 = new Terrain(-1 + 1, 0 + 1, loader, texturePack, blendMap, seed);
+		
+		Terrain terrain5 = new Terrain(0 + 2, 0 , loader, texturePack, blendMap, seed);
+		Terrain terrain6 = new Terrain(0 + 2, 0 + 1, loader, texturePack, blendMap, seed);
+		Terrain terrain7 = new Terrain(0 + 2, 0 + 2 , loader, texturePack, blendMap, seed);
+		Terrain terrain8 = new Terrain(0 + 1, 0 + 2 , loader, texturePack, blendMap, seed);
+		Terrain terrain9 = new Terrain(0, 0 + 2 , loader, texturePack, blendMap, seed);
 		
 		List<Terrain> terrains = new ArrayList<>();
 		terrains.add(terrain);
 		terrains.add(terrain2);
 		terrains.add(terrain3);
 		terrains.add(terrain4);
+		terrains.add(terrain5);
+		terrains.add(terrain6);
+		terrains.add(terrain7);
+		terrains.add(terrain8);
+		terrains.add(terrain9);
 		terrainManager.addTerrains(terrains);
 		terrainManager.setDummyTerrain(terrain);
 	}
