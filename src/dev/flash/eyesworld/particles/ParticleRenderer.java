@@ -27,7 +27,6 @@ public class ParticleRenderer {
 	
 	private static final FloatBuffer buffer = BufferUtils.createFloatBuffer(MAX_INSTANCES * INSTANCE_DATA_LENGTH);
 	
-	
 	private RawModel quad;
 	private ParticleShader shader;
 	

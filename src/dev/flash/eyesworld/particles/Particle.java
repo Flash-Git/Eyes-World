@@ -28,6 +28,10 @@ public class Particle {
 	private float elapsedTime = 0;
 	private float distance;
 	
+	
+	//One vector to rule them all
+	Vector3f change = new Vector3f();
+	
 	public Particle(ParticleTexture texture, Vector3f position, Vector3f velocity, float gravityEffect, float lifeLength, float rotation, float scale) {
 		this.texture = texture;
 		this.position = position;
@@ -41,7 +45,7 @@ public class Particle {
 	
 	public boolean update(Camera camera) {
 		velocity.y += Player.GRAVITY * gravityEffect * DisplayManager.getFrameTimeMillis() / 1000;
-		Vector3f change = new Vector3f(velocity);
+		change.set(velocity);
 		change.scale(DisplayManager.getFrameTimeMillis() / 1000);
 		Vector3f.add(change, position, position);//TODO look at this
 		distance = Vector3f.sub(camera.getPosition(), position, null).lengthSquared();
