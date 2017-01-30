@@ -5,6 +5,7 @@ import dev.flash.eyesworld.renderEngine.Loader;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.Maths;
+import dev.flash.eyesworld.utils.Utils;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -92,7 +93,7 @@ public class Terrain {
 		float gridSquareSize = SIZE / ((float) heights.length - 1);
 		int gridX = (int) Math.floor(terrainX / gridSquareSize);
 		int gridZ = (int) Math.floor(terrainZ / gridSquareSize);
-		if (gridX >= heights.length - 1 || gridZ >= heights.length - 1 || gridX < 0 || gridZ < 0) {
+		if (gridX >= heights.length - 1 || gridZ >= heights.length - 1 || gridX < 0 || gridZ < 0) {//TODO change this to take into account neighbouring terrains
 			return 0;
 		}
 		float xCoord = (terrainX % gridSquareSize) / gridSquareSize;

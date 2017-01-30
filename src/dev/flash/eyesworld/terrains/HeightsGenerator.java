@@ -11,7 +11,7 @@ import java.util.Random;
 public class HeightsGenerator {
 	private static final float AMPLITUDE = 200f;
 	private static final int OCTAVES = 3;
-	private static final float ROUGHNESS = 0.1f;
+	private static final float ROUGHNESS = 0.5f;
 	
 	private Random random = new Random();
 	private int seed;
@@ -27,12 +27,13 @@ public class HeightsGenerator {
 	}
 	
 	public float generateHeight(int x, int z) {
+		
 		float total = 0;
-		float d = (float) Math.pow(2.5f, OCTAVES);//from (2f, OCTAVES-1)
+		float d = (float) Math.pow(3.0f, OCTAVES);//from (2f, OCTAVES-1)
 		for (int i = 0; i < OCTAVES; i++) {
-			float freq = (float) (Math.pow(2, i) / d);
+			float freq = (float) (Math.pow(2, i*1.2f) / d);
 			float amp = (float) Math.pow(ROUGHNESS, i) * AMPLITUDE;
-			total += getInterpolatedNoise((x + xOffset) * freq, (z + zOffset) * freq) * amp;
+			total += getInterpolatedNoise((x + xOffset+524288) * freq, (z + zOffset+524288) * freq) * amp;//things get... weird as the offsets approach int limit
 		}
 		return total;
 	}

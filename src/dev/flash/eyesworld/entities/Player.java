@@ -56,7 +56,7 @@ public class Player extends Entity {
 		
 		float terrainHeight = terrain.getHeightOfTerrain(super.getPosition().x, super.getPosition().z);
 		
-		if (super.getPosition().y < terrainHeight) {
+		if (super.getPosition().y < terrainHeight && terrainHeight != 0) {//TODO && terrainHeight != 0 is bandaid fix to terrainHeight returning 0 on edges between terrains
 			upwardsSpeed = 0;
 			super.getPosition().y = terrainHeight;
 			inAir = false;

@@ -27,7 +27,6 @@ public class MasterRenderer {
 	
 	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;//should be uniform vars
-	private static final float FAR_PLANE = 10000;
 	
 	public static final float RED = 0.2f;
 	public static final float GREEN = 0.25f;

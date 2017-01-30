@@ -258,7 +258,7 @@ public class MainGameLoop {
 			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
 					new Light(new Vector3f(x, y + 14, z),
 							new Vector3f(random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
-			lights.add(lamps.get(i).getLight());
+			//lights.add(lamps.get(i).getLight());
 		}
 		lights.add(sun);
 		entityManager.setSun(sun);
@@ -280,12 +280,12 @@ public class MainGameLoop {
 		List<Entity> entities = new ArrayList<>();
 		List<Entity> normalMappedEntities = new ArrayList<>();
 		
-		entities.addAll(trees);
-		entities.addAll(lamps);
-		entities.addAll(ferns);
+		//entities.addAll(trees);
+		//entities.addAll(lamps);
+		//entities.addAll(ferns);
 		entities.add(player);
-		entities.add(dragonEntity);
-		normalMappedEntities.addAll(barrels);
+		//entities.add(dragonEntity);
+		//normalMappedEntities.addAll(barrels);
 		
 		entityManager.addEntities(entities);
 		entityManager.addNormalMappedEntities(normalMappedEntities);
@@ -309,12 +309,10 @@ public class MainGameLoop {
 		
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				terrains.add(new Terrain(i, j, loader, texturePack, blendMap, seed));
-				waters.add(new WaterTile(i*512+256, j*512+256, -15f));
+				terrains.add(new Terrain(i-10, j-10, loader, texturePack, blendMap, seed));
+				waters.add(new WaterTile(i*512-10*512+256, j*512-10*512+256, -15f));
 			}
 		}
-		waters.add(new WaterTile(0*512, 0*512, -10f));
-		//waters.add(new WaterTile(1*512, 0*512, -10f));
 		
 		waterManager.addWaters(waters);
 		terrainManager.addTerrains(terrains);
