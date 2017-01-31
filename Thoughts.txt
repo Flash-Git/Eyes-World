@@ -1,3 +1,10 @@
 Object oriented rendering?
 
 Particle systems need to use object pooling
+
+If the viewer is originally on the top side of the water then we grab the refractive and reflective textures with the clipping planes clipping everything above and everything below the plane respectively. Well the opposite is true if you're under water. Use opposite clipping planes, ie clip everything below the water for the refractive texture and above the water for the reflective texture (if you want underwater reflection which IMO is kind of too much). Then the simplest thing to do in the fragment shader is to test if gl_FrontFacing is false, in which case we're looking at the back side of the water plane, and in that case set the output color to the refractive color and then you will be able to see everything above the water, from the bottom side of the water plane, through all the calculated distortions. Also make sure to glDisable(GL_CULL_FACE) during the rendering of the water plane. I'm sure there are other neato things that can be considered/flipped when the viewer is underwater. I'm considering doing some sort of extra scene distortion or perhaps fog to get the underwater feel for the surrounding environment. Not sure what yet but I thought I'd pop in and share this with everyone. Thanks again!﻿
+
+
+ private int vertexCount; private float noiseCache[][]; public HeightsGenerator(int gridX, int gridZ, int vertexCount, int seed) { this.seed = seed; this.xOffset = gridX * (vertexCount - 1); this.zOffset = gridZ * (vertexCount - 1); //New bits... this.vertexCount = vertexCount; noiseCache = new float[vertexCount][vertexCount]; for (int x = 0; x < vertexCount; x++) { for (int z = 0; z < vertexCount; z++) { noiseCache[x][z] = generateNoise(x, z); } } } //... private float getNoise(int x, int z) { if (x >= 0 && x < vertexCount && z >= 0 && z < vertexCount) { return noiseCache[x][z]; } //else return generateNoise(x, z); } private float generateNoise(int x, int z) { random.setSeed(x * 49632 + z * 325176 + seed); return random.nextFloat() * 2f - 1f; }﻿
+
+ 
