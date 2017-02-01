@@ -22,8 +22,7 @@ public class InsertionSort {
 	 * from the camera are first, and the particles with the shortest distance
 	 * are last.
 	 *
-	 * @param list
-	 *            - the list of particles needing sorting.
+	 * @param list - the list of particles needing sorting.
 	 */
 	
 	public static void sortHighToLow(List<Particle> list) {

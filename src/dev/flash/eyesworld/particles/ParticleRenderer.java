@@ -88,7 +88,7 @@ public class ParticleRenderer {
 		storeMatrixData(modelViewMatrix, vboData);
 	}
 	
-	private void updateTexCoordInfo(Particle particle, float[] data){
+	private void updateTexCoordInfo(Particle particle, float[] data) {
 		data[pointer++] = particle.getTexOffset1().x;
 		data[pointer++] = particle.getTexOffset1().y;
 		data[pointer++] = particle.getTexOffset2().x;
@@ -96,7 +96,7 @@ public class ParticleRenderer {
 		data[pointer++] = particle.getBlend();
 	}
 	
-	private void storeMatrixData(Matrix4f matrix, float[] vboData){
+	private void storeMatrixData(Matrix4f matrix, float[] vboData) {
 		vboData[pointer++] = matrix.m00;
 		vboData[pointer++] = matrix.m01;
 		vboData[pointer++] = matrix.m02;

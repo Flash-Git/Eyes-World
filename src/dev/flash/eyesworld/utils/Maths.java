@@ -8,6 +8,7 @@ import org.lwjgl.util.vector.Vector3f;
 /**
  * Created by Flash on 30/12/2016.
  */
+
 public class Maths {
 	
 	public static float barryCentric(Vector3f p1, Vector3f p2, Vector3f p3, Vector2f pos) {

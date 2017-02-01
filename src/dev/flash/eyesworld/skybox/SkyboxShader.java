@@ -57,8 +57,8 @@ public class SkyboxShader extends ShaderProgram {
 		matrix.m30 = 0;
 		matrix.m31 = 0;
 		matrix.m32 = 0;
-		rotation += ROTATE_SPEED * DisplayManager.getFrameTimeMillis()/1000;
-		Matrix4f.rotate((float)Math.toRadians(rotation), new Vector3f(0,1,0), matrix, matrix);
+		rotation += ROTATE_SPEED * DisplayManager.getFrameTimeMillis() / 1000;
+		Matrix4f.rotate((float) Math.toRadians(rotation), new Vector3f(0, 1, 0), matrix, matrix);
 		super.loadMatrix(location_viewMatrix, matrix);
 	}
 	
@@ -66,11 +66,11 @@ public class SkyboxShader extends ShaderProgram {
 		super.loadVector(location_fogColour, new Vector3f(r, g, b));
 	}
 	
-	public void loadBlendFactor(float blendFactor){
+	public void loadBlendFactor(float blendFactor) {
 		super.loadFloat(location_blendFactor, blendFactor);
 	}
 	
-	public void connectTextureUnits(){
+	public void connectTextureUnits() {
 		super.loadInt(location_cubeMap, 0);
 		super.loadInt(location_cubeMap2, 1);
 	}

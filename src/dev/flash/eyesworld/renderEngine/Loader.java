@@ -164,12 +164,12 @@ public class Loader {
 		return vbo;
 	}
 	
-	public void updateVbo(int vbo, float[] data, FloatBuffer buffer){
+	public void updateVbo(int vbo, float[] data, FloatBuffer buffer) {
 		buffer.clear();
 		buffer.put(data);
 		buffer.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer.capacity()*4, GL15.GL_STREAM_DRAW);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer.capacity() * 4, GL15.GL_STREAM_DRAW);
 		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, 0, buffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}

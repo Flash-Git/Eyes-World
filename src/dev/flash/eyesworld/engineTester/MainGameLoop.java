@@ -309,8 +309,8 @@ public class MainGameLoop {
 		
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				terrains.add(new Terrain(i-10, j-10, loader, texturePack, blendMap, seed));
-				waters.add(new WaterTile(i*512-10*512+256, j*512-10*512+256, -15f));
+				terrains.add(new Terrain(i - 10, j - 10, loader, texturePack, blendMap, seed));
+				waters.add(new WaterTile(i * 512 - 10 * 512 + 256, j * 512 - 10 * 512 + 256, -15f));
 			}
 		}
 		

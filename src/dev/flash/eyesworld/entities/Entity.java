@@ -49,7 +49,7 @@ public class Entity {
 	}
 	
 	public void moveTowards(Vector3f targetposition) {
-		Vector3f vec = new Vector3f(targetposition.x-position.x, targetposition.y-position.y,targetposition.z-position.z);
+		Vector3f vec = new Vector3f(targetposition.x - position.x, targetposition.y - position.y, targetposition.z - position.z);
 		vec.normalise();
 		position.translate(vec.x, vec.y, vec.z);
 		
@@ -67,8 +67,6 @@ public class Entity {
 	
 	
 	//G and S
-	
-	
 	
 	
 	public TexturedModel getModel() {
