@@ -218,9 +218,9 @@ public class MainGameLoop {
 		
 		List<Entity> ferns = new ArrayList<>();
 		Random random = new Random();
-		for (int i = 0; i < 120; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
+		for (int i = 0; i < 1200; i++) {
+			float x = random.nextFloat() * 16000 - 8000;
+			float z = random.nextFloat() * -16000 + 8000;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -236,9 +236,9 @@ public class MainGameLoop {
 		treeTexture.setReflectivity(0.25f);
 		
 		List<Entity> trees = new ArrayList<>();
-		for (int i = 0; i < 160; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
+		for (int i = 0; i < 1600; i++) {
+			float x = random.nextFloat() * 16000 - 8000;
+			float z = random.nextFloat() * -10600 + 8000;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -251,14 +251,14 @@ public class MainGameLoop {
 		List<LightEntity> lamps = new ArrayList<>();
 		
 		for (int i = 0; i < 5; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
+			float x = random.nextFloat() * 16000 - 8000;
+			float z = random.nextFloat() * -16000 + 8000;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
 					new Light(new Vector3f(x, y + 14, z),
 							new Vector3f(random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f, random.nextFloat() * 1.5f - 0.5f), new Vector3f(0.55f, 0.00035f, 0.00015f))));
-			//lights.add(lamps.get(i).getLight());
+			lights.add(lamps.get(i).getLight());
 		}
 		lights.add(sun);
 		entityManager.setSun(sun);
@@ -269,9 +269,9 @@ public class MainGameLoop {
 		barrelModel.getTexture().setNormalMap(loader.loadTexture("barrelNormal"));
 		
 		List<Entity> barrels = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
-			float x = random.nextFloat() * 1600 - 800;
-			float z = random.nextFloat() * -1600 + 800;
+		for (int i = 0; i < 500; i++) {
+			float x = random.nextFloat() * 16000 - 8000;
+			float z = random.nextFloat() * -10600 + 8000;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z) + 20;
 			
 			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));
@@ -280,12 +280,12 @@ public class MainGameLoop {
 		List<Entity> entities = new ArrayList<>();
 		List<Entity> normalMappedEntities = new ArrayList<>();
 		
-		//entities.addAll(trees);
-		//entities.addAll(lamps);
-		//entities.addAll(ferns);
+		entities.addAll(trees);
+		entities.addAll(lamps);
+		entities.addAll(ferns);
 		entities.add(player);
 		//entities.add(dragonEntity);
-		//normalMappedEntities.addAll(barrels);
+		normalMappedEntities.addAll(barrels);
 		
 		entityManager.addEntities(entities);
 		entityManager.addNormalMappedEntities(normalMappedEntities);
