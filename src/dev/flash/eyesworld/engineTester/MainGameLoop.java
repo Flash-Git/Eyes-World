@@ -238,7 +238,7 @@ public class MainGameLoop {
 		List<Entity> trees = new ArrayList<>();
 		for (int i = 0; i < 1600; i++) {
 			float x = random.nextFloat() * 16000 - 8000;
-			float z = random.nextFloat() * -10600 + 8000;
+			float z = random.nextFloat() * -16000 + 8000;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -284,7 +284,7 @@ public class MainGameLoop {
 		entities.addAll(lamps);
 		entities.addAll(ferns);
 		entities.add(player);
-		//entities.add(dragonEntity);
+		entities.add(dragonEntity);
 		normalMappedEntities.addAll(barrels);
 		
 		entityManager.addEntities(entities);

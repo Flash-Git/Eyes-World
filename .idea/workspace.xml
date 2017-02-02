@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2c34ceb-48bb-489f-a689-542c9a7a0418" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" afterPath="$PROJECT_DIR$/out/production/Eye's World/dev/flash/eyesworld/engineTester/MainGameLoop.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" afterPath="$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,8 +34,8 @@
       <file leaf-file-name="MainGameLoop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="309" column="38" lean-forward="true" selection-start-line="309" selection-start-column="38" selection-end-line="309" selection-end-column="38" />
+            <state relative-caret-position="574">
+              <caret line="298" column="88" lean-forward="true" selection-start-line="298" selection-start-column="88" selection-end-line="298" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
@@ -1091,12 +1093,12 @@
       <workItem from="1485797867444" duration="611000" />
       <workItem from="1485979725087" duration="742000" />
       <workItem from="1485980508286" duration="415000" />
-      <workItem from="1486079343516" duration="338000" />
+      <workItem from="1486079343516" duration="582000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299725000" />
+    <option name="totallyTimeSpent" value="299969000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2392,8 +2394,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dev/flash/eyesworld/engineTester/MainGameLoop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="309" column="38" lean-forward="true" selection-start-line="309" selection-start-column="38" selection-end-line="309" selection-end-column="38" />
+        <state relative-caret-position="574">
+          <caret line="298" column="88" lean-forward="true" selection-start-line="298" selection-start-column="88" selection-end-line="298" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#grabEntities#0;class#MainGameLoop#0" expanded="false" />
