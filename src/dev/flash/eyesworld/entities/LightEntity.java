@@ -14,7 +14,6 @@ public class LightEntity extends Entity {
 	private float yOffset;
 	private float zOffset;
 	
-	
 	public LightEntity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale, Light light) {
 		super(model, position, rotX, rotY, rotZ, scale);
 		this.light = light;
@@ -23,7 +22,6 @@ public class LightEntity extends Entity {
 		zOffset = light.getPosition().z - position.z;
 		
 		//utils.out(xOffset + " " + yOffset + " " + zOffset);
-		
 	}
 	
 	public LightEntity(TexturedModel model, int textureIndex, Vector3f position, float rotX, float rotY, float rotZ, float scale, Light light) {
@@ -33,7 +31,6 @@ public class LightEntity extends Entity {
 		yOffset = light.getPosition().y - position.y;
 		zOffset = light.getPosition().z - position.z;
 	}
-	
 	
 	@Override
 	public void increasePosition(float dx, float dy, float dz) {
@@ -50,4 +47,5 @@ public class LightEntity extends Entity {
 	public Light getLight() {
 		return light;
 	}
+	
 }

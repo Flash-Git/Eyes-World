@@ -73,4 +73,5 @@ public class ModelTexture {
 	public void setNumberOfRows(int numberOfRows) {
 		this.numberOfRows = numberOfRows;
 	}
+	
 }

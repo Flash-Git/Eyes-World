@@ -32,5 +32,4 @@ void main(void){
 	vec3 finalColour = mix(outlineColour, colour, alpha/finalAlpha);
 
 	out_colour = vec4(finalColour, finalAlpha);
-
 }

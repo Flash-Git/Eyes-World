@@ -42,7 +42,6 @@ public class MasterRenderer {
 	
 	private NormalMappingRenderer normalMappingRenderer;
 	
-	
 	private Map<TexturedModel, List<Entity>> entities = new HashMap<>();
 	private Map<TexturedModel, List<Entity>> normalMappingEntities = new HashMap<>();
 	private List<Terrain> terrains = new ArrayList<>();
@@ -110,7 +109,6 @@ public class MasterRenderer {
 		terrains.add(terrain);
 	}
 	
-	
 	public void processEntity(Entity entity) {
 		TexturedModel entityModel = entity.getModel();
 		List<Entity> batch = entities.get(entityModel);
@@ -166,4 +164,5 @@ public class MasterRenderer {
 	public Matrix4f getProjectionMatrix() {
 		return projectionMatrix;
 	}
+	
 }

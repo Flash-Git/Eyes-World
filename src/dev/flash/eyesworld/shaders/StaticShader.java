@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Flash on 30/12/2016.
  */
+
 public class StaticShader extends ShaderProgram {
 	
 	private static final int MAX_LIGHTS = 6;
@@ -110,7 +111,6 @@ public class StaticShader extends ShaderProgram {
 		super.loadVector(location_skyColour, new Vector3f(r, g, b));
 	}
 	
-	
 	public void loadNumberOfRows(int numberOfRows) {
 		super.loadFloat(location_numberOfRows, numberOfRows);
 	}
@@ -122,4 +122,5 @@ public class StaticShader extends ShaderProgram {
 	public void loadClipPlane(Vector4f plane) {
 		super.load4DVector(location_plane, new Vector4f(plane.x, plane.y, plane.z, plane.w));
 	}
+	
 }

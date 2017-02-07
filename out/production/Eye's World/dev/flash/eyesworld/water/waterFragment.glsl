@@ -21,12 +21,10 @@ const float shineDamper = 20.0;
 const float reflectivity = 0.5;
 
 void main(void) {
-
 	vec2 ndc = (clipSpace.xy / clipSpace.w) / 2.0 + 0.5;
 
 	vec2 reflectTexCoords = vec2(ndc.x, -ndc.y);
 	vec2 refractTexCoords = ndc;
-
 
 	float near = 0.1;
 	float far = 6000.0;
@@ -49,7 +47,6 @@ void main(void) {
 	refractTexCoords = clamp(refractTexCoords,0.001,0.999);
 
 
-
 	vec4 reflectionColour = texture(reflectionTexture, reflectTexCoords);
 	vec4 refractionColour = texture(refractionTexture, refractTexCoords);
 
@@ -65,7 +62,6 @@ void main(void) {
 	float refractiveFactor = dot(viewVector, normal);
 	refractiveFactor = pow(refractiveFactor, 3.0);//changing this value changes how reflective/refractive the water is
 	refractiveFactor = clamp(refractiveFactor, 0.0, 1.0);
-
 
 
 	vec3 reflectedLight = reflect(normalize(fromLightVector), normal);

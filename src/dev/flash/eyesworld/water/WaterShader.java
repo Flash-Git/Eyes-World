@@ -83,4 +83,5 @@ public class WaterShader extends ShaderProgram {
 		super.loadVector(location_lightColour, sun.getColour());
 		super.loadVector(location_lightPosition, sun.getPosition());
 	}
+	
 }

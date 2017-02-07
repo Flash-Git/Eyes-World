@@ -130,5 +130,4 @@ public class NormalMappingShader extends ShaderProgram {
 		return new Vector3f(eyeSpacePos);
 	}
 	
-	
 }

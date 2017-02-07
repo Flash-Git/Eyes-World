@@ -96,5 +96,4 @@ public class Camera {
 		return roll;
 	}
 	
-	
 }

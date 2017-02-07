@@ -24,8 +24,6 @@ const float gradient = 5.0;
 uniform vec4 plane;
 
 void main(void){
-
-
 	vec4 worldPosition = transformationMatrix * vec4(position, 1.0);
 	gl_ClipDistance[0] = dot(worldPosition, plane);
 	mat4 modelViewMatrix = viewMatrix * transformationMatrix;
@@ -54,5 +52,4 @@ void main(void){
 	float distance = length(positionRelativeToCam.xyz);
 	visibility = exp(-pow((distance*density),gradient));
 	visibility = clamp(visibility, 0.0, 1.0);
-	
 }

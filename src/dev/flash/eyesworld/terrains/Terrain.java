@@ -127,7 +127,6 @@ public class Terrain {
 		return generator.generateHeight(x, z);
 	}
 	
-	
 	//G and S
 	
 	public float getX() {
@@ -149,4 +148,5 @@ public class Terrain {
 	public TerrainTexture getBlendMap() {
 		return blendMap;
 	}
+	
 }

@@ -71,8 +71,8 @@ public class MousePicker {
 		return mouseRay;
 	}
 	
-	
 	public Vector3f getCurrentRay() {
 		return currentRay;
 	}
+	
 }

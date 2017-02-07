@@ -28,5 +28,4 @@ public class GuiShader extends ShaderProgram {
 		super.bindAttribute(0, "position");
 	}
 	
-	
 }

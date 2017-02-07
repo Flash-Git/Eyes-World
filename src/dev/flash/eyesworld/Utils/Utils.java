@@ -11,6 +11,7 @@ import java.util.Vector;
  */
 
 public class Utils {
+	
 	public static void out(String data) {
 		System.out.println(data);
 	}
@@ -54,6 +55,5 @@ public class Utils {
 	public static void out(Vector4f data) {
 		System.out.println(data);
 	}
-	
 	
 }

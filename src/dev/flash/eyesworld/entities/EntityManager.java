@@ -15,9 +15,7 @@ public class EntityManager {
 	private Light sun;
 	private Entity selectedEntity;
 	
-	public EntityManager() {
-	}
-	
+	public EntityManager() {}
 	
 	public void addEntity(Entity entity) {
 		entities.add(entity);
@@ -39,7 +37,6 @@ public class EntityManager {
 				}
 			}
 		}
-		
 	}
 	
 	//normalMapped
@@ -66,7 +63,6 @@ public class EntityManager {
 	}
 	
 	//Lights
-	
 	public void addLight(Light light) {
 		lights.add(light);
 	}
@@ -138,4 +134,5 @@ public class EntityManager {
 	public void setLights(List<Light> lights) {
 		this.lights = lights;
 	}
+	
 }

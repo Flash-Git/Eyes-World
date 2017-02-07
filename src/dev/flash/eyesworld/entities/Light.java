@@ -48,4 +48,5 @@ public class Light {
 	public Vector3f getAttenuation() {
 		return attenuation;
 	}
+	
 }

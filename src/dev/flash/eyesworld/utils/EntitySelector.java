@@ -76,7 +76,6 @@ public class EntitySelector extends MousePicker {
 		return testPoint.y < height;
 	}
 	
-	
 	public Vector3f getCurrentTerrainPoint() {
 		return currentTerrainPoint;
 	}

@@ -57,4 +57,5 @@ void main(void){
 
     out_Colour = vec4(totalDiffuse, 1.0) * totalColour  + vec4(totalSpecular, 1.0);
     out_Colour = mix(vec4(skyColour, 1.0), out_Colour, visibility);
+
 }

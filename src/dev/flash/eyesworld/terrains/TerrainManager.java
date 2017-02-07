@@ -23,7 +23,6 @@ public class TerrainManager {
 		return dummyTerrain;
 	}
 	
-	
 	public void addTerrain(Terrain terrain) {
 		terrains.add(terrain);
 	}
@@ -64,4 +63,5 @@ public class TerrainManager {
 	public void setDummyTerrain(Terrain dummyTerrain) {
 		this.dummyTerrain = dummyTerrain;
 	}
+	
 }

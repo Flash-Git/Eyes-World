@@ -34,7 +34,6 @@ public class WaterRenderer {
 	
 	private float moveFactor = 0;
 	
-	
 	public WaterRenderer(Loader loader, WaterShader shader, Matrix4f projectionMatrix, WaterFrameBuffers fbos) {
 		this.shader = shader;
 		this.fbos = fbos;
@@ -81,7 +80,6 @@ public class WaterRenderer {
 		
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		
 	}
 	
 	private void unbind() {

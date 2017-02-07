@@ -10,9 +10,7 @@ import java.util.List;
 public class WaterManager {
 	private List<WaterTile> waters = new ArrayList<>();
 	
-	public WaterManager() {
-		
-	}
+	public WaterManager() {}
 	
 	public void addWater(WaterTile water) {
 		waters.add(water);
@@ -34,7 +32,6 @@ public class WaterManager {
 				}
 			}
 		}
-		
 	}
 	
 	//G and S
@@ -46,4 +43,5 @@ public class WaterManager {
 	public void setWaters(List<WaterTile> waters) {
 		this.waters = waters;
 	}
+	
 }

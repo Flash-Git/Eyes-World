@@ -42,7 +42,7 @@ void main(void){
 	totalDiffuse = max(totalDiffuse, 0.2);
 	
 	vec4 textureColour = texture(modelTexture,pass_textureCoordinates);
-	if(textureColour.a<0.5){
+	if(textureColour.a < 0.5){
 		discard;
 	}
 

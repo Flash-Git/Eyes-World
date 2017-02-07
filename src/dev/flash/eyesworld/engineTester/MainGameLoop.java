@@ -350,4 +350,5 @@ public class MainGameLoop {
 		guis.add(flashIcon);
 		guiManager.addGuis(guis);
 	}
+	
 }
