@@ -28,7 +28,6 @@ public class TerrainRenderer {
 		shader.loadProjectionMatrix(projectionMatrix);
 		shader.connectTextureUnits();
 		shader.stop();
-		
 	}
 	
 	public void render(List<Terrain> terrains) {
@@ -83,6 +82,5 @@ public class TerrainRenderer {
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(
 				new Vector3f(terrain.getX(), 0, terrain.getZ()), 0, 0, 0, 1);
 		shader.loadTransformationMatrix(transformationMatrix);
-		
 	}
 }

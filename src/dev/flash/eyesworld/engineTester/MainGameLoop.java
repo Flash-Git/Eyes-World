@@ -24,6 +24,7 @@ import dev.flash.eyesworld.textures.ModelTexture;
 import dev.flash.eyesworld.textures.TerrainTexture;
 import dev.flash.eyesworld.textures.TerrainTexturePack;
 import dev.flash.eyesworld.utils.EntitySelector;
+import dev.flash.eyesworld.utils.Utils;
 import dev.flash.eyesworld.water.*;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -109,6 +110,8 @@ public class MainGameLoop {
 			
 			//Push to Screen
 			DisplayManager.updateDisplay();
+			
+			//Utils.out(entityManager.getSun().getPosition());
 		}
 		ParticleMaster.cleanUp();
 		TextMaster.cleanUp();
@@ -216,8 +219,8 @@ public class MainGameLoop {
 		List<Entity> ferns = new ArrayList<>();
 		Random random = new Random();
 		for (int i = 0; i < 700; i++) {
-			float x = random.nextFloat() * 8000 - 4000;
-			float z = random.nextFloat() * -8000 + 4000;
+			float x = random.nextFloat() *  5000 - 2500;
+			float z = random.nextFloat() *  -5000 + 2500;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			ferns.add(new Entity(staticFernModel, random.nextInt(4), new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -234,8 +237,8 @@ public class MainGameLoop {
 		
 		List<Entity> trees = new ArrayList<>();
 		for (int i = 0; i < 400; i++) {
-			float x = random.nextFloat() * 8000 - 4000;
-			float z = random.nextFloat() * -8000 + 4000;
+			float x = random.nextFloat() * 5000 - 2500;
+			float z = random.nextFloat() * -5000 + 2500;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			trees.add(new Entity(staticTreeModel, new Vector3f(x, y, z), 0, random.nextFloat() * 180, 0, 1));
@@ -248,8 +251,8 @@ public class MainGameLoop {
 		List<LightEntity> lamps = new ArrayList<>();
 		
 		for (int i = 0; i < 5; i++) {
-			float x = random.nextFloat() * 8000 - 4000;
-			float z = random.nextFloat() * -8000 + 4000;
+			float x = random.nextFloat() * 5000 - 2500;
+			float z = random.nextFloat() * -5000 + 2500;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z);
 			
 			lamps.add(new LightEntity(staticLampModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, 1,
@@ -267,8 +270,8 @@ public class MainGameLoop {
 		
 		List<Entity> barrels = new ArrayList<>();
 		for (int i = 0; i < 500; i++) {
-			float x = random.nextFloat() * 8000 - 4000;
-			float z = random.nextFloat() * -8000 + 4000;
+			float x = random.nextFloat() * 5000 - 2500;
+			float z = random.nextFloat() * -5000 + 2500;
 			float y = terrainManager.getTerrain(x, z).getHeightOfTerrain(x, z) + 20;
 			
 			barrels.add(new Entity(barrelModel, new Vector3f(x, y, z), 0, random.nextFloat() * 360, 0, random.nextFloat() + 1));

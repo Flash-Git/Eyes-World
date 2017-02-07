@@ -18,7 +18,7 @@ uniform vec3 lightPosition[6];
 uniform vec4 plane = vec4(0, -0.5, 0, 15);//culling plane for water
 
 
-const float density = 0.001;//try 0.002
+const float density = 0.0005;//try 0.002
 const float gradient = 5.0;
 
 void main(void) {

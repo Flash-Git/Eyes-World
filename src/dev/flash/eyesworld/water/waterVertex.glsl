@@ -16,7 +16,6 @@ uniform vec3 lightPosition;
 const float tiling = 8.0;//32
 
 void main(void) {
-
 	vec4 worldPosition = modelMatrix * vec4(position.x, 0.0, position.y, 1.0);
 
 	clipSpace = projectionMatrix * viewMatrix * worldPosition;

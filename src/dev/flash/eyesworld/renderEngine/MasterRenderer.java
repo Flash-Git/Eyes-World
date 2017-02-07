@@ -27,7 +27,7 @@ public class MasterRenderer {
 	
 	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;//should be uniform vars
-	private static final float FAR_PLANE = 6000;//30000
+	private static final float FAR_PLANE = 22000;//30000
 	
 	public static final float RED = 0.2f;
 	public static final float GREEN = 0.25f;
@@ -79,9 +79,8 @@ public class MasterRenderer {
 		
 		entityRenderer.render(entities);
 		shader.stop();
-
-		normalMappingRenderer.render(normalMappingEntities, clipPlane, lights, camera);
 		
+		normalMappingRenderer.render(normalMappingEntities, clipPlane, lights, camera);
 		
 		terrainShader.start();
 		terrainShader.loadClipPlane(clipPlane);
@@ -136,14 +135,12 @@ public class MasterRenderer {
 		}
 	}
 	
-	
 	public void prepare() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);//renders triangles in correct order
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		
 		GL11.glClearColor(RED, GREEN, BLUE, 1);
 	}
-	
 	
 	private void createProjectionMatrix() {
 		float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
@@ -158,8 +155,6 @@ public class MasterRenderer {
 		projectionMatrix.m23 = -1;
 		projectionMatrix.m32 = -((2 * NEAR_PLANE * FAR_PLANE) / frustum_length);
 		projectionMatrix.m33 = 0;
-		
-		
 	}
 	
 	public void cleanUp() {
