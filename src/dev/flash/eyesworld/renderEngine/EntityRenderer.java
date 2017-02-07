@@ -31,7 +31,6 @@ public class EntityRenderer {
 		shader.stop();
 	}
 	
-	
 	public void render(Map<TexturedModel, List<Entity>> entities) {
 		for (TexturedModel model : entities.keySet()) {
 			prepareTextureModel(model);
@@ -73,6 +72,4 @@ public class EntityRenderer {
 		shader.loadTransformationMatrix(transformationMatrix);
 		shader.loadOffset(entity.getTextureXOffset(), entity.getTextureYOffset());
 	}
-	
-	
 }

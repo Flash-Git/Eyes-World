@@ -63,7 +63,6 @@ public class EntityManager {
 				}
 			}
 		}
-		
 	}
 	
 	//Lights
@@ -100,7 +99,6 @@ public class EntityManager {
 		this.selectedEntity = selectedEntity;
 	}
 	
-	
 	public Player getPlayer() {
 		return player;
 	}
@@ -108,7 +106,6 @@ public class EntityManager {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
 	
 	public Light getSun() {
 		return sun;
@@ -118,7 +115,6 @@ public class EntityManager {
 		this.sun = sun;
 	}
 	
-	
 	public List<Entity> getEntities() {
 		return entities;
 	}
@@ -127,7 +123,6 @@ public class EntityManager {
 		this.entities = entities;
 	}
 	
-	
 	public List<Entity> getNormalMappedEntities() {
 		return normalMappedEntities;
 	}
@@ -135,7 +130,6 @@ public class EntityManager {
 	public void setNormalMappedEntities(List<Entity> normalMappedEntities) {
 		this.normalMappedEntities = normalMappedEntities;
 	}
-	
 	
 	public List<Light> getLights() {
 		return lights;
