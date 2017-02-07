@@ -23,7 +23,7 @@ uniform vec2 offset;
 
 uniform vec4 plane = vec4(0, -0.5f, 0, 15);//culling plane for water
 
-const float density = 0.000;//try 0.002
+const float density = 0.001;//try 0.002
 const float gradient = 5.0;
 
 
